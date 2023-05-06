@@ -1,37 +1,45 @@
 <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
   <c-container>
     <c-row class="justify-content-center">
-      <c-col md="8">
+      <c-col md="10">
         <c-card-group>
           <c-card class="p-4">
             <c-card-body>
-              <form cForm>
+              <form [formGroup]="loginForm" (ngSubmit)="onLogin()"> 
                 <h1>Login</h1>
                 <p class="text-medium-emphasis">Sign In to your account</p>
+
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input autoComplete="username" cFormControl placeholder="Username" />
+                  <input type="text" autoComplete="username" id="username" name="username"
+                   cFormControl placeholder=" Enter UserName" [valid]="true"
+                    formControlName="username"  [ngClass]="{'is-invalid' : submitted && f['username'].errors }" />
+                  <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                    <small *ngIf="f['username'].errors['required']">UserName is required</small>
+                  </div>
                 </c-input-group>
+
                 <c-input-group class="mb-4">
                   <span cInputGroupText>
                     <svg cIcon name="cilLockLocked"></svg>
                   </span>
-                  <input
-                    autoComplete="current-password"
-                    cFormControl
-                    placeholder="Password"
-                    type="password"
-                  />
+                  <input autoComplete="password" id="password" name="password" cFormControl [valid]="true"
+                    placeholder=" Enter Password" formControlName="password" type="password"
+                    [ngClass]="{ 'is-invalid' : submitted && f['password'].errors }" />
+                  <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <small *ngIf="f['password'].errors['required']">Password is required</small>
+                  </div>
                 </c-input-group>
-                <c-row>
-                  <c-col xs="6">
-                    <button cButton class="px-4" color="primary">
-                      Login
-                    </button>
+                
+                <c-row >
+                  <c-col xs="12">
+                    <div class="d-grid gap-2 text-center">
+                    <button type="submit" cButton class="px-6" color="primary"> Login  </button>
+                  </div>
                   </c-col>
-                  <c-col class="text-right" xs="6">
+                  <c-col class="text-right" xs="8">
                     <button cButton class="px-0" color="link">
                       Forgot password?
                     </button>
@@ -45,8 +53,7 @@
               <div>
                 <h2>Sign up</h2>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua.
+                  <img src="assets/images/brabd/coreui-base.sv" />
                 </p>
                 <button [active]="true" cButton class="mt-3" color="primary" routerLink="/register">
                   Register Now!

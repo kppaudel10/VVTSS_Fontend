@@ -1,40 +1,102 @@
 <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
   <c-container>
     <c-row class="justify-content-center">
-      <c-col lg="7" md="9" xl="6">
-        <c-card class="mx-4">
-          <c-card-body class="p-4">
-            <form cForm>
-              <h1>Register</h1>
-              <p class="text-medium-emphasis">Create your account</p>
-              <c-input-group class="mb-3">
-                <span cInputGroupText>
-                  <svg cIcon name="cilUser"></svg>
-                </span>
-                <input autoComplete="name" cFormControl placeholder="Username" />
-              </c-input-group>
-              <c-input-group class="mb-3">
-                <span cInputGroupText>@</span>
-                <input autoComplete="email" cFormControl placeholder="Email" />
-              </c-input-group>
-              <c-input-group class="mb-3">
-                <span cInputGroupText>
-                  <svg cIcon name="cilLockLocked"></svg>
-                </span>
-                <input autoComplete="new-password" cFormControl placeholder="Password" type="password" />
-              </c-input-group>
-              <c-input-group class="mb-4">
-                <span cInputGroupText>
-                  <svg cIcon name="cilLockLocked"></svg>
-                </span>
-                <input autoComplete="new-password" cFormControl placeholder="Repeat password" type="password" />
-              </c-input-group>
-              <div class="d-grid">
-                <button cButton color="success">Create Account</button>
+      <c-col md="10">
+        <c-card-group>
+          <c-card class="p-4">
+            <c-card-body>
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <h1>Register</h1>
+                <p class="text-medium-emphasis">Sign Up to your account</p>
+
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilUser"></svg>
+                  </span>
+                  <input type="text" autoComplete="name" id="name" name="name" cFormControl placeholder=" Enter Name" [valid]="true" value="Mark"
+                    formControlName="name" name="name" [ngClass]="{'is-invalid' : submitted && f['name'].errors }" />
+                  <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                    <small *ngIf="f['name'].errors['required']">Name is required</small>
+                  </div>
+                  
+                </c-input-group>
+
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>@</span>
+                  <input type="text" autoComplete="email" id="email" name="email" cFormControl [valid]="true" value="Mark"
+                    placeholder=" Enter Email" formControlName="email"
+                    [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+                  <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <small *ngIf="f['email'].errors['required']">Email is required</small>
+                  </div>
+                </c-input-group>
+
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cil-phone"></svg>
+                  </span>
+                  <input type="text" autoComplete="mobileNumber" id="mobileNumber" name="mobileNumber" cFormControl [valid]="true" value="Mark"
+                    placeholder=" Enter MobileNumber" formControlName="mobileNumber"
+                    [ngClass]="{ 'is-invalid' : submitted && f['mobileNumber'].errors }" />
+                  <div *ngIf="submitted && f['mobileNumber'].errors" class="invalid-feedback">
+                    <small *ngIf="f['mobileNumber'].errors['required']">Mobile is required</small>
+                  </div>
+                </c-input-group>
+
+                <c-input-group class="mb-4">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilLockLocked"></svg>
+                  </span>
+                  <input autoComplete="current-password" id="password" name="password" cFormControl [valid]="true" value="Mark"
+                    placeholder=" Enter Password" formControlName="password" type="password"
+                    [ngClass]="{ 'is-invalid' : submitted && f['password'].errors }" />
+                  <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <small *ngIf="f['password'].errors['required']">Password is required</small>
+                  </div>
+                </c-input-group>
+
+                
+                  <c-input-group class="mb-4">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilLockLocked"></svg>
+                  </span>
+                  <input
+                    autoComplete="current-password"  id="confirmPassword" name="confirmPassword" formControlName="confirmPassword"
+                    cFormControl [valid]="true" value="Mark"
+                    placeholder="Repeat Password"
+                    type="password"  [ngClass]="{ 'is-invalid' : submitted && f['confirmPassword'].errors }"/>
+                    <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback">
+                      <small *ngIf="f['confirmPassword'].errors['required']">Password is required</small>
+                      <small *ngIf="f['confirmPassword'].errors['passwordMismatch']">Passwords do not match.</small>
+                    </div>
+                </c-input-group> 
+
+                <c-row>
+                  <c-col xs="6">
+                    <button cButton type="submit" class="px-4" color="primary">
+                      Register
+                    </button>
+                  </c-col>
+                </c-row>
+              </form>
+            </c-card-body>
+          </c-card>
+          <c-card [ngStyle]="{'width.%': 44}" class="text-white bg-primary py-5">
+            <c-card-body class="text-center">
+              <div>
+                <h2>Sign up</h2>
+                <p class="mb-4">
+                  Hi, User If You are not Register Still please fill the form And Create Your Accounts
+                  If You are already register Click Login Now Button For Login
+                  Thank You
+                </p>
+                <button [active]="true" cButton class="mt-3" color="primary" routerLink="/login">
+                  Login Now
+                </button>
               </div>
-            </form>
-          </c-card-body>
-        </c-card>
+            </c-card-body>
+          </c-card>
+        </c-card-group>
       </c-col>
     </c-row>
   </c-container>

@@ -12,7 +12,8 @@ import {
   NavModule,
   ProgressModule,
   TableModule,
-  TabsModule
+  TabsModule,
+  WidgetModule
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { ChartjsModule } from '@coreui/angular-chartjs';
@@ -40,6 +41,7 @@ import { DashboardComponent } from './dashboard.component';
     ChartjsModule,
     AvatarModule,
     TableModule,
+    WidgetModule
 
   ],
   declarations: [DashboardComponent]
