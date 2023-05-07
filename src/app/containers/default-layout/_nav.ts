@@ -1,14 +1,13 @@
+import { HostBinding, OnInit } from '@angular/core';
 import { INavData } from '@coreui/angular';
+
+
 
 export const navItems: INavData[] = [
   {
     name: 'Dashboard',
     url: '/dashboard',
     iconComponent: { name: 'cil-speedometer' },
-    badge: {
-      color: 'info',
-      text: 'NEW'
-    }
   },
   
   {
@@ -22,12 +21,16 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Login',
-        url: '/login'
+        url: '/login',
+        iconComponent: { name: 'cil-user' },
+        
       },
       {
         name: 'Register',
-        url: '/register'
+        url: '/register',
+        iconComponent: { name: 'cil-user' },
       },
-    ]
+    ]                                                           
   },
 ];
+  

@@ -274,6 +274,6 @@ export enum IconSubset {
   cilUserFemale = 'cilUserFemale',
   cilUserFollow = 'cilUserFollow',
   cilUserUnfollow = 'cilUserUnfollow',
-  cilPhone = 'Phone',
+  cilPhone = 'Phone', 
 
 }

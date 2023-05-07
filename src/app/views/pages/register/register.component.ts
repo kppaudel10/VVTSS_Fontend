@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(6)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required,Validators.pattern('^((?!.*[s])(?=.*[A-Z])(?=.*d).{8,99})')]], //Validators.pattern('^((?!.*[s])(?=.*[A-Z])(?=.*d).{8,99})')
+      password: ['', [Validators.required]], //Validators.pattern('^((?!.*[s])(?=.*[A-Z])(?=.*d).{8,99})')
       confirmPassword: ['',[Validators.required,this.passwordMatchValidator.bind(this)]],
       mobileNumber: ['', [Validators.required, Validators.minLength(10)]]
     });
@@ -45,11 +45,11 @@ export class RegisterComponent implements OnInit {
       alert('invalid');
       return;
     }
-    else
+  
     this.userService.regiserUser(this.registerForm?.value)?.subscribe(
       (data: any) => {
         console.log(data)
-        alert('success')
+        alert("fkndfdj")
       },
       (error: any) => {
         console.log(error);

@@ -21,5 +21,5 @@ export class BaseService {
         http.set("Content-Type", 'multipart/json')
         return http;
     }
-
+    
 }
