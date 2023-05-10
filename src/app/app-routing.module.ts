@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { DefaultLayoutComponent } from './containers';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
@@ -8,24 +7,24 @@ import { RegisterComponent } from './views/pages/register/register.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
+    component: LoginComponent,
+    
   },
   {
-    path: '',
+    path: 'side',
     component: DefaultLayoutComponent,
     data: {
       title: 'Home'
     },
-    children: [
-      {
+  },
+     {
         path: 'dashboard',
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
       
       {
-        path: 'pages',
+        path: 'page',
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
       },
@@ -38,24 +37,9 @@ const routes: Routes = [
         path: 'user',
         loadChildren: () =>
         import('./views/user/user.module').then((m) => m.UserModule)
-      }
-    ]
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    data: {
-      title: 'Login Page'
-    }
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    data: {
-      title: 'Register Page'
-    }
-  },
-  {path: '**', redirectTo: 'dashboard'}
+      },
+      {path: '', redirectTo: '', pathMatch: 'full'},
+    
 ];
 
 @NgModule({

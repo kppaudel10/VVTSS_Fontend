@@ -11,7 +11,7 @@ export const navItems: INavData[] = [
   },
   
   {
-    name: 'VVTA Page',
+    name: 'VVTS Page',
     title: true
   },
   {
@@ -23,7 +23,6 @@ export const navItems: INavData[] = [
         name: 'Login',
         url: '/login',
         iconComponent: { name: 'cil-user' },
-        
       },
       {
         name: 'Register',

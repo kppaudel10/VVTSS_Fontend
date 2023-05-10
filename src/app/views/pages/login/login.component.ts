@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../user/user.service';
 import { Login } from 'src/app/models/Login';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,12 @@ export class LoginComponent implements OnInit {
   submitted = false;
 
   constructor(private login: UserService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private router: Router) { }
 
   ngOnInit(): void {
+
+
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -30,20 +34,13 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-
-
     // login service injected....
     this.login.OnLogedIn(this.loginForm?.value)?.subscribe(
-      (data: any) => {
-        
-        console.log('response Success', data);
-        console.log("token values:", data.data.token);
-        localStorage.setItem("token", JSON.stringify(data.data.token));
-        localStorage.getItem("token");
-        window.location.href="/dashboard";
-        console.log('Data before setting token:', data.token);
-        alert('sucess');
-
+      (res: any) => {
+        console.log('response Success', res);
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+       this.router.navigate(['/side']);
+       
       },
       (error: any) => {
         console.log('Response Error', error);

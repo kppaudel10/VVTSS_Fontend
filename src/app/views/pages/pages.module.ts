@@ -24,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     IconModule,
     FormModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers: []
 })
 export class PagesModule {
 }
