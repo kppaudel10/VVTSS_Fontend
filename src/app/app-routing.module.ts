@@ -33,11 +33,7 @@ const routes: Routes = [
         loadChildren: () =>
         import('./views/admin/admin.module').then((m) => m.AdminModule)
       },
-      {
-        path: 'user',
-        loadChildren: () =>
-        import('./views/user/user.module').then((m) => m.UserModule)
-      },
+      
       {path: '', redirectTo: '', pathMatch: 'full'},
     
 ];

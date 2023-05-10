@@ -43,13 +43,10 @@ import {
   SidebarModule,
   TabsModule,
   UtilitiesModule,
-  
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { UserModule } from './views/user/user.module';
-
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -92,7 +89,7 @@ const APP_CONTAINERS = [
     CardModule,
     FormModule,
     HttpClientModule,
-    UserModule
+    
   ],
   providers: [
     {
