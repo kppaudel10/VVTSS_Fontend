@@ -1,9 +1,10 @@
-import { HostBinding, OnInit } from '@angular/core';
+
 import { INavData } from '@coreui/angular';
 
 
 
-export const navItems: INavData[] = [
+export const navItems: INavData[]  = [
+  
   {
     name: 'Dashboard',
     url: '/dashboard',

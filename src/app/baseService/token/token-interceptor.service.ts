@@ -6,12 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TokenInterceptorService implements HttpInterceptor{
-
   constructor() { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const localToken = localStorage.getItem('token');
-    console.log('token is',localToken);
-    req.clone({headers: req.headers.set('Authorization','bearer ' + {localToken})})
+    let newRequest = req;
+   newRequest =  newRequest.clone({
+      setHeaders:{Authorization : `Bearer ${localToken}`}
+    })
     return next.handle(req);
   }
 }

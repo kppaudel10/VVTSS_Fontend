@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../user/user.service';
+import { UserService } from '../../user/user/user.service';
 import { Login } from 'src/app/models/Login';
 import { Router } from '@angular/router';
 
@@ -18,8 +18,6 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-
-
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -38,8 +36,8 @@ export class LoginComponent implements OnInit {
     this.login.OnLogedIn(this.loginForm?.value)?.subscribe(
       (res: any) => {
         console.log('response Success', res);
-        localStorage.setItem("token", JSON.stringify(res.data.token));
-       this.router.navigate(['/side']);
+        localStorage.setItem("token", (res.data.token));
+      this.router.navigate(['/home']);
        
       },
       (error: any) => {

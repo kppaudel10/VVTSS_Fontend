@@ -184,6 +184,7 @@ export const iconSubset = {
   cilPhone
 };
 
+
 export enum IconSubset {
   cibCcAmex = 'cibCcAmex',
   cibCcApplePay = 'cibCcApplePay',
@@ -217,7 +218,7 @@ export enum IconSubset {
   cilCalendar = 'cilCalendar',
   cilChart = 'cilChart',
   cilChartPie = 'cilChartPie',
-  cilCheck='cilCheck',
+  cilCheck = 'cilCheck',
   cilChevronLeft = 'cilChevronLeft',
   cilChevronRight = 'cilChevronRight',
   cilCloudDownload = 'cilCloudDownload',
@@ -274,6 +275,6 @@ export enum IconSubset {
   cilUserFemale = 'cilUserFemale',
   cilUserFollow = 'cilUserFollow',
   cilUserUnfollow = 'cilUserUnfollow',
-  cilPhone = 'Phone', 
-
+  cilPhone = 'Phone',
+  cilBook = "cilBook"
 }

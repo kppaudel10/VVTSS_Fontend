@@ -11,7 +11,7 @@ const routes: Routes = [
     
   },
   {
-    path: 'side',
+    path: 'home',
     component: DefaultLayoutComponent,
     data: {
       title: 'Home'

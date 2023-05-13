@@ -5,7 +5,7 @@
         <c-card-group>
           <c-card class="p-4">
             <c-card-body>
-              <form [formGroup]="loginForm" (ngSubmit)="onLogin()"> 
+              <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
                 <h1>Login</h1>
                 <p class="text-medium-emphasis">Sign In to your account</p>
 
@@ -13,9 +13,9 @@
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input type="text" autoComplete="username" id="username" name="username"
-                   cFormControl placeholder=" Enter UserName" 
-                    formControlName="username"  [ngClass]="{'is-invalid' : submitted && f['username'].errors }" />
+                  <input type="text" autoComplete="username" id="username" name="username" cFormControl
+                    placeholder=" Enter UserName" formControlName="username"
+                    [ngClass]="{'is-invalid' : submitted && f['username'].errors }" />
                   <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
                     <small *ngIf="f['username'].errors['required']">UserName is required</small>
                   </div>
@@ -25,19 +25,19 @@
                   <span cInputGroupText>
                     <svg cIcon name="cilLockLocked"></svg>
                   </span>
-                  <input autoComplete="password" id="password" name="password" cFormControl 
+                  <input autoComplete="password" id="password" name="password" cFormControl
                     placeholder=" Enter Password" formControlName="password" type="password"
                     [ngClass]="{ 'is-invalid' : submitted && f['password'].errors }" />
                   <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
                     <small *ngIf="f['password'].errors['required']">Password is required</small>
                   </div>
                 </c-input-group>
-                
-                <c-row >
+
+                <c-row>
                   <c-col xs="12">
                     <div class="d-grid gap-2 text-center">
-                    <button type="submit" cButton class="px-6" color="primary"> Login  </button>
-                  </div>
+                      <button type="submit" cButton class="px-6" color="primary"> Login </button>
+                    </div>
                   </c-col>
                   <c-col class="text-right" xs="8">
                     <button cButton class="px-0" color="link">
@@ -51,9 +51,8 @@
           <c-card [ngStyle]="{'width.%': 44}" class="text-white bg-primary py-5">
             <c-card-body class="text-center">
               <div>
-                <h2>Sign up</h2>
                 <p>
-                  <img src="assets/images/brand/coreui-base.svg" />
+                  <img src="assets/images/brand/coreui-angular.svg" />
                 </p>
                 <button [active]="true" cButton class="mt-3" color="primary" [routerLink]="'page/register'">
                   Register Now!

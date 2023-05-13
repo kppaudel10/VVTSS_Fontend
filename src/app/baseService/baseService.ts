@@ -7,19 +7,24 @@ export class BaseService {
     serviceUrl = '';
     getHeaders() {
         const http = new HttpHeaders();
-        if (localStorage.getItem('token')) {
-            http.set('Authorization', `Bearer ${localStorage.getItem('token')}`)
+        const token  = localStorage.getItem('token');
+
+        if (token != null) {
+            http.set('Authorization', `Bearer ${token}`)
         }
         http.set("Content-Type", 'application/json')
         return http;
     }
     getHeadersWithMultipart() {
         const http = new HttpHeaders();
-        if (localStorage.getItem('token')) {
-            http.set('Authorization', `Bearer ${localStorage.getItem('token')}`)
+        const token  = localStorage.getItem('token');
+
+        if (token != null) {
+            http.set('Authorization', `Bearer ${token}`)
         }
         http.set("Content-Type", 'multipart/json')
         return http;
+
     }
     
 }
