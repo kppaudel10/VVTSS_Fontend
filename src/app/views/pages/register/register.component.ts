@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup, Validators } from '@angular/forms';
 import { FormControl, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import {UserService } from 'src/app/views/user/user/user.service'
+import {UserService } from 'src/app/views/user/user.service'
 
 @Component({
   selector: 'app-register',

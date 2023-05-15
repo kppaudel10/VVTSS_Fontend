@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../user/user/user.service';
+import { UserService } from '../../user/user.service';
 import { Login } from 'src/app/models/Login';
 import { Router } from '@angular/router';
 
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         console.log('response Success', res);
         localStorage.setItem("token", (res.data.token));
-      this.router.navigate(['/home']);
+      this.router.navigate(['/sidebar']);
        
       },
       (error: any) => {

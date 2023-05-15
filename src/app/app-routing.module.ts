@@ -11,7 +11,7 @@ const routes: Routes = [
     
   },
   {
-    path: 'home',
+    path: 'sidebar',
     component: DefaultLayoutComponent,
     data: {
       title: 'Home'
@@ -32,6 +32,12 @@ const routes: Routes = [
         path: 'admin',
         loadChildren: () =>
         import('./views/admin/admin.module').then((m) => m.AdminModule)
+      },
+
+      {
+        path: 'user',
+        loadChildren: () =>
+        import('./views/user/user.module').then((m) => m.UserModule)
       },
       
       {path: '', redirectTo: '', pathMatch: 'full'},
