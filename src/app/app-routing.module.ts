@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './containers';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
+import { UserKycUpdateComponent } from './views/user/user-kyc-update/user-kyc-update.component';
+import { SellVehicleComponent } from './views/user/sell-vehicle/sell-vehicle.component';
+import { BuyRequestComponent } from './views/user/buy-request/buy-request.component';
 
 const routes: Routes = [
   {
@@ -11,12 +14,12 @@ const routes: Routes = [
     
   },
   {
-    path: 'sidebar',
+    path: 'home',
     component: DefaultLayoutComponent,
     data: {
       title: 'Home'
     },
-  },
+    children: [
      {
         path: 'dashboard',
         loadChildren: () =>
@@ -39,9 +42,24 @@ const routes: Routes = [
         loadChildren: () =>
         import('./views/user/user.module').then((m) => m.UserModule)
       },
-      
-      {path: '', redirectTo: '', pathMatch: 'full'},
+
+      {
+        path: 'user/update-kyc',
+        component: UserKycUpdateComponent,
+      },
+      {
+        path: 'user/sell-vehicle',
+        component: SellVehicleComponent
+      },
+      {
+        path: 'user/buy-request',
+        component: BuyRequestComponent
+      },
+    ]
     
+    },
+  
+  {path: '', redirectTo: '', pathMatch: 'full'},
 ];
 
 @NgModule({

@@ -43,17 +43,17 @@ export class DefaultLayoutComponent implements OnInit {
             break;
           case 'U-Dashboard':
             icon = IconSubset.cilBarChart;
-            url = '/page/register';
+            url = '/home/user/update-kyc';
             break;
 
             case 'Sell Vehicle':
               icon = IconSubset.cibCcPaypal;
-              url = '/user/udate-kyc';
+              url = '/home/user/sell-vehicle';
               break;
 
               case 'Buy Request':
               icon = IconSubset.cilBasket;
-              url = '';
+              url = '/home/user/buy-request';
               break;
 
           case 'License':
