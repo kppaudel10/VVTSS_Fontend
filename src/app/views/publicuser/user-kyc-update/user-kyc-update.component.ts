@@ -1,64 +1,64 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Data, Router } from '@angular/router';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {UserService} from '../user.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-user-kyc-update',
   templateUrl: './user-kyc-update.component.html',
   styleUrls: ['./user-kyc-update.component.scss']
 })
-export class UserKycUpdateComponent implements OnInit{
+export class UserKycUpdateComponent implements OnInit {
   public visible = false;
-  public form!: FormGroup;
+  public form: FormGroup | any;
   public kycDetails: any; // Variable to store KYC details
   public isKycRejects: boolean | undefined
-  
 
   constructor(private kycService: UserService,
               private formBuilder: FormBuilder,
               private cdr: ChangeDetectorRef,
-              private route: ActivatedRoute){}
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: ['',  Validators.required],
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       contact: ['', Validators.required],
       address: ['', Validators.required],
-      profileImageUrl: [null, Validators.required],
       citizenshipNo: ['', Validators.required],
-      citizenshipFontUrl: ['', Validators.required],
-      citizenshipBackUrl: ['', Validators.required]
-
+      profilePicture: [null, Validators.required],
+      citizenshipFont: [null, Validators.required],
+      citizenshipBack: [null, Validators.required]
     });
   }
 
   uploadImage(event: any, controlName: string) {
-    const files = event.target.files;
-    const fileList: File[] = Array.from(files); // Convert FileList to an array
-  
-    if (fileList.length > 0) {
-      this.form.patchValue({ [controlName]: fileList });
-    }
+    const file: File = event.target.files[0];
+    this.form.controls[controlName].patchValue([file]);
+    this.form.get(controlName).updateValueAndValidity()
   }
 
   submitForm() {
-    if (this.form?.invalid) {
-      alert("invalid form")
-    }
-
-    this.kycService.submitFor(this.form?.value)?.subscribe(
-      (response:any) => {
+    let formData: any = new FormData();
+    Object.keys(this.form.controls).forEach(formControlName => {
+      if (formControlName == 'profilePicture' || formControlName === 'citizenshipFont'
+        || formControlName === 'citizenshipBack') {
+        const file: File = this.form.get(formControlName).value[0];
+        formData.append(formControlName, file);
+      } else {
+        formData.append(formControlName, this.form.get(formControlName).value);
+      }
+    });
+    this.kycService.submitFor(formData).subscribe(
+      (response: any) => {
         // Handle successful form submission
-        console.log('respose is: ', response)
         Object.keys(this.form.controls).forEach((controlName) => {
-          this.form.controls[controlName].setValue(null);
+          this.form.controls[controlName].setValue(this.form.controls.value);
         });
-  
-        this.cdr.detectChanges();     
+        this.cdr.detectChanges();
       },
-      (error:any) => {
+      (error: any) => {
         // Handle error during form submission
         console.error('error res:', error);
       }
@@ -66,13 +66,11 @@ export class UserKycUpdateComponent implements OnInit{
   }
 
   kycUpdateButton() {
-    
+
     this.kycService.getKycBasicDetails().subscribe(
       (data: any) => {
         this.kycDetails = data.data; // Store the retrieved KYC details in the variable
         this.form.patchValue(this.kycDetails);
-        console.log('dataxxxx',this.kycDetails);
-
       },
       (error: any) => {
         console.log(error);
@@ -85,13 +83,13 @@ export class UserKycUpdateComponent implements OnInit{
     this.visible = event;
   }
 
-  isKycReject(){
-
-    if(this.kycDetails.get('isKycRejected') === true){
+  isKycReject() {
+    if (this.kycDetails['isKycRejected'] === true) {
       this.isKycRejects = true;
-    }else{
+    } else {
       this.isKycRejects = false;
     }
   }
+
 
 }

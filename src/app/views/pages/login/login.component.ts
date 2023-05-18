@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../publicuser/user.service';
-import { Login } from 'src/app/models/Login';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../publicuser/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private login: UserService,
               private formBuilder: FormBuilder,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm?.value);
     this.submitted = true;
     if (this.loginForm?.invalid) {
-      alert('invalisdd');
       return;
     }
 
@@ -37,8 +36,8 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         console.log('response Success', res);
         localStorage.setItem("token", (res.data.token));
-      this.router.navigate(['/home']);
-       
+        this.router.navigate(['/home']);
+
       },
       (error: any) => {
         console.log('Response Error', error);
