@@ -36,37 +36,37 @@
     <c-modal-body>
       <!-- form field -->
       <div class="mb-3" >
-        <label cLabel for="name">Name:</label>
+        <label cLabel for="name">Name:<sup>*</sup></label>
         <input cFormControl id="name" name="name" formControlName="name" type="text" placeholder="Enter Name" >
 
 
       </div>
 
       <div class="mb-3">
-        <label cLabel for="email">Email:</label>
+        <label cLabel for="email">Email:<sup>*</sup></label>
         <input cFormControl id="email" name="email" type="email" formControlName="email" placeholder="Enter Email" readonly>
       </div>
 
       <div class="mb-3">
-        <label cLabel for="contact">Contact:</label>
+        <label cLabel for="contact">Contact:<sup>*</sup></label>
         <input cFormControl id="contact" name="contact" formControlName="contact" type="text"
           placeholder="Enter Contact No:" readonly>
       </div>
 
       <div class="mb-3">
-        <label cLabel for="address">Address:</label>
+        <label cLabel for="address">Address:<sup>*</sup></label>
         <input cFormControl id="address" name="address" formControlName="address" type="text"
           placeholder="Enter Address">
       </div>
 
       <div class="mb-3">
-        <label cLabel for="profilePicture">Pasportsize Photo</label>
+        <label cLabel for="profilePicture">Passport Size Photo:<sup>*</sup></label>
         <input cFormControl id="profilePicture" name="profilePicture" formControlName="profilePicture" multiple
           type="file" (change)="uploadImage($event, 'profilePicture')" />
       </div>
 
       <div class="mb-3">
-        <label cLabel for="address">Citizen Number:</label>
+        <label cLabel for="address">Citizen Number:<sup>*</sup></label>
         <input cFormControl id="citizenshipNo" name="citizenshipNo" formControlName="citizenshipNo" type="text"
           placeholder="Enter Address">
       </div>
@@ -74,20 +74,18 @@
       <c-card-body>
         <h5>Upload Given Information</h5>
         <div class="mb-3">
-          <label cLabel for="citizenshipFont">Citizenship Front</label>
+          <label cLabel for="citizenshipFont">Citizenship Front:<sup>*</sup></label>
           <input cFormControl id="citizenshipFont" name="citizenshipFont" formControlName="citizenshipFont"
                  type="file" (change)="uploadImage($event, 'citizenshipFont')" />
         </div>
 
         <div class="mb-3">
-          <label cLabel for="citizenshipBack">Citizenship Back</label>
+          <label cLabel for="citizenshipBack">Citizenship Back:<sup>*</sup></label>
           <input cFormControl id="citizenshipBack" name="citizenshipBack" formControlName="citizenshipBack"
              type="file" (change)="uploadImage($event, 'citizenshipBack')" />
         </div>
 
       </c-card-body>
-
-
       <!-- end form -->
     </c-modal-body>
     <c-modal-footer>

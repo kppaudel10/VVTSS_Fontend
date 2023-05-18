@@ -1,10 +1,18 @@
-.my-2{
-margin:2.5rem;
+.my-2 {
+  margin: 2.5rem;
 }
 
-c-card-body img{
-    height: 300;
-    width: 400;
-    border: 1px solid rgb(161, 73, 73);
-}   
+c-card-body img {
+  height: 300;
+  width: 400;
+  border: 1px solid rgb(161, 73, 73);
+}
 
+#email, #contact {
+  background-color: #d9e3f8;
+}
+
+sup {
+  color: red;
+  font-size: 13px;
+}
