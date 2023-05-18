@@ -6,15 +6,16 @@ export class BaseService {
 
     serviceUrl = '';
     getHeaders() {
-        const http = new HttpHeaders();
         const token  = localStorage.getItem('token');
+        console.log('ranmatiToken',token);
 
-        if (token != null) {
-            http.set('Authorization', `Bearer ${token}`)
-        }
-        http.set("Content-Type", 'application/json')
-        return http;
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`
+          });
+
+        return headers;
     }
+
     getHeadersWithMultipart() {
         const http = new HttpHeaders();
         const token  = localStorage.getItem('token');

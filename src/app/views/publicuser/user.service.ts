@@ -84,15 +84,17 @@ public submitForms(data: any) {
 
  public submitFor(data: any): Observable<any> {
   const formData = new FormData();
-
+  console.log('check', data);
   for (const key in data) {
+    
     if (key === 'profileImageUrl' || key === 'citizenshipFontUrl' || key === 'citizenshipBackUrl') {
-      if (data[key] instanceof File) {
-        formData.append(key, data[key]);
+      if (data[key] instanceof File) {        
+        formData.append(key,  data[key], data[key].name);
       }
     } else {
       formData.append(key, data[key]);
     }
+    
   }
 
   return this.http.post(`${this.serviceUrl}/api/public-user/kyc-update`,formData,{ 'headers': this.getHeaders()})
@@ -100,15 +102,8 @@ public submitForms(data: any) {
 
 // basic kyc update details api
 
-public getKycBasicDetails(){
-  const token = localStorage.getItem('token');
-  console.log('ranmatiToken',token);
-  
-  const headers = new HttpHeaders({
-    'Authorization': `Bearer ${token}`
-  });
- 
-  return this.http.get(`${this.serviceUrl}/api/public-user/basic-detail`, { 'headers': this.getHeaders()})
+public getKycBasicDetails(){ 
+  return this.http.get(`${this.serviceUrl}/api/public-user/basic-detail`, {'headers': this.getHeaders()})
 }
 
 }

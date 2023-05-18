@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-kyc-update',
@@ -12,6 +12,8 @@ export class UserKycUpdateComponent implements OnInit{
   public visible = false;
   public form!: FormGroup;
   public kycDetails: any; // Variable to store KYC details
+  public isKycRejects: boolean | undefined
+  
 
   constructor(private kycService: UserService,
               private formBuilder: FormBuilder,
@@ -30,15 +32,6 @@ export class UserKycUpdateComponent implements OnInit{
       citizenshipBackUrl: ['', Validators.required]
 
     });
-
-    this.kycDetails.getKycBasicDetails().subscribe(
-      (data: any) => {
-        this.kycDetails = data; // Store the retrieved KYC details in the variable
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
   }
 
   uploadImage(event: any, controlName: string) {
@@ -72,12 +65,33 @@ export class UserKycUpdateComponent implements OnInit{
     );
   }
 
-  toggleLiveDemo() {
+  kycUpdateButton() {
+    
+    this.kycService.getKycBasicDetails().subscribe(
+      (data: any) => {
+        this.kycDetails = data.data; // Store the retrieved KYC details in the variable
+        this.form.patchValue(this.kycDetails);
+        console.log('dataxxxx',this.kycDetails);
+
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
     this.visible = !this.visible;
   }
 
   handleLiveDemoChange(event: any) {
     this.visible = event;
+  }
+
+  isKycReject(){
+
+    if(this.kycDetails.get('isKycRejected') === true){
+      this.isKycRejects = true;
+    }else{
+      this.isKycRejects = false;
+    }
   }
 
 }

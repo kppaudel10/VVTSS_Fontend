@@ -3,7 +3,7 @@
     <c-card class="mb-3 p-4">
 
       <c-card-body class="bg-gradient text-center">
-        <button (click)="toggleLiveDemo()" cButton cButton color="primary" variant="outline" class="shadow my-2">UpDate
+        <button (click)="kycUpdateButton()" cButton cButton color="primary" variant="outline" class="shadow my-2">UpDate
           Kyc</button>
         <button cButton color="primary" variant="outline" class="shadow my-2">Generate QR</button>
       </c-card-body>
@@ -30,27 +30,27 @@
 <c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
   <form cForm [formGroup]="form" (ngSubmit)="submitForm()">
     <c-modal-header>
-      <h5 cModalTitle>Kyc Update</h5>
-      <button (click)="toggleLiveDemo()" cButtonClose></button>
+      <h5 cModalTitle>Kyc Update </h5>
+      <button (click)="kycUpdateButton()" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
       <!-- form field -->
-      <div class="mb-3">
+      <div class="mb-3" >
         <label cLabel for="name">Name:</label>
-        <input cFormControl id="name" name="name" formControlName="name" type="text" placeholder="Enter Name">
+        <input cFormControl id="name" name="name" formControlName="name" type="text" placeholder="Enter Name" >
         
 
       </div>
 
       <div class="mb-3">
         <label cLabel for="email">Email:</label>
-        <input cFormControl id="email" name="email" type="email" formControlName="email" placeholder="Enter Password">
+        <input cFormControl id="email" name="email" type="email" formControlName="email" placeholder="Enter Email" readonly>
       </div>
 
       <div class="mb-3">
         <label cLabel for="contact">Contact:</label>
         <input cFormControl id="contact" name="contact" formControlName="contact" type="text" 
-          placeholder="Enter Contact No:">
+          placeholder="Enter Contact No:" readonly>
       </div>
 
       <div class="mb-3">
@@ -60,13 +60,13 @@
       </div>
 
       <div class="mb-3">
-        <label cLabel for="formFileMultiple">PasportSise Photo</label>
+        <label cLabel for="formFileMultiple">Pasportsize Photo</label>
         <input cFormControl id="formFileMultiple" name="profileImageUrl" formControlName="profileImageUrl" multiple
           type="file" (change)="uploadImage($event, 'profileImageUrl')" />
       </div>
 
       <div class="mb-3">
-        <label cLabel for="address">Citizen NUmber:</label>
+        <label cLabel for="address">Citizen Number:</label>
         <input cFormControl id="citizenshipNo" name="citizenshipNo" formControlName="citizenshipNo" type="text"
           placeholder="Enter Address">
       </div>
@@ -74,13 +74,13 @@
       <c-card-body>
         <h5>Upload Given Information</h5>
         <div class="mb-3">
-          <label cLabel for="formFileMultiple">CitizenShip Front</label>
+          <label cLabel for="formFileMultiple">Citizenship Front</label>
           <input cFormControl id="formFileMultiple" name="citizenshipFontUrl" formControlName="citizenshipFontUrl"
             multiple type="file" (change)="uploadImage($event, 'citizenshipFontUrl')" />
         </div>
 
         <div class="mb-3">
-          <label cLabel for="formFileMultiple">CitizenShip Back</label>
+          <label cLabel for="formFileMultiple">Citizenship Back</label>
           <input cFormControl id="formFileMultiple" name="citizenshipBackUrl" formControlName="citizenshipBackUrl"
             multiple type="file" (change)="uploadImage($event, 'citizenshipBackUrl')" />
         </div>
@@ -91,10 +91,10 @@
       <!-- end form -->
     </c-modal-body>
     <c-modal-footer>
-      <button (click)="toggleLiveDemo()" cButton color="secondary">
+      <button (click)="kycUpdateButton()" cButton color="secondary">
         Close
       </button>
-      <button type="submit" cButton color="primary">Save changes</button>
+      <button type="submit" cButton color="primary" (onclick)="isKycReject()">Save changes</button>
     </c-modal-footer>
   </form>
 </c-modal>
