@@ -21,12 +21,12 @@ export class UserService extends BaseService {
 
   // public user register
   public regiserUser(user: PublicUser): Observable<any>{
-    return this.http.post(`${this.serviceUrl}/api/public-user/save`,user,{ 'headers': this.getHeaders() });
+    return this.http.post(`${this.serviceUrl}/api/public-user/save`,user);
  
    }
 // login user
    public OnLogedIn(loginData: Login): Observable<any>{
-    return this.http.post(`${this.serviceUrl}/login`,loginData,{ 'headers': this.getHeaders()});
+    return this.http.post(`${this.serviceUrl}/login`,loginData);
     
    }
 
@@ -89,7 +89,7 @@ public submitForms(data: any) {
     
     if (key === 'profileImageUrl' || key === 'citizenshipFontUrl' || key === 'citizenshipBackUrl') {
       if (data[key] instanceof File) {        
-        formData.append(key,  data[key], data[key].name);
+        formData.append(key,  data[key]);
       }
     } else {
       formData.append(key, data[key]);

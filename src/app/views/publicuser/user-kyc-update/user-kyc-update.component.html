@@ -61,8 +61,8 @@
 
       <div class="mb-3">
         <label cLabel for="formFileMultiple">Pasportsize Photo</label>
-        <input cFormControl id="formFileMultiple" name="profileImageUrl" formControlName="profileImageUrl" multiple
-          type="file" (change)="uploadImage($event, 'profileImageUrl')" />
+        <input cFormControl id="formFileMultiple" name="profilePicture" formControlName="profilePicture" multiple
+          type="file" (change)="uploadImage($event, 'profilePicture')" />
       </div>
 
       <div class="mb-3">
@@ -75,14 +75,14 @@
         <h5>Upload Given Information</h5>
         <div class="mb-3">
           <label cLabel for="formFileMultiple">Citizenship Front</label>
-          <input cFormControl id="formFileMultiple" name="citizenshipFontUrl" formControlName="citizenshipFontUrl"
-            multiple type="file" (change)="uploadImage($event, 'citizenshipFontUrl')" />
+          <input cFormControl id="formFileMultiple" name="citizenshipFont" formControlName="citizenshipFont"
+            multiple type="file" (change)="uploadImage($event, 'citizenshipFont')" />
         </div>
 
         <div class="mb-3">
           <label cLabel for="formFileMultiple">Citizenship Back</label>
-          <input cFormControl id="formFileMultiple" name="citizenshipBackUrl" formControlName="citizenshipBackUrl"
-            multiple type="file" (change)="uploadImage($event, 'citizenshipBackUrl')" />
+          <input cFormControl id="formFileMultiple" name="citizenshipBack" formControlName="citizenshipBack"
+            multiple type="file" (change)="uploadImage($event, 'citizenshipBack')" />
         </div>
 
       </c-card-body>

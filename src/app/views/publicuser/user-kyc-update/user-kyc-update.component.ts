@@ -26,20 +26,19 @@ export class UserKycUpdateComponent implements OnInit{
       email: ['', [Validators.required, Validators.email]],
       contact: ['', Validators.required],
       address: ['', Validators.required],
-      profileImageUrl: [null, Validators.required],
+      profilePicture: ['', Validators.required],
       citizenshipNo: ['', Validators.required],
-      citizenshipFontUrl: ['', Validators.required],
-      citizenshipBackUrl: ['', Validators.required]
+      citizenshipFont: ['', Validators.required],
+      citizenshipBack: ['', Validators.required]
 
     });
   }
 
   uploadImage(event: any, controlName: string) {
     const files = event.target.files;
-    const fileList: File[] = Array.from(files); // Convert FileList to an array
-  
-    if (fileList.length > 0) {
-      this.form.patchValue({ [controlName]: fileList });
+   // Convert FileList to an array
+    if (files != null ) {
+      this.form.patchValue({ [controlName]: files });
     }
   }
 
