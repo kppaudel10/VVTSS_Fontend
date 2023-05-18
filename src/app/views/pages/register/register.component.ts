@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup, Validators } from '@angular/forms';
 import { FormControl, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import {UserService } from 'src/app/views/user/user.service'
+import {UserService } from 'src/app/views/publicuser/user.service'
 
 @Component({
   selector: 'app-register',
@@ -51,6 +51,11 @@ export class RegisterComponent implements OnInit {
     this.userService.regiserUser(this.registerForm?.value)?.subscribe(
       (data: any) => {
         console.log(data)
+        this.rout.navigate(['/user/update-kyc'], 
+        { state: { name: this.registerForm?.value.name,
+           email: this.registerForm?.value.email, 
+           contact: this.registerForm?.value.mobileNumber } });
+      
         this.rout.navigate([''])
       },
       (error: any) => {

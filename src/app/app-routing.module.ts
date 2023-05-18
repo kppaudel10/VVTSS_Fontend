@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './containers';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
-import { UserKycUpdateComponent } from './views/user/user-kyc-update/user-kyc-update.component';
-import { SellVehicleComponent } from './views/user/sell-vehicle/sell-vehicle.component';
-import { BuyRequestComponent } from './views/user/buy-request/buy-request.component';
+import { UserKycUpdateComponent } from './views/publicuser/user-kyc-update/user-kyc-update.component';
+import { SellVehicleComponent } from './views/publicuser/sell-vehicle/sell-vehicle.component';
+import { BuyRequestComponent } from './views/publicuser/buy-request/buy-request.component';
 
 const routes: Routes = [
   {
@@ -40,7 +40,7 @@ const routes: Routes = [
       {
         path: 'user',
         loadChildren: () =>
-        import('./views/user/user.module').then((m) => m.UserModule)
+        import('./views/publicuser/user.module').then((m) => m.UserModule)
       },
 
       {

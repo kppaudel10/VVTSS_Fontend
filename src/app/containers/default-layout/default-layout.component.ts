@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserService } from 'src/app/views/user/user.service'
+import { UserService } from 'src/app/views/publicuser/user.service'
 //import { navItems } from './_nav';
 
 import { IconSubset } from 'src/app/icons/icon-subset';
