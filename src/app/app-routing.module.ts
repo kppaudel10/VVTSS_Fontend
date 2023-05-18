@@ -6,12 +6,18 @@ import { RegisterComponent } from './views/pages/register/register.component';
 import { UserKycUpdateComponent } from './views/publicuser/user-kyc-update/user-kyc-update.component';
 import { SellVehicleComponent } from './views/publicuser/sell-vehicle/sell-vehicle.component';
 import { BuyRequestComponent } from './views/publicuser/buy-request/buy-request.component';
+import { UserRequestComponent } from './views/publicuser/user-request/user-request.component';
+import { UserRequestViewComponent } from './views/publicuser/user-request-view/user-request-view.component';
+import { LicenseComponent } from './views/admin/license/license.component';
+import { BlueBookComponent } from './views/admin/blue-book/blue-book.component';
+import { OwnershipRequestComponent } from './views/admin/ownership-request/ownership-request.component';
+import { OwnershipRequestViewComponent } from './views/admin/ownership-request-view/ownership-request-view.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    
+
   },
   {
     path: 'home',
@@ -20,12 +26,12 @@ const routes: Routes = [
       title: 'Home'
     },
     children: [
-     {
+      {
         path: 'dashboard',
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
-      
+
       {
         path: 'page',
         loadChildren: () =>
@@ -34,13 +40,13 @@ const routes: Routes = [
       {
         path: 'admin',
         loadChildren: () =>
-        import('./views/admin/admin.module').then((m) => m.AdminModule)
+          import('./views/admin/admin.module').then((m) => m.AdminModule)
       },
 
       {
         path: 'user',
         loadChildren: () =>
-        import('./views/publicuser/user.module').then((m) => m.UserModule)
+          import('./views/publicuser/user.module').then((m) => m.UserModule)
       },
 
       {
@@ -55,11 +61,38 @@ const routes: Routes = [
         path: 'user/buy-request',
         component: BuyRequestComponent
       },
+
+      {
+        path: 'user-request',
+        component: UserRequestComponent
+      },
+      {
+        path: 'user-request-view',
+        component: UserRequestViewComponent
+      },
+
+      {
+        path: 'license',
+        component: LicenseComponent
+      },
+      {
+        path: 'blue-book',
+        component: BlueBookComponent
+      },
+      {
+        path: 'ownershp-request',
+        component: OwnershipRequestComponent
+      },
+      {
+        path: 'ownershp-request-view',
+        component: OwnershipRequestViewComponent
+      },
+
     ]
-    
-    },
-  
-  {path: '', redirectTo: '', pathMatch: 'full'},
+
+  },
+
+  { path: '', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -57,29 +57,29 @@ export class DefaultLayoutComponent implements OnInit {
               break;
 
           case 'License':
-            icon = IconSubset.cifUs;
-            url = `/module/${module.moduleId}`;
+            icon = IconSubset.cilBold;
+            url = '/home/license';
             break;
+
           case 'Blue Book':
-            icon = IconSubset.cilBook;
-            url = `/module/${module.moduleId}`;
+            icon = IconSubset.cilBookmark;
+            url = '/home/blue-book';
             break;
+
           case 'User Request':
             icon = IconSubset.cilUser;
-            url = `/module/${module.moduleId}`;
+            url = '/home/user-request';
             break;
           case 'Number Plate Scan':
             icon = IconSubset.cilListNumbered;
             url = `/module/${module.moduleId}`;
             break;
+
           case 'OwnerShip Request':
-            icon = IconSubset.cilCar;
-            url = `/module/${module.moduleId}`;
+            icon = IconSubset.cilNotes;
+            url = '/home/ownershp-request';
             break;
-          case 'LogOut':
-            icon = IconSubset.cilExitToApp;
-            url = `/logout`;
-            break;
+
           default:
             icon =
               url = '///'

@@ -14,10 +14,12 @@ import { AvatarModule,
     TableModule, 
     TabsModule, 
     WidgetModule ,
-    ModalModule
-  } from '@coreui/angular';
+    PaginationModule,
+    ModalModule  } from '@coreui/angular';
 import { SellVehicleComponent } from './sell-vehicle/sell-vehicle.component';
 import { BuyRequestComponent } from './buy-request/buy-request.component';
+import { UserRequestComponent } from './user-request/user-request.component';
+import { UserRequestViewComponent } from './user-request-view/user-request-view.component';
 
 
 
@@ -25,7 +27,9 @@ import { BuyRequestComponent } from './buy-request/buy-request.component';
   declarations: [
     UserKycUpdateComponent,
     SellVehicleComponent,
-    BuyRequestComponent
+    BuyRequestComponent,
+    UserRequestComponent,
+    UserRequestViewComponent
 
   ],
   imports: [
@@ -47,7 +51,9 @@ import { BuyRequestComponent } from './buy-request/buy-request.component';
     AvatarModule,
     TableModule,
     WidgetModule,
-    ModalModule
+    ModalModule,
+    PaginationModule,
+    
   ]
 })
 export class UserModule { }
