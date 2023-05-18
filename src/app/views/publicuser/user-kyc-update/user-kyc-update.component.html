@@ -3,8 +3,8 @@
     <c-card class="mb-3 p-4">
 
       <c-card-body class="bg-gradient text-center">
-        <button (click)="kycUpdateButton()" cButton cButton color="primary" variant="outline" class="shadow my-2">UpDate
-          Kyc</button>
+        <button (click)="kycUpdateButton()" cButton cButton color="primary" variant="outline" class="shadow my-2">
+          Kyc Update</button>
         <button cButton color="primary" variant="outline" class="shadow my-2">Generate QR</button>
       </c-card-body>
 
@@ -12,12 +12,12 @@
         <button cButton color="primary" variant="outline" class="shadow my-2">Licenses</button>
         <button cButton color="primary" variant="outline" class="shadow my-2">Blue Book</button>
       </c-card-body>
-     
+
       <c-card class="mt-4 text-center">
         <c-card-body class="bg-gradient text-center">
-          <img src="assets/images/brand/coreui-angular.svg">
+<!--          <img src="assets/images/brand/coreui-angular.svg">-->
         </c-card-body>
-        
+
       </c-card>
     </c-card>
   </c-col>
@@ -28,7 +28,7 @@
 <!-- model pop -->
 
 <c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
-  <form cForm [formGroup]="form" (ngSubmit)="submitForm()">
+  <form cForm [formGroup]="form" (ngSubmit)="submitForm()" enctype="multipart/form-data">
     <c-modal-header>
       <h5 cModalTitle>Kyc Update </h5>
       <button (click)="kycUpdateButton()" cButtonClose></button>
@@ -38,7 +38,7 @@
       <div class="mb-3" >
         <label cLabel for="name">Name:</label>
         <input cFormControl id="name" name="name" formControlName="name" type="text" placeholder="Enter Name" >
-        
+
 
       </div>
 
@@ -49,7 +49,7 @@
 
       <div class="mb-3">
         <label cLabel for="contact">Contact:</label>
-        <input cFormControl id="contact" name="contact" formControlName="contact" type="text" 
+        <input cFormControl id="contact" name="contact" formControlName="contact" type="text"
           placeholder="Enter Contact No:" readonly>
       </div>
 
@@ -60,8 +60,8 @@
       </div>
 
       <div class="mb-3">
-        <label cLabel for="formFileMultiple">Pasportsize Photo</label>
-        <input cFormControl id="formFileMultiple" name="profilePicture" formControlName="profilePicture" multiple
+        <label cLabel for="profilePicture">Pasportsize Photo</label>
+        <input cFormControl id="profilePicture" name="profilePicture" formControlName="profilePicture" multiple
           type="file" (change)="uploadImage($event, 'profilePicture')" />
       </div>
 
@@ -74,15 +74,15 @@
       <c-card-body>
         <h5>Upload Given Information</h5>
         <div class="mb-3">
-          <label cLabel for="formFileMultiple">Citizenship Front</label>
-          <input cFormControl id="formFileMultiple" name="citizenshipFont" formControlName="citizenshipFont"
-            multiple type="file" (change)="uploadImage($event, 'citizenshipFont')" />
+          <label cLabel for="citizenshipFont">Citizenship Front</label>
+          <input cFormControl id="citizenshipFont" name="citizenshipFont" formControlName="citizenshipFont"
+                 type="file" (change)="uploadImage($event, 'citizenshipFont')" />
         </div>
 
         <div class="mb-3">
-          <label cLabel for="formFileMultiple">Citizenship Back</label>
-          <input cFormControl id="formFileMultiple" name="citizenshipBack" formControlName="citizenshipBack"
-            multiple type="file" (change)="uploadImage($event, 'citizenshipBack')" />
+          <label cLabel for="citizenshipBack">Citizenship Back</label>
+          <input cFormControl id="citizenshipBack" name="citizenshipBack" formControlName="citizenshipBack"
+             type="file" (change)="uploadImage($event, 'citizenshipBack')" />
         </div>
 
       </c-card-body>
@@ -94,7 +94,7 @@
       <button (click)="kycUpdateButton()" cButton color="secondary">
         Close
       </button>
-      <button type="submit" cButton color="primary" (onclick)="isKycReject()">Save changes</button>
+      <button type="submit" cButton color="primary" (click)="isKycReject()">Save changes</button>
     </c-modal-footer>
   </form>
 </c-modal>
