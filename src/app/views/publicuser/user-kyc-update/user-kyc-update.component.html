@@ -1,0 +1,100 @@
+<c-row class="justify-content-center mt-1">
+  <c-col [lg]="">
+    <c-card class="mb-3 p-4">
+
+      <c-card-body class="bg-gradient text-center">
+        <button (click)="toggleLiveDemo()" cButton cButton color="primary" variant="outline" class="shadow my-2">UpDate
+          Kyc</button>
+        <button cButton color="primary" variant="outline" class="shadow my-2">Generate QR</button>
+      </c-card-body>
+
+      <c-card-body class="bg-gradient text-center">
+        <button cButton color="primary" variant="outline" class="shadow my-2">Licenses</button>
+        <button cButton color="primary" variant="outline" class="shadow my-2">Blue Book</button>
+      </c-card-body>
+     
+      <c-card class="mt-4 text-center">
+        <c-card-body class="bg-gradient text-center">
+          <img src="assets/images/brand/coreui-angular.svg">
+        </c-card-body>
+        
+      </c-card>
+    </c-card>
+  </c-col>
+
+</c-row>
+
+
+<!-- model pop -->
+
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+  <form cForm [formGroup]="form" (ngSubmit)="submitForm()">
+    <c-modal-header>
+      <h5 cModalTitle>Kyc Update</h5>
+      <button (click)="toggleLiveDemo()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+      <!-- form field -->
+      <div class="mb-3">
+        <label cLabel for="name">Name:</label>
+        <input cFormControl id="name" name="name" formControlName="name" type="text" placeholder="Enter Name">
+        
+
+      </div>
+
+      <div class="mb-3">
+        <label cLabel for="email">Email:</label>
+        <input cFormControl id="email" name="email" type="email" formControlName="email" placeholder="Enter Password">
+      </div>
+
+      <div class="mb-3">
+        <label cLabel for="contact">Contact:</label>
+        <input cFormControl id="contact" name="contact" formControlName="contact" type="text" 
+          placeholder="Enter Contact No:">
+      </div>
+
+      <div class="mb-3">
+        <label cLabel for="address">Address:</label>
+        <input cFormControl id="address" name="address" formControlName="address" type="text"
+          placeholder="Enter Address">
+      </div>
+
+      <div class="mb-3">
+        <label cLabel for="formFileMultiple">PasportSise Photo</label>
+        <input cFormControl id="formFileMultiple" name="profileImageUrl" formControlName="profileImageUrl" multiple
+          type="file" (change)="uploadImage($event, 'profileImageUrl')" />
+      </div>
+
+      <div class="mb-3">
+        <label cLabel for="address">Citizen NUmber:</label>
+        <input cFormControl id="citizenshipNo" name="citizenshipNo" formControlName="citizenshipNo" type="text"
+          placeholder="Enter Address">
+      </div>
+
+      <c-card-body>
+        <h5>Upload Given Information</h5>
+        <div class="mb-3">
+          <label cLabel for="formFileMultiple">CitizenShip Front</label>
+          <input cFormControl id="formFileMultiple" name="citizenshipFontUrl" formControlName="citizenshipFontUrl"
+            multiple type="file" (change)="uploadImage($event, 'citizenshipFontUrl')" />
+        </div>
+
+        <div class="mb-3">
+          <label cLabel for="formFileMultiple">CitizenShip Back</label>
+          <input cFormControl id="formFileMultiple" name="citizenshipBackUrl" formControlName="citizenshipBackUrl"
+            multiple type="file" (change)="uploadImage($event, 'citizenshipBackUrl')" />
+        </div>
+
+      </c-card-body>
+
+
+      <!-- end form -->
+    </c-modal-body>
+    <c-modal-footer>
+      <button (click)="toggleLiveDemo()" cButton color="secondary">
+        Close
+      </button>
+      <button type="submit" cButton color="primary">Save changes</button>
+    </c-modal-footer>
+  </form>
+</c-modal>
