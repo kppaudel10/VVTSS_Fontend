@@ -19,4 +19,9 @@ export class AdminService extends BaseService {
     return this.http.post(`${this.serviceUrl}/api/license/save`, data, this.getHeaders());
   }
 
+  // Api to fetch license details list
+  public getLicenseDetailList() {
+    return this.http.get(`${this.serviceUrl}/api/license/list`, this.getHeaders());
+  }
+
 }

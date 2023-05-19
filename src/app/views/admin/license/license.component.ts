@@ -10,12 +10,17 @@ import {AdminService} from "../admin.service";
 export class LicenseComponent implements OnInit {
 
   public form: FormGroup | any;
+  public licenseList: any[] | undefined;
 
   constructor(private formBuilder: FormBuilder,
               private adminService: AdminService) {
   }
 
   ngOnInit(): void {
+    // show license list
+    this.getAndShowLicenseList();
+
+    console.log("licenseList", this.licenseList)
     this.form = this.formBuilder.group({
       citizenshipNo: ['', Validators.required],
       validDate: ['', Validators.required],
@@ -40,6 +45,18 @@ export class LicenseComponent implements OnInit {
         // Handle error during form submission
         console.error('error res:', error);
       });
+  }
+
+  getAndShowLicenseList() {
+    this.adminService.getLicenseDetailList()
+      .subscribe(
+        (response: any) => {
+          this.licenseList = response.data;
+        },
+        error => {
+          console.error(error);
+        }
+      );
   }
 
 }
