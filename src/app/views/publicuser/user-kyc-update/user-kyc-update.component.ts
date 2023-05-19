@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Data, Router } from '@angular/router';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-kyc-update',
@@ -11,16 +10,15 @@ import Swal from 'sweetalert2';
 })
 export class UserKycUpdateComponent implements OnInit {
   public visible = false;
-  public form!: FormGroup;
+  public form: FormGroup | any;
   public kycDetails: any; // Variable to store KYC details
-  public isKycRejects: boolean | undefined;
-  submitted = false;
-
+  public isKycRejects: boolean | undefined
+  
 
   constructor(private kycService: UserService,
-    private formBuilder: FormBuilder,
-    private rout: Router,
-    ) { }
+              private formBuilder: FormBuilder,
+              private cdr: ChangeDetectorRef,
+              private route: ActivatedRoute){}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -28,40 +26,41 @@ export class UserKycUpdateComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       contact: ['', Validators.required],
       address: ['', Validators.required],
-      profilePicture: ['', Validators.required],
       citizenshipNo: ['', Validators.required],
-      citizenshipFont: ['', Validators.required],
-      citizenshipBack: ['', Validators.required]
-
+      profilePicture: [null, Validators.required],
+      citizenshipFont: [null, Validators.required],
+      citizenshipBack: [null, Validators.required]
     });
   }
 
   uploadImage(event: any, controlName: string) {
-    const file = event.target.files[0];
-    // Convert FileList to an array
-    if (file) {
-      this.form.patchValue({ [controlName]: file });
+    const files = event.target.files;
+   // Convert FileList to an array
+    if (files != null ) {
+      this.form.patchValue({ [controlName]: files });
     }
   }
 
   submitForm() {
-    this.submitted = true;
     if (this.form?.invalid) {
       alert("invalid form")
     }
 
     this.kycService.submitFor(this.form?.value)?.subscribe(
-      (response: any) => {
+      (response:any) => {
         // Handle successful form submission
         console.log('respose is: ', response)
-        Swal.fire('KYC Updated Successfully !!!','User id is: '+ response.data.data.id ,'success')
-        this.rout.navigate(['/home/user/update-kyc']);
+        Object.keys(this.form.controls).forEach((controlName) => {
+          this.form.controls[controlName].setValue(null);
+        });
+  
+        this.cdr.detectChanges();     
       },
       (error: any) => {
         // Handle error during form submission
         console.error('error res:', error);
       });
-      this.onReset();
+     
   }
 
   kycUpdateButton() {
@@ -70,7 +69,8 @@ export class UserKycUpdateComponent implements OnInit {
       (data: any) => {
         this.kycDetails = data.data; // Store the retrieved KYC details in the variable
         this.form.patchValue(this.kycDetails);
-        
+        console.log('dataxxxx',this.kycDetails);
+
       },
       (error: any) => {
         console.log(error);
@@ -83,17 +83,15 @@ export class UserKycUpdateComponent implements OnInit {
     this.visible = event;
   }
 
-  isKycReject() {
+  isKycReject(){
 
-    if (this.kycDetails.get('isKycRejected') === true) {
+    if(this.kycDetails.get('isKycRejected') === true){
       this.isKycRejects = true;
     } else {
       this.isKycRejects = false;
     }
   }
-  onReset(): void {
-    this.submitted = false;
-    this.form.reset();
-  }
+ 
+
 
 }

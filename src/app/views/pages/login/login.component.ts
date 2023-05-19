@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../publicuser/user.service';
-import { Login } from 'src/app/models/Login';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../publicuser/user.service';
+import {Router} from '@angular/router';
 
 import Swal from 'sweetalert2';
 
@@ -17,10 +16,15 @@ export class LoginComponent implements OnInit {
 
   constructor(private login: UserService,
               private formBuilder: FormBuilder,
+<<<<<<< HEAD
               private router: Router,
               
               
               ) { }
+=======
+              private router: Router) {
+  }
+>>>>>>> c9d25b0e5d065c9f932974ab2b5922679cc22d7a
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -33,7 +37,10 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm?.value);
     this.submitted = true;
     if (this.loginForm?.invalid) {
+<<<<<<< HEAD
      
+=======
+>>>>>>> c9d25b0e5d065c9f932974ab2b5922679cc22d7a
       return;
     }
 
@@ -42,9 +49,14 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         console.log('response Success', res);
         localStorage.setItem("token", (res.data.token));
+<<<<<<< HEAD
       this.router.navigate(['/home']);
       Swal.fire('login Successfully !!!','User id is: ' ,'success')
        
+=======
+        this.router.navigate(['/home']);
+
+>>>>>>> c9d25b0e5d065c9f932974ab2b5922679cc22d7a
       },
       (error: any) => {
         console.log('Response Error', error);
