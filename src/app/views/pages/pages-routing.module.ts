@@ -7,10 +7,8 @@ const routes: Routes = [
  
 
   {path: 'register',
-component: RegisterComponent,
-    data: {
-      title: 'Register Page'
-    }
+    component: RegisterComponent,
+        
   },
   {path: '',redirectTo: '/login', pathMatch: 'full'}
 ];

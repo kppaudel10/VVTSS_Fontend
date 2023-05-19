@@ -20,6 +20,7 @@ import { SellVehicleComponent } from './sell-vehicle/sell-vehicle.component';
 import { BuyRequestComponent } from './buy-request/buy-request.component';
 import { UserRequestComponent } from './user-request/user-request.component';
 import { UserRequestViewComponent } from './user-request-view/user-request-view.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -53,6 +54,7 @@ import { UserRequestViewComponent } from './user-request-view/user-request-view.
     WidgetModule,
     ModalModule,
     PaginationModule,
+    MatSnackBarModule
     
   ]
 })

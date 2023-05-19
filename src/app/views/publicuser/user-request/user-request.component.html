@@ -1,0 +1,66 @@
+
+<c-container>
+    <c-card class="p-5">
+<table bordered cTable hover class="text-center">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Contact</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+   
+    <tr>
+      <td>Ramesh Manda</td>
+      <td>9800829721</td>
+      <td>mandalramesh816@gmail.com</td>
+      <td>Chabahil,Mitrapark Katmandu</td>
+      <td>
+        <button cButton color="secondary" [routerLink]="'/home/user-request-view'">View</button>
+      </td>
+    </tr>
+
+    <tr>
+        <td>Ramesh Manda</td>
+        <td>9800829721</td>
+        <td>mandalramesh816@gmail.com</td>
+        <td>Chabahil</td>
+        <td>
+          <button cButton color="secondary">View</button>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Ramesh Manda</td>
+        <td>9800829721</td>
+        <td>mandalramesh816@gmail.com</td>
+        <td>Chabahil</td>
+        <td>
+          <button cButton color="secondary">View</button>
+        </td>
+      </tr>
+    
+    </tbody>
+  </table>
+  <c-pagination align="end" aria-label="Page navigation example mt-4">
+    <li cPageItem >
+      <a cPageLink [routerLink]="">Previous</a>
+    </li>
+    <li cPageItem>
+      <a cPageLink [routerLink]="">1</a>
+    </li>
+    <li cPageItem>
+      <a cPageLink [routerLink]="">2</a>
+    </li>
+    <li cPageItem>
+      <a cPageLink [routerLink]="">3</a>
+    </li>
+    <li cPageItem>
+      <a cPageLink [routerLink]="">Next</a>
+    </li>
+  </c-pagination>
+</c-card>
+</c-container>
