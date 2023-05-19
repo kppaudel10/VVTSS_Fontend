@@ -1,91 +1,94 @@
-<c-card class="p-4">
-<c-row>
-    <c-card-header class="text-center">
-        <h5>Kyc Informations</h5>
-    </c-card-header>
-     
-    <c-col  class="mt-5 ">
+<form [formGroup]="kycDisplayForm">
+  <c-card class="p-4">
+    <c-row>
+      <c-card-header class="text-center">
+        <h5>Kyc Information</h5>
+      </c-card-header>
+
+      <c-col class="mt-5 ">
         <c-card-body class="u-imag">
-     <img src="/src/assets/images/brand/coreui-base.svg">
-    </c-card-body>
-    </c-col>
+          <img [src]="images[0]" alt="">
+        </c-card-body>
+      </c-col>
 
       <!-- next right card -->
 
-    <c-col [sm]="6">
+      <c-col [sm]="6">
         <c-card-body>
-            <c-row class="mb-3">
-                <label [sm]="2" cCol cLabel="col" for="staticEmail">
-                  Name:
-                </label>
-                <c-col [sm]="8">
-                  <input cFormControl id="staticEmail" plaintext readonly type="text" value="email@example.com" />
-                </c-col>
-              </c-row>
+          <c-row class="mb-3">
+            <label [sm]="2" cCol cLabel="col" for="name">
+              Name:
+            </label>
+            <c-col [sm]="8">
+              <input cFormControl id="name" plaintext readonly type="text" formControlName="name"/>
+            </c-col>
+          </c-row>
 
-              <c-row class="mb-3">
-                <label [sm]="2" cCol cLabel="col" for="staticEmail">
-                  contact:
-                </label>
-                <c-col [sm]="8">
-                    <input cFormControl id="staticEmail" plaintext readonly type="text" value="email@example.com" />
-                </c-col>
-              </c-row>
+          <c-row class="mb-3">
+            <label [sm]="2" cCol cLabel="col" for="contact">
+              contact:
+            </label>
+            <c-col [sm]="8">
+              <input cFormControl id="contact" plaintext readonly type="text" formControlName="contact"/>
+            </c-col>
+          </c-row>
 
-              <c-row class="mb-3">
-                <label [sm]="2" cCol cLabel="col" for="staticEmail">
-                  Email:
-                </label>
-                <c-col [sm]="8">
-                    <input cFormControl id="staticEmail" plaintext readonly type="text" value="email@example.com" />
-                </c-col>
-              </c-row>
+          <c-row class="mb-3">
+            <label [sm]="2" cCol cLabel="col" for="email">
+              Email:
+            </label>
+            <c-col [sm]="8">
+              <input cFormControl id="email" plaintext readonly type="text" formControlName="email"/>
+            </c-col>
+          </c-row>
 
-              <c-row class="mb-3">
-                <label [sm]="2" cCol cLabel="col" for="staticEmail">
-                 Address:
-                </label>
-                <c-col [sm]="8">
-                    <input cFormControl id="staticEmail" plaintext readonly type="text" value="email@example.com" />
-                </c-col>
-              </c-row>
+          <c-row class="mb-3">
+            <label [sm]="2" cCol cLabel="col" for="address">
+              Address:
+            </label>
+            <c-col [sm]="8">
+              <input cFormControl id="address" plaintext readonly type="text" formControlName="address"/>
+            </c-col>
+          </c-row>
 
-              <c-row class="mb-3">
-                <label [sm]="2" cCol cLabel="col" for="staticEmail">
-                  Citizenship No:
-                </label>
-                <c-col [sm]="10">
-                    <input cFormControl id="staticEmail" plaintext readonly type="text" value="email@example.com" />
-                </c-col>
-              </c-row>
+          <c-row class="mb-3">
+            <label [sm]="2" cCol cLabel="col" for="citizenshipNo">
+              Citizenship No:
+            </label>
+            <c-col [sm]="10">
+              <input cFormControl id="citizenshipNo" plaintext readonly type="text" formControlName="citizenshipNo"/>
+            </c-col>
+          </c-row>
 
         </c-card-body>
-    </c-col>
-  </c-row>
-<!-- ccitizenship -->
-  <c-row class="text-center" [sm]="3">
-    <!-- front -->
-    <c-col [sm]="6">
+      </c-col>
+    </c-row>
+    <!-- ccitizenship -->
+    <c-row class="text-center" [sm]="3">
+      <!-- front -->
+      <c-col [sm]="6">
         <c-card-body>
-            <h5>Citizenship Front</h5>
-            <img class="citizen" src="/src/assets/images/brand/coreui-angular.svg">
+          <h5>Citizenship Front</h5>
+          <img class="citizen" [src]="imageList[1]" alt="">
         </c-card-body>
-        
-    </c-col>
 
-<!-- back -->
-  <c-col>
-    <c-card-body>
-        <h5>Citizenship Back</h5>
-        <img class="citizen" src="/src/assets/images/brand/coreui-angular.svg">
-    </c-card-body>
-  </c-col>
-  </c-row>
+      </c-col>
 
-  <c-row class="" align="end">
-    <c-card-body>
+      <!-- back -->
+      <c-col>
+        <c-card-body>
+          <h5>Citizenship Back</h5>
+          <img class="citizen" [src]="imageList[2]" alt="">
+        </c-card-body>
+      </c-col>
+    </c-row>
+
+    <c-row class="" align="end">
+      <c-card-body>
         <button class="btn" color="success" cButton>Accept</button>
         <button color="danger" cButton>Reject</button>
-    </c-card-body>
-  </c-row>
-</c-card>
+      </c-card-body>
+    </c-row>
+  </c-card>
+
+</form>

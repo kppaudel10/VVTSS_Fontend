@@ -53,29 +53,34 @@ export class UserService extends BaseService {
     this.rout.navigate(['']);
   }
 
-  /*
-  getToken() {
-      return localStorage.getItem('token');
-  }*/
+
   public getToken() {
     return localStorage.getItem('token');
   }
 
-// init Api
-
-
+  // Api to fetch user role privilege
   public getCallInit(): Observable<any> {
     return this.http.get(`${this.serviceUrl}/init`, this.getHeaders())
   }
 
+  // Api to save user kyc data
   public submitFor(data: FormData) {
     return this.http.post(`${this.serviceUrl}/api/public-user/kyc-update`, data, this.getHeadersWithMultipart())
   }
 
-// basic kyc update details api
+  // Api to fetch user basic information
   public getKycBasicDetails() {
     return this.http.get(`${this.serviceUrl}/api/public-user/basic-detail`, this.getHeaders())
   }
 
+  // Api to fetch user-request list
+  public getUserRequestList() {
+    return this.http.get(`${this.serviceUrl}/api/public-user/kyc-request`, this.getHeaders())
+  }
+
+  // Api to fetch image
+  public getFetchImage(imageUrl : any) {
+    return this.http.get(imageUrl, this.getHeaders())
+  }
 
 }

@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 import { UserRoutingModule } from './user-routing.module';
 import { UserKycUpdateComponent } from './user-kyc-update/user-kyc-update.component';
 import { IconModule } from '@coreui/icons-angular';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ChartjsModule } from '@coreui/angular-chartjs';
 import { AvatarModule,
    ButtonGroupModule,
-    ButtonModule, 
-    CardModule, 
-    FormModule, GridModule, 
-    NavModule, ProgressModule, 
-    TableModule, 
-    TabsModule, 
+    ButtonModule,
+    CardModule,
+    FormModule, GridModule,
+    NavModule, ProgressModule,
+    TableModule,
+    TabsModule,
     WidgetModule ,
     PaginationModule,
     ModalModule  } from '@coreui/angular';
@@ -54,8 +54,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     WidgetModule,
     ModalModule,
     PaginationModule,
-    MatSnackBarModule
-    
+    MatSnackBarModule,
+    FormsModule
+
   ]
 })
 export class UserModule { }
