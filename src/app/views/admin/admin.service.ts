@@ -35,4 +35,14 @@ export class AdminService extends BaseService {
     return this.http.post(`${this.serviceUrl}/api/blue-book/save`, data, this.getHeaders());
   }
 
+  // Api to fetch blue-book details list
+  public getBlueBookDetailList() {
+    return this.http.get(`${this.serviceUrl}/api/blue-book/list`, this.getHeaders());
+  }
+
+  // Api to filter search details
+  public searchBlueBookDetail(searchValue: string) {
+    return this.http.get(`${this.serviceUrl}/api/blue-book/list?searchValue=` + searchValue, this.getHeaders());
+  }
+
 }

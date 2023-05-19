@@ -10,17 +10,27 @@ import {AdminService} from "../admin.service";
 export class BlueBookComponent implements OnInit {
 
   public form: FormGroup | any;
+  public searchForm: FormGroup | any;
+  public blueBookList: any[] | undefined;
 
   constructor(private formBuilder: FormBuilder,
               private adminService: AdminService) {
   }
 
   ngOnInit(): void {
+    // show license list
+    this.getAndShowBlueBookDetailList();
+
     this.form = this.formBuilder.group({
       citizenshipNo: ['', Validators.required],
       vehicleType: ['', Validators.required],
       vehicleIdentificationNo: ['', Validators.required],
     });
+
+    this.searchForm = this.formBuilder.group({
+      searchValue: ['', Validators.required]
+    });
+
   }
 
   saveBlueBookData() {
@@ -39,6 +49,52 @@ export class BlueBookComponent implements OnInit {
         console.error('error res:', error);
       }
     )
+  }
+
+  getAndShowBlueBookDetailList() {
+    this.adminService.getBlueBookDetailList()
+      .subscribe(
+        (response: any) => {
+          this.blueBookList = response.data;
+        },
+        error => {
+          console.error(error);
+        }
+      );
+  }
+
+
+  getSearchBlueBook() {
+    let searchData = this.searchForm.getRawValue();
+    if (searchData['searchValue'].length > 0) {
+      this.adminService.searchBlueBookDetail(searchData['searchValue']).subscribe(
+        (response: any) => {
+          this.blueBookList = response.data;
+        },
+        error => {
+          console.error(error);
+        }
+      );
+    }
+  }
+
+  searchFieldValueCheck(searchValue: string) {
+    if (searchValue === '') {
+      this.ngOnInit();
+    }
+  }
+
+  getVehicleTypeName(typeInt: any) {
+    if (typeInt === "0") {
+      return "Scooter";
+    } else if (typeInt === "1") {
+      return "Bike";
+    } else if (typeInt === "2") {
+      return "Car";
+    }else {
+      return "";
+    }
+
   }
 
 }

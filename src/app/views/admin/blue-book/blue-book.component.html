@@ -1,6 +1,6 @@
 <c-card>
   <c-card-header>
-    Add New License
+    Add New BlueBook
   </c-card-header>
 
   <c-card-body>
@@ -34,33 +34,35 @@
   </c-card-body>
 
   <c-card-footer>
-    <c-row class="mt-4">
-      <c-col [sm]="4">
-        <input cFormControl type="search" placeholder="Search" aria-label="Search" class="me-2">
-      </c-col>
-      <c-col [sm]="1">
-        <button cButton color="success" variant="outline">Search</button>
-      </c-col>
-    </c-row>
+    <form [formGroup]="searchForm" (ngSubmit)="getSearchBlueBook()">
+      <c-row class="mt-4">
+        <c-col [sm]="4">
+          <input cFormControl type="search" placeholder="Search" aria-label="Search" class="me-2"
+                 formControlName="searchValue" #searchInput (input)="searchFieldValueCheck(searchInput.value)">
+        </c-col>
+        <c-col [sm]="1">
+          <button cButton color="success" variant="outline" type="submit">Search</button>
+        </c-col>
+      </c-row>
+    </form>
     <h5 align="center" class="mt-3">Blue Book Details</h5>
     <table bordered cTable hover class="text-center mt-3">
       <thead>
       <tr>
-        <th scope="col">License No</th>
-        <th scope="col">Valid Date</th>
-        <th scope="col">Licensed User</th>
+        <th scope="col">Citizenship No</th>
+        <th scope="col">Vehicle Type</th>
+        <th scope="col">Vehicle Identification No</th>
+        <th scope="col">Effective Date</th>
+        <th scope="col">BlueBook Owned User</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+      <tr *ngFor="let item of blueBookList">
+        <td>{{item.citizenshipNo}}</td>
+        <td>{{getVehicleTypeName(item.vehicleType)}}</td>
+        <td>{{item.vehicleIdentificationNo}}</td>
+        <td>{{item.effectiveDate}}</td>
+        <td>{{item.currentBlueBookOwnUserName}}</td>
       </tr>
       </tbody>
     </table>
