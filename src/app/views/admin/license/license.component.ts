@@ -10,6 +10,7 @@ import {AdminService} from "../admin.service";
 export class LicenseComponent implements OnInit {
 
   public form: FormGroup | any;
+  public searchForm: FormGroup | any;
   public licenseList: any[] | undefined;
 
   constructor(private formBuilder: FormBuilder,
@@ -25,6 +26,10 @@ export class LicenseComponent implements OnInit {
       citizenshipNo: ['', Validators.required],
       validDate: ['', Validators.required],
       district: ['', Validators.required],
+    });
+
+    this.searchForm = this.formBuilder.group({
+      searchValue: ['', Validators.required]
     });
   }
 
@@ -57,6 +62,19 @@ export class LicenseComponent implements OnInit {
           console.error(error);
         }
       );
+  }
+
+  getSearchLicense() {
+    let searchData = this.searchForm.getRawValue();
+    this.adminService.getSearchLicense(searchData['searchValue']).subscribe(
+      (response: any) => {
+        this.licenseList = response.data;
+      },
+      error => {
+        console.error(error);
+      }
+    );
+
   }
 
 }

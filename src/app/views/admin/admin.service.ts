@@ -1,5 +1,5 @@
 import {BaseService} from "../../baseService/baseService";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Injectable} from "@angular/core";
 
@@ -24,4 +24,9 @@ export class AdminService extends BaseService {
     return this.http.get(`${this.serviceUrl}/api/license/list`, this.getHeaders());
   }
 
+  // Api to search license list
+  public getSearchLicense(searchValue: string) {
+    let params = new HttpParams().set('searchValue', searchValue);
+    return this.http.get(`${this.serviceUrl}/api/license/list?searchValue=` + searchValue, this.getHeaders());
+  }
 }
