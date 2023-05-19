@@ -39,9 +39,8 @@ export class LicenseComponent implements OnInit {
     this.adminService.saveLicense(data).subscribe(
       (response: any) => {
         // Handle successful form submission
-        console.log('respose is: ', response)
         Object.keys(this.form.controls).forEach((controlName) => {
-          this.form.controls[controlName].setValue(this.form.controls.value);
+          this.form.controls[controlName].setValue(null);
         });
         // Swal.fire('sucess kyc Updated', 'success',);
         // this.route.navigate(['/home/user/update-kyc']);

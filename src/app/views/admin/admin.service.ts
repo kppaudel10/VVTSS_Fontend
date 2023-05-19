@@ -29,4 +29,10 @@ export class AdminService extends BaseService {
     let params = new HttpParams().set('searchValue', searchValue);
     return this.http.get(`${this.serviceUrl}/api/license/list?searchValue=` + searchValue, this.getHeaders());
   }
+
+  // Api to save blue-book details
+  public saveBlueBookDetail(data: any) {
+    return this.http.post(`${this.serviceUrl}/api/blue-book/save`, data, this.getHeaders());
+  }
+
 }

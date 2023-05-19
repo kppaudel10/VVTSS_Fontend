@@ -6,17 +6,17 @@
     <form cForm class="row g-2" cForm [formGroup]="form" (ngSubmit)="saveLicenseDetail()">
       <c-row>
         <c-col [md]="4">
-          <label cLabel for="citizenshipNo">Citizenship No</label>
+          <label cLabel for="citizenshipNo">Citizenship No:<sup>*</sup></label>
           <input cFormControl id="citizenshipNo" formControlName="citizenshipNo" name="citizenshipNo" type="text"/>
         </c-col>
 
         <c-col [md]="4">
-          <label cLabel for="validdate">Valid Date</label>
+          <label cLabel for="validdate">Valid Date:<sup>*</sup></label>
           <input cFormControl id="validdate" formControlName="validDate" name="validDate" type="date"/>
         </c-col>
 
         <c-col [md]="4">
-          <label cLabel for="district">District</label>
+          <label cLabel for="district">District:<sup>*</sup></label>
           <input cFormControl id="district" formControlName="district" name="district" type="text"/>
         </c-col>
       </c-row>
