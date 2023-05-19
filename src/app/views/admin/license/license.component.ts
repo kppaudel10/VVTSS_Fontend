@@ -66,15 +66,22 @@ export class LicenseComponent implements OnInit {
 
   getSearchLicense() {
     let searchData = this.searchForm.getRawValue();
-    this.adminService.getSearchLicense(searchData['searchValue']).subscribe(
-      (response: any) => {
-        this.licenseList = response.data;
-      },
-      error => {
-        console.error(error);
-      }
-    );
+    if (searchData['searchValue'].length > 0) {
+      this.adminService.getSearchLicense(searchData['searchValue']).subscribe(
+        (response: any) => {
+          this.licenseList = response.data;
+        },
+        error => {
+          console.error(error);
+        }
+      );
+    }
+  }
 
+  searchFieldValueCheck(searchValue: string) {
+    if (searchValue === '') {
+      this.ngOnInit();
+    }
   }
 
 }

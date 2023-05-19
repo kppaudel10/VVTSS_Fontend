@@ -31,7 +31,7 @@
       <c-row class="mt-4">
         <c-col [sm]="4">
           <input cFormControl type="search" placeholder="Searching" formControlName="searchValue" aria-label="Search"
-                 class="me-2">
+                 class="me-2" #searchInput (input)="searchFieldValueCheck(searchInput.value)">
         </c-col>
         <c-col [sm]="1">
           <button type="submit" cButton color="success" variant="outline">Search</button>
