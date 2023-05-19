@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Data, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-kyc-update',
@@ -18,7 +19,7 @@ export class UserKycUpdateComponent implements OnInit {
   constructor(private kycService: UserService,
               private formBuilder: FormBuilder,
               private cdr: ChangeDetectorRef,
-              private route: ActivatedRoute){}
+              private route: Router){}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -53,8 +54,9 @@ export class UserKycUpdateComponent implements OnInit {
         Object.keys(this.form.controls).forEach((controlName) => {
           this.form.controls[controlName].setValue(null);
         });
-  
-        this.cdr.detectChanges();     
+        Swal.fire('sucess kyc Updated','success',);
+         this.route.navigate(['/home/user/update-kyc']);
+            
       },
       (error: any) => {
         // Handle error during form submission
@@ -70,7 +72,7 @@ export class UserKycUpdateComponent implements OnInit {
         this.kycDetails = data.data; // Store the retrieved KYC details in the variable
         this.form.patchValue(this.kycDetails);
         console.log('dataxxxx',this.kycDetails);
-
+       
       },
       (error: any) => {
         console.log(error);
