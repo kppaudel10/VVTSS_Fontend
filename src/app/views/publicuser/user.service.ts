@@ -79,8 +79,13 @@ export class UserService extends BaseService {
   }
 
   // Api to fetch image
-  public getFetchImage(imageUrl : any) {
+  public getFetchImage(imageUrl: any) {
     return this.http.get(imageUrl, this.getHeaders())
+  }
+
+  // Api to take action on Kyc request such as Accept/Reject
+  public getActionOnKyc(userId: number, actionType: string) {
+    return this.http.get(`${this.serviceUrl}/api/public-user/kyc-action/` + userId + '/' + actionType, this.getHeaders())
   }
 
 }

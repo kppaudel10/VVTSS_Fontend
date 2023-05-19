@@ -18,6 +18,7 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
   public profilePictureUrl: any
   public citizenshipFontUrl: any
   public citizenshipBackUrl: any
+  public selectUserId : any
 
   constructor(private userDataService: UserDataService,
               private formBuilder: FormBuilder,
@@ -34,6 +35,7 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
       citizenshipNo: [''],
     })
     this.selectedUserData = this.userDataService.getUserData();
+    this.selectUserId = this.selectedUserData.userId;
     // globally set images url
     this.profilePictureUrl = baseURL.concat(this.selectedUserData.profilePictureUrl)
     this.citizenshipFontUrl = baseURL.concat(this.selectedUserData.citizenshipFontUrl)
@@ -45,7 +47,7 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
 
     this.imageList.forEach(image => {
       this.userService.getFetchImage(image).subscribe(
-        (preview ) => {
+        (preview) => {
           // Process the image data if required
         },
         (error) => {
@@ -56,6 +58,28 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
 
     // patch others text value in form
     this.kycDisplayForm.patchValue(this.selectedUserData)
+  }
+
+  getAcceptKycForm(userId: any) {
+    this.userService.getActionOnKyc(userId, 'accept').subscribe(
+      (response: any) => {
+        // action here
+      },
+      error => {
+        console.error(error);
+      }
+    )
+  }
+
+  getRejectKycForm(userId: any) {
+    this.userService.getActionOnKyc(userId, 'reject').subscribe(
+      (response: any) => {
+        // action here
+      },
+      error => {
+        console.error(error);
+      }
+    )
   }
 
 }
