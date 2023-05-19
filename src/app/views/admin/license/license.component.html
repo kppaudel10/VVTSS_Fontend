@@ -1,80 +1,79 @@
 <c-card>
-    <c-card-header>
-        Add New License
-    </c-card-header>
-
-    <c-card-body>
-        <form cForm class="row g-2">
-            <c-row >
-            <c-col [md]="4">
-              <label cLabel for="inputEmail4">Citizenship No</label>
-               <input cFormControl id="citizenshipNo" name="citizenshipNo" type="text" /> 
-            </c-col>
-
-            <c-col [md]="4">
-              <label cLabel for="inputPassword4">Valid Date</label>
-              <input cFormControl id="validdate" name="validdate" type="date" />
-            </c-col>
-
-            <c-col [md]="4">
-                <label cLabel for="inputPassword4">District</label>
-                <input cFormControl id="district" name="district"  type="text" />
-              </c-col>
-        </c-row>
-        <c-col class="mt-3 mr-4" align="end">
-            <button cButton color="primary" type="submit">Submit</button>
+  <c-card-header>
+    Add New License
+  </c-card-header>
+  <c-card-body>
+    <form cForm class="row g-2" cForm [formGroup]="form" (ngSubmit)="saveLicenseDetail()">
+      <c-row>
+        <c-col [md]="4">
+          <label cLabel for="citizenshipNo">Citizenship No</label>
+          <input cFormControl id="citizenshipNo" formControlName = "citizenshipNo" name="citizenshipNo" type="text"/>
         </c-col>
-        </form>
-    </c-card-body>
 
-    <c-card-footer>
-        <c-row class="mt-4">
-        <c-col [sm]="4">
-            <input cFormControl type="search" placeholder="Search" aria-label="Search" class="me-2">
+        <c-col [md]="4">
+          <label cLabel for="validdate">Valid Date</label>
+          <input cFormControl id="validdate" formControlName = "validDate" name="validDate" type="date"/>
         </c-col>
-        <c-col [sm]="1">
-            <button cButton color="success" variant="outline">Search</button>
+
+        <c-col [md]="4">
+          <label cLabel for="district">District</label>
+          <input cFormControl id="district" formControlName = "district"  name="district" type="text"/>
         </c-col>
+      </c-row>
+      <c-col class="mt-3 mr-4" align="end">
+        <button cButton color="primary" type="submit">Submit</button>
+      </c-col>
+    </form>
+  </c-card-body>
+
+  <c-card-footer>
+    <c-row class="mt-4">
+      <c-col [sm]="4">
+        <input cFormControl type="search" placeholder="Search" aria-label="Search" class="me-2">
+      </c-col>
+      <c-col [sm]="1">
+        <button cButton color="success" variant="outline">Search</button>
+      </c-col>
     </c-row>
-        <h5 align="center" class="mt-3">License Details</h5>
-        <table bordered cTable hover class="text-center mt-3">
-            <thead>
-            <tr>
-              <th scope="col">License No</th>
-              <th scope="col">Valid Date</th>
-              <th scope="col">Licensed User</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-            </tbody>
-        </table>
-        <c-pagination align="end" aria-label="Page navigation example mt-4">
-            <li cPageItem >
-              <a cPageLink [routerLink]="">Previous</a>
-            </li>
-            <li cPageItem>
-              <a cPageLink [routerLink]="">1</a>
-            </li>
-            <li cPageItem>
-              <a cPageLink [routerLink]="">2</a>
-            </li>
-            <li cPageItem>
-              <a cPageLink [routerLink]="">3</a>
-            </li>
-            <li cPageItem>
-              <a cPageLink [routerLink]="">Next</a>
-            </li>
-          </c-pagination>
-    </c-card-footer>
+    <h5 align="center" class="mt-3">License Details</h5>
+    <table bordered cTable hover class="text-center mt-3">
+      <thead>
+      <tr>
+        <th scope="col">License No</th>
+        <th scope="col">Valid Date</th>
+        <th scope="col">Licensed User</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      </tbody>
+    </table>
+    <c-pagination align="end" aria-label="Page navigation example mt-4">
+      <li cPageItem>
+        <a cPageLink [routerLink]="">Previous</a>
+      </li>
+      <li cPageItem>
+        <a cPageLink [routerLink]="">1</a>
+      </li>
+      <li cPageItem>
+        <a cPageLink [routerLink]="">2</a>
+      </li>
+      <li cPageItem>
+        <a cPageLink [routerLink]="">3</a>
+      </li>
+      <li cPageItem>
+        <a cPageLink [routerLink]="">Next</a>
+      </li>
+    </c-pagination>
+  </c-card-footer>
 
 </c-card>

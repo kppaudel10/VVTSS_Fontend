@@ -68,13 +68,11 @@ export class UserService extends BaseService {
     return this.http.get(`${this.serviceUrl}/init`, this.getHeaders())
   }
 
-
   public submitFor(data: FormData) {
     return this.http.post(`${this.serviceUrl}/api/public-user/kyc-update`, data, this.getHeadersWithMultipart())
   }
 
 // basic kyc update details api
-
   public getKycBasicDetails() {
     return this.http.get(`${this.serviceUrl}/api/public-user/basic-detail`, this.getHeaders())
   }
