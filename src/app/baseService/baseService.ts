@@ -15,6 +15,18 @@ export class BaseService {
     };
   }
 
+  getHeadersToFetchImage() {
+    const token = localStorage.getItem('token');
+    return {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${token}`,
+        'Accept':'image/jpeg',
+        'responseType':'blob'
+      })
+    };
+  }
+
+
   getHeadersWithMultipart() {
     const token = localStorage.getItem('token');
     return {
