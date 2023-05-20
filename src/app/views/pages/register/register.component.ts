@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup, Validators } from '@angular/forms';
 import { FormControl, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import {UserService } from 'src/app/views/publicuser/user.service'
+import { NotificationService } from 'src/app/baseService/notification.service'
 
 @Component({
   selector: 'app-register',
@@ -16,7 +18,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
-              private rout: Router) { }
+              private rout: Router,
+              private notifyService : NotificationService,
+              private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -44,23 +48,23 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerForm?.value)
     this.submitted = true;
     if (this.registerForm?.invalid) {
-      alert('invalid');
+      this.notifyService.showError('Not valid User','error');
       return;
     }
   
     this.userService.regiserUser(this.registerForm?.value)?.subscribe(
       (data: any) => {
         console.log(data)
+       this.notifyService.showSuccess("Register Sucess",'success');
         this.rout.navigate(['/user/update-kyc'], 
         { state: { name: this.registerForm?.value.name,
            email: this.registerForm?.value.email, 
            contact: this.registerForm?.value.mobileNumber } });
-      
-        this.rout.navigate([''])
+           
+       // this.rout.navigate([''])
       },
       (error: any) => {
-        console.log(error);
-       alert('erroro')
+       this.notifyService.showError('Something Wrong','error');
       });
 
     this.onReset();
@@ -73,5 +77,9 @@ export class RegisterComponent implements OnInit {
     this.submitted = false;
     this.registerForm.reset();
   }
+
+  showToaster(){
+    this.notifyService.showSuccess("Data shown successfully !!", "Register")
+}
 
 }

@@ -3,6 +3,7 @@ import { UserService } from '../user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-kyc-update',
@@ -18,7 +19,7 @@ export class UserKycUpdateComponent implements OnInit {
 
   constructor(private kycService: UserService,
               private formBuilder: FormBuilder,
-              private cdr: ChangeDetectorRef,
+              private cdr: MatSnackBar, 
               private route: Router){}
 
   ngOnInit(): void {

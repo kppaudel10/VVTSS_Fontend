@@ -21,6 +21,8 @@ import { BuyRequestComponent } from './buy-request/buy-request.component';
 import { UserRequestComponent } from './user-request/user-request.component';
 import { UserRequestViewComponent } from './user-request-view/user-request-view.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -54,7 +56,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     WidgetModule,
     ModalModule,
     PaginationModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ToastrModule,
+    BrowserAnimationsModule
     
   ]
 })
