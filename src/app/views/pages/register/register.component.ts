@@ -48,26 +48,27 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerForm?.value)
     this.submitted = true;
     if (this.registerForm?.invalid) {
-      this.notifyService.showError('Not valid User','error');
+      this.notifyService.showError('Invalid User Data','Error !!');
       return;
     }
-  
+
     this.userService.regiserUser(this.registerForm?.value)?.subscribe(
       (data: any) => {
         console.log(data)
-       this.notifyService.showSuccess("Register Sucess",'success');
-        this.rout.navigate(['/user/update-kyc'], 
+       this.notifyService.showSuccess(data.message,'Success');
+        this.rout.navigate([''],
         { state: { name: this.registerForm?.value.name,
-           email: this.registerForm?.value.email, 
+           email: this.registerForm?.value.email,
            contact: this.registerForm?.value.mobileNumber } });
-           
+
        // this.rout.navigate([''])
       },
       (error: any) => {
-       this.notifyService.showError('Something Wrong','error');
+
+       this.notifyService.showError(error.error.message,'Error !!');
       });
 
-    this.onReset();
+    // this.onReset();
   }
 
   get f() {
