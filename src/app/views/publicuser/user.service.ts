@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Login} from 'src/app/models/Login';
@@ -80,7 +80,9 @@ export class UserService extends BaseService {
 
   // Api to fetch image
   public getFetchImage(imageUrl: any) {
-    return this.http.get(imageUrl, this.getHeaders())
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Replace 'your-token' with the actual token
+    return this.http.get(imageUrl, {headers, observe: 'response', responseType: 'arraybuffer'})
   }
 
   // Api to take action on Kyc request such as Accept/Reject

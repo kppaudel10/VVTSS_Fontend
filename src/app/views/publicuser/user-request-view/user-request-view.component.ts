@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {BaseService} from "../../../baseService/baseService";
 import baseURL from "../../../baseService/helper";
 import {UserService} from "../user.service";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-user-request-view',
@@ -14,11 +15,11 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
   public selectedUserData: any;
   public kycDisplayForm: FormGroup | any
   public imageList: string[] = [];
-  images: { url: string, data: string }[] = [];
+  public images: string[] = [];
   public profilePictureUrl: any
   public citizenshipFontUrl: any
   public citizenshipBackUrl: any
-  public selectUserId : any
+  public selectUserId: any
 
   constructor(private userDataService: UserDataService,
               private formBuilder: FormBuilder,
@@ -46,16 +47,15 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
     console.log("imageList", this.imageList)
 
     this.imageList.forEach(image => {
-      this.userService.getFetchImage(image).subscribe(
-        (preview) => {
-          // Process the image data if required
-        },
-        (error) => {
-          console.log('Error retrieving image:', error);
-        }
-      );
+      this.userService.getFetchImage(image)
+        .subscribe((response: HttpResponse<ArrayBuffer> | any) => {
+          const bytes = new Uint8Array(response.body);
+          const binary = Array.from(bytes).map(byte => String.fromCharCode(byte)).join('');
+          const base64 = btoa(binary);
+          this.images.push('data:image/jpeg;base64,' + base64);
+        });
     });
-
+    console.log("imagesURl", this.images)
     // patch others text value in form
     this.kycDisplayForm.patchValue(this.selectedUserData)
   }
