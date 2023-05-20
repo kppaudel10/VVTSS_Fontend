@@ -24,6 +24,7 @@ export class LicenseComponent implements OnInit {
     console.log("licenseList", this.licenseList)
     this.form = this.formBuilder.group({
       citizenshipNo: ['', Validators.required],
+      vehicleType: ['', Validators.required],
       validDate: ['', Validators.required],
       district: ['', Validators.required],
     });
@@ -81,6 +82,20 @@ export class LicenseComponent implements OnInit {
     if (searchValue === '') {
       this.ngOnInit();
     }
+  }
+
+  getVehicleTypeName(typeInt: any) {
+    debugger
+    if (typeInt === "0" ||typeInt === 0 ) {
+      return "Scooter";
+    } else if (typeInt === "1" || typeInt === 1) {
+      return "Bike";
+    } else if (typeInt === "2" || typeInt === 2) {
+      return "Car";
+    }else {
+      return "";
+    }
+
   }
 
 }
