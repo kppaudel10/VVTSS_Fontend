@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
   submitted = false;
 
+
   constructor(
     private formBuilder: FormBuilder,
     private _snack: MatSnackBar,
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         console.log('response Success', res);
         localStorage.setItem("token", (res.data.token));
+
        // Swal.fire('login Successfully !!!', 'success')
        this.notify.showSuccess('Login Successful', 'Success');
         this.router.navigate(['/home']);
