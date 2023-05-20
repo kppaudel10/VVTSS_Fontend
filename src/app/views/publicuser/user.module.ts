@@ -23,6 +23,7 @@ import { UserRequestViewComponent } from './user-request-view/user-request-view.
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -42,7 +43,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavModule,
     IconModule,
     TabsModule,
-    CommonModule,
     GridModule,
     ProgressModule,
     ReactiveFormsModule,
@@ -58,7 +58,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PaginationModule,
     MatSnackBarModule,
     ToastrModule,
-    BrowserAnimationsModule
+    
+    
+   
 
   ]
 })

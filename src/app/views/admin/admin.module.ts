@@ -29,13 +29,13 @@ import { NumberPlateScanProcessComponent } from './number-plate-scan-process/num
   imports: [
     CommonModule,
     AdminRoutingModule,
-    CommonModule,
+    
     UserRoutingModule,
     CardModule,
     NavModule,
     IconModule,
     TabsModule,
-    CommonModule,
+    
     GridModule,
     ProgressModule,
     ReactiveFormsModule,
@@ -51,7 +51,8 @@ import { NumberPlateScanProcessComponent } from './number-plate-scan-process/num
     PaginationModule,
     MatDatepickerModule,
     ToastModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    
 
   ]
 })
