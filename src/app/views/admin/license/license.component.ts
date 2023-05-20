@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AdminService} from "../admin.service";
+import {NotificationService} from "../../../baseService/notification.service";
 
 @Component({
   selector: 'app-license',
@@ -14,7 +15,8 @@ export class LicenseComponent implements OnInit {
   public licenseList: any[] | undefined;
 
   constructor(private formBuilder: FormBuilder,
-              private adminService: AdminService) {
+              private adminService: AdminService,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -35,6 +37,11 @@ export class LicenseComponent implements OnInit {
   }
 
   saveLicenseDetail() {
+    if (this.form?.invalid) {
+      this.notificationService.showWarnig('Please check each field before submit.', 'Warning !!');
+      return;
+    }
+
     let data = this.form.getRawValue();
     console.log("licenseData", data)
     this.adminService.saveLicense(data).subscribe(
@@ -43,12 +50,13 @@ export class LicenseComponent implements OnInit {
         Object.keys(this.form.controls).forEach((controlName) => {
           this.form.controls[controlName].setValue(null);
         });
-        // Swal.fire('sucess kyc Updated', 'success',);
-        // this.route.navigate(['/home/user/update-kyc']);
+        this.notificationService.showSuccess(response.message, "Success !!")
+        // reload the page
+        this.ngOnInit();
       },
       (error: any) => {
         // Handle error during form submission
-        console.error('error res:', error);
+        this.notificationService.showError(error.error.message, "Error !!")
       });
   }
 
@@ -85,13 +93,13 @@ export class LicenseComponent implements OnInit {
   }
 
   getVehicleTypeName(typeInt: any) {
-    if (typeInt === "0" ||typeInt === 0 ) {
+    if (typeInt === "0" || typeInt === 0) {
       return "Scooter";
     } else if (typeInt === "1" || typeInt === 1) {
       return "Bike";
     } else if (typeInt === "2" || typeInt === 2) {
       return "Car";
-    }else {
+    } else {
       return "";
     }
 
