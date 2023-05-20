@@ -5,6 +5,8 @@ import {BaseService} from "../../../baseService/baseService";
 import baseURL from "../../../baseService/helper";
 import {UserService} from "../user.service";
 import {HttpResponse} from "@angular/common/http";
+import {NotificationService} from "../../../baseService/notification.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-request-view',
@@ -23,7 +25,9 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
 
   constructor(private userDataService: UserDataService,
               private formBuilder: FormBuilder,
-              private userService: UserService) {
+              private userService: UserService,
+              private notificationService: NotificationService,
+              private router: Router) {
     super();
   }
 
@@ -64,9 +68,12 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
     this.userService.getActionOnKyc(userId, 'accept').subscribe(
       (response: any) => {
         // action here
+        this.notificationService.showSuccess("User Kyc Request Accepted Successfully", "Success !!");
+        this.router.navigate(['/home/user-request']);
       },
       error => {
-        console.error(error);
+        this.notificationService.showError(error.error.message, "Error !!")
+        this.router.navigate(['/home/user-request']);
       }
     )
   }
@@ -75,9 +82,12 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
     this.userService.getActionOnKyc(userId, 'reject').subscribe(
       (response: any) => {
         // action here
+        this.notificationService.showSuccess("User Kyc Request Rejected Successfully", "Success !!");
+        this.router.navigate(['/home/user-request']);
       },
       error => {
-        console.error(error);
+        this.notificationService.showError(error.error.message, "Error !!")
+        this.router.navigate(['/home/user-request']);
       }
     )
   }
