@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserRoutingModule } from './user-routing.module';
 import { UserKycUpdateComponent } from './user-kyc-update/user-kyc-update.component';
 import { IconModule } from '@coreui/icons-angular';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ChartjsModule } from '@coreui/angular-chartjs';
 import { AvatarModule,
    ButtonGroupModule,
@@ -21,6 +21,8 @@ import { BuyRequestComponent } from './buy-request/buy-request.component';
 import { UserRequestComponent } from './user-request/user-request.component';
 import { UserRequestViewComponent } from './user-request-view/user-request-view.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -55,7 +57,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ModalModule,
     PaginationModule,
     MatSnackBarModule,
-    FormsModule
+    ToastrModule,
+    BrowserAnimationsModule
 
   ]
 })

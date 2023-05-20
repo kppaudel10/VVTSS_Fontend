@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserService} from '../../publicuser/user.service';
-import {Router} from '@angular/router';
-
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../publicuser/user.service';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
+//import { ToastrService } from 'ngx-toastr'; 
+import { NotificationService } from 'src/app/baseService/notification.service'
 
 @Component({
   selector: 'app-login',
@@ -14,10 +16,16 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
   submitted = false;
 
-  constructor(private login: UserService,
-              private formBuilder: FormBuilder,
-              private router: Router) {
-  }
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private _snack: MatSnackBar,
+    private login: UserService,
+    private router: Router,
+    private notify: NotificationService,
+    ///private toastr: ToastrService
+    )
+     { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -30,6 +38,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm?.value);
     this.submitted = true;
     if (this.loginForm?.invalid) {
+     this.notify.showError('Not Valid Username and Password','error');
       return;
     }
 
@@ -38,18 +47,20 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         console.log('response Success', res);
         localStorage.setItem("token", (res.data.token));
-      this.router.navigate(['/home']);
-      Swal.fire('login Successfully !!!','User id is: ' ,'success')
+
+       // Swal.fire('login Successfully !!!', 'success')
+       this.notify.showSuccess('Login Successful', 'Success');
+        this.router.navigate(['/home']);
+
       },
       (error: any) => {
-        console.log('Response Error', error);
-        alert(error);
+        this.notify.showError('Something wrong Check Server !','error');
       });
   }
-
   get f() {
     return this.loginForm?.controls;
   }
+ 
 
 
 }

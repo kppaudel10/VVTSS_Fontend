@@ -7,6 +7,10 @@ import { RegisterComponent } from './register/register.component';
 import { AlertModule, ButtonModule, CardModule, FormModule, GridModule } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -24,7 +28,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     IconModule,
     FormModule,
     ReactiveFormsModule,
-    AlertModule
+    AlertModule,
+    MatSnackBarModule,
+    ToastrModule.forRoot(),
+  BrowserAnimationsModule
   ],
   providers: []
 })

@@ -4,6 +4,8 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import {TokenInterceptorService} from 'src/app/baseService/token/token-interceptor.service'
+import { ToastrModule } from 'ngx-toastr';
+
 
 import {
   PERFECT_SCROLLBAR_CONFIG,
@@ -16,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Import app component
 import { AppComponent } from './app.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Import containers
 import {
@@ -44,6 +47,7 @@ import {
   TabsModule,
   UtilitiesModule,
   
+  
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
@@ -64,6 +68,7 @@ const APP_CONTAINERS = [
   declarations: [AppComponent, ...APP_CONTAINERS],
   imports: [
     BrowserModule,
+    ToastrModule.forRoot(),
     BrowserAnimationsModule,
     AppRoutingModule,
     AvatarModule,
@@ -91,6 +96,8 @@ const APP_CONTAINERS = [
     CardModule,
     FormModule,
     HttpClientModule,
+    MatSnackBarModule,
+    
     
   ],
   providers: [
