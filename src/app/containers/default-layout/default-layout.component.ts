@@ -72,7 +72,7 @@ export class DefaultLayoutComponent implements OnInit {
             break;
           case 'Number Plate Scan':
             icon = IconSubset.cilListNumbered;
-            url = `/module/${module.moduleId}`;
+            url = '/home/number-plate-scan';
             break;
 
           case 'OwnerShip Request':

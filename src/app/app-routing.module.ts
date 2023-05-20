@@ -12,6 +12,8 @@ import { LicenseComponent } from './views/admin/license/license.component';
 import { BlueBookComponent } from './views/admin/blue-book/blue-book.component';
 import { OwnershipRequestComponent } from './views/admin/ownership-request/ownership-request.component';
 import { OwnershipRequestViewComponent } from './views/admin/ownership-request-view/ownership-request-view.component';
+import { NumberPlateScanComponent } from './views/admin/number-plate-scan/number-plate-scan.component';
+import { NumberPlateScanProcessComponent } from './views/admin/number-plate-scan-process/number-plate-scan-process.component';
 
 const routes: Routes = [
   {
@@ -87,6 +89,14 @@ const routes: Routes = [
         path: 'ownershp-request-view',
         component: OwnershipRequestViewComponent
       },
+      {
+        path: 'number-plate-scan',
+        component: NumberPlateScanComponent
+      },
+      {
+        path: 'plate-scan-process',
+        component: NumberPlateScanProcessComponent
+      }
 
     ]
 

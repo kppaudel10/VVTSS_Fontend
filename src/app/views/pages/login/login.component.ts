@@ -51,8 +51,8 @@ export class LoginComponent implements OnInit {
        // Swal.fire('login Successfully !!!', 'success')
        this.notify.showSuccess('Login Successful', 'Success');
         this.router.navigate(['/home']);
-
       },
+      
       (error: any) => {
         this.notify.showError('Something wrong Check Server !','error');
       });
@@ -60,7 +60,5 @@ export class LoginComponent implements OnInit {
   get f() {
     return this.loginForm?.controls;
   }
- 
-
 
 }

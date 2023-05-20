@@ -13,6 +13,8 @@ import { BlueBookComponent } from './blue-book/blue-book.component';
 import { OwnershipRequestComponent } from './ownership-request/ownership-request.component';
 import { OwnershipRequestViewComponent } from './ownership-request-view/ownership-request-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NumberPlateScanComponent } from './number-plate-scan/number-plate-scan.component';
+import { NumberPlateScanProcessComponent } from './number-plate-scan-process/number-plate-scan-process.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LicenseComponent,
     BlueBookComponent,
     OwnershipRequestComponent,
-    OwnershipRequestViewComponent
+    OwnershipRequestViewComponent,
+    NumberPlateScanComponent,
+    NumberPlateScanProcessComponent
   ],
   imports: [
     CommonModule,
