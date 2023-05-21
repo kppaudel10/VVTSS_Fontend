@@ -39,12 +39,7 @@ export class UserService extends BaseService {
 
 // checketd the the token or not
   isLoggedIn() {
-    const token = localStorage.getItem('token');
-    if (token === undefined || token === '' || token === null) {
-      return false;
-    } else {
-      return true;
-    }
+    return !!localStorage.getItem('token');
   }
 
 // deletet the login

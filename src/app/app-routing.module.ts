@@ -14,16 +14,18 @@ import { OwnershipRequestComponent } from './views/admin/ownership-request/owner
 import { OwnershipRequestViewComponent } from './views/admin/ownership-request-view/ownership-request-view.component';
 import { NumberPlateScanComponent } from './views/admin/number-plate-scan/number-plate-scan.component';
 import { NumberPlateScanProcessComponent } from './views/admin/number-plate-scan-process/number-plate-scan-process.component';
+import { AuthGuard } from 'src/app/baseService/auth/auth.guard'
 
 const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-
+    canActivate: [AuthGuard] 
   },
   {
     path: 'home',
     component: DefaultLayoutComponent,
+    canActivate: [AuthGuard],
     data: {
       title: 'Home'
     },
@@ -107,7 +109,7 @@ const routes: Routes = [
   component: RegisterComponent
   },
 
-  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '', redirectTo: '', pathMatch: 'full'},
 ];
 
 @NgModule({
