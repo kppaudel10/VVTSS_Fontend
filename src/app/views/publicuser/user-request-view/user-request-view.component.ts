@@ -4,10 +4,8 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {BaseService} from "../../../baseService/baseService";
 import baseURL from "../../../baseService/helper";
 import {UserService} from "../user.service";
-import {HttpResponse} from "@angular/common/http";
 import {NotificationService} from "../../../baseService/notification.service";
 import {Router} from "@angular/router";
-import * as Buffer from "buffer";
 import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
@@ -54,10 +52,9 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
     this.imageList.push(this.citizenshipBackUrl)
     console.log("imageList", this.imageList)
 
-    debugger
     this.imageList.forEach(image => {
       this.userService.getFetchImage(image)
-        .subscribe((response:  any) => {
+        .subscribe((response: any) => {
           // console.log(JSON.parse(String.fromCharCode.apply(null, new Uint8Array(response.body))
           // console.log(response.url,'this')
           // this.images.push(response.url)
@@ -72,8 +69,7 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
           // const base64 = btoa(binary);
           // console.log("basexx", atob(base64))
           // this.images.push('data:image/jpeg;base64,' + base64);
-        // console.log(response.body,'this')
-          debugger
+          // console.log(response.body,'this')
           // @ts-ignore
           const data = JSON.parse(String.fromCharCode.apply(null, new Uint8Array(response.body))).data;
           let objectUrl = 'data:image/jpeg;base64,' + data;

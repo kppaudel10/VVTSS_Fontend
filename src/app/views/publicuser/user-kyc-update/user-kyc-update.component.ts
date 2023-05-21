@@ -1,9 +1,8 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import Swal from 'sweetalert2';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {NotificationService} from "../../../baseService/notification.service";
 
 @Component({
@@ -15,16 +14,18 @@ export class UserKycUpdateComponent implements OnInit {
   public visible = false;
   public form: FormGroup | any;
   public kycDetails: any; // Variable to store KYC details
-  public isKycRejects: boolean | undefined
+  public kycStatusTextColor: string = 'white';
 
 
   constructor(private kycService: UserService,
               private formBuilder: FormBuilder,
               private cdr: MatSnackBar,
               private route: Router,
-              private notificationService : NotificationService){}
+              private notificationService: NotificationService) {
+  }
 
   ngOnInit(): void {
+
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -44,6 +45,11 @@ export class UserKycUpdateComponent implements OnInit {
   }
 
   submitForm() {
+    if (this.form?.invalid) {
+      this.notificationService.showWarnig('Please check each field before submit the application  ',
+        'Warning !!');
+      return;
+    }
     let formData: any = new FormData();
     Object.keys(this.form.controls).forEach(formControlName => {
       if (formControlName == 'profilePicture' || formControlName === 'citizenshipFont'
@@ -61,24 +67,24 @@ export class UserKycUpdateComponent implements OnInit {
         Object.keys(this.form.controls).forEach((controlName) => {
           this.form.controls[controlName].setValue(this.form.controls.value);
         });
-        this.notificationService.showSuccess(response.message , "Success !!")
-        this.route.navigate(['/home/user/update-kyc']);
+        this.notificationService.showSuccess(response.message, "Success !!")
+       this.closeKycForm();
 
       },
       (error: any) => {
         // Handle error during form submission
-        console.error('error res:', error);
+        this.notificationService.showError(error.error.message, "Error !!")
       });
 
   }
 
-  kycUpdateButton() {
+  getUserBasicDetails() {
 
     this.kycService.getKycBasicDetails().subscribe(
       (data: any) => {
         this.kycDetails = data.data; // Store the retrieved KYC details in the variable
         this.form.patchValue(this.kycDetails);
-        console.log('dataxxxx',this.kycDetails);
+        console.log('dataxxxx', this.kycDetails);
 
       },
       (error: any) => {
@@ -92,14 +98,42 @@ export class UserKycUpdateComponent implements OnInit {
     this.visible = event;
   }
 
-  isKycReject() {
-    if (this.kycDetails['isKycRejected'] === true) {
-      this.isKycRejects = true;
+  isFormDisabled() {
+    if (this.kycDetails === null || this.kycDetails === undefined) {
+      return false;
     } else {
-      this.isKycRejects = false;
+      if (this.kycDetails['isKycPending'] === true || this.kycDetails['isKycCompleted']) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 
+  closeKycForm() {
+    this.visible = false;
+    this.ngOnInit();
+    // this.route.navigate(['/home/user/update-kyc']);
+  }
+
+  getKycStatus(): string {
+    if (this.kycDetails === null || this.kycDetails === undefined) {
+      return '';
+    } else {
+      if (this.kycDetails['isKycPending'] === true) {
+        this.kycStatusTextColor = 'blue';
+        return "PENDING......!";
+      } else if (this.kycDetails['isKycCompleted'] === true) {
+        this.kycStatusTextColor = 'green';
+        return "VERIFIED......!"
+      } else if (this.kycDetails['isKycRejected'] === true) {
+        this.kycStatusTextColor = 'red';
+        return "REJECTED........!"
+      } else {
+        return '';
+      }
+    }
+  }
 
 
 }
