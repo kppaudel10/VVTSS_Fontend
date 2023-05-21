@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {NotificationService} from "../../../baseService/notification.service";
 
 @Component({
   selector: 'app-user-kyc-update',
@@ -20,7 +21,8 @@ export class UserKycUpdateComponent implements OnInit {
   constructor(private kycService: UserService,
               private formBuilder: FormBuilder,
               private cdr: MatSnackBar,
-              private route: Router){}
+              private route: Router,
+              private notificationService : NotificationService){}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -59,7 +61,7 @@ export class UserKycUpdateComponent implements OnInit {
         Object.keys(this.form.controls).forEach((controlName) => {
           this.form.controls[controlName].setValue(this.form.controls.value);
         });
-        Swal.fire('sucess kyc Updated', 'success',);
+        this.notificationService.showSuccess(response.message , "Success !!")
         this.route.navigate(['/home/user/update-kyc']);
 
       },
