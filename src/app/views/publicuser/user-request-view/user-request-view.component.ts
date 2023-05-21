@@ -22,6 +22,9 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
   public citizenshipFontUrl: any
   public citizenshipBackUrl: any
   public selectUserId: any
+  public isPictureShowUpVisible: boolean = false;
+  public selectedImageIndex: number = 0;
+  public selectedImageName: string | undefined;
 
   constructor(private userDataService: UserDataService,
               private formBuilder: FormBuilder,
@@ -98,6 +101,9 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
   }
 
   getRejectKycForm(userId: any) {
+    this.imageList.pop();
+    this.images.pop();
+    console.log('imageafterpop',this.images)
     this.userService.getActionOnKyc(userId, 'reject').subscribe(
       (response: any) => {
         // action here
@@ -111,4 +117,23 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
     )
   }
 
+  handlePictureVisibleModal(event: any) {
+    this.isPictureShowUpVisible = event;
+  }
+
+  openImageDisplayModal(selectedImageIndex: number) {
+    this.selectedImageIndex = selectedImageIndex;
+    if (selectedImageIndex === 0) {
+      this.selectedImageName = "Profile Picture"
+    } else if (selectedImageIndex === 1) {
+      this.selectedImageName = "Citizenship Font"
+    } else if (selectedImageIndex === 2) {
+      this.selectedImageName = "Citizenship Back"
+    } else {
+      this.selectedImageName = "Unknown"
+    }
+    this.isPictureShowUpVisible = true;
+  }
+
 }
+

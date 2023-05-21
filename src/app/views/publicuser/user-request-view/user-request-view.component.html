@@ -6,7 +6,7 @@
       </c-card-header>
 
       <c-col class="mt-5 ">
-        <c-card-body class="u-imag">
+        <c-card-body class="u-imag" (click)="openImageDisplayModal(0)">
           <img [src]="images[0]" alt="">
         </c-card-body>
       </c-col>
@@ -67,7 +67,7 @@
     <c-row class="text-center" [sm]="3">
       <!-- front -->
       <c-col [sm]="6">
-        <c-card-body>
+        <c-card-body (click)="openImageDisplayModal(1)">
           <h3>Citizenship Front</h3>
           <img class="citizen" [src]="images[1]" alt="">
         </c-card-body>
@@ -76,7 +76,7 @@
 
       <!-- back -->
       <c-col>
-        <c-card-body>
+        <c-card-body (click)="openImageDisplayModal(2)">
           <h3>Citizenship Back</h3>
           <img class="citizen" [src]="images[2]" alt="">
         </c-card-body>
@@ -86,9 +86,20 @@
     <c-row class="" align="end">
       <c-card-body>
         <button class="btn" color="success" cButton (click)="getAcceptKycForm(selectUserId)">Accept</button>
-        <button color="danger" cButton (click)="getRejectKycForm(selectUserId)" >Reject</button>
+        <button color="danger" cButton (click)="getRejectKycForm(selectUserId)">Reject</button>
       </c-card-body>
     </c-row>
   </c-card>
 
 </form>
+
+<c-modal id="pictureShowUpModal" [visible]="isPictureShowUpVisible" (visibleChange)="handlePictureVisibleModal($event)">
+  <c-modal-body>
+    <c-col>
+      <c-card-body>
+        <h3 [textContent]="selectedImageName"></h3>
+        <img class="image-show-modal" [src]="images[selectedImageIndex]" alt="">
+      </c-card-body>
+    </c-col>
+  </c-modal-body>
+</c-modal>

@@ -15,6 +15,7 @@ export class UserKycUpdateComponent implements OnInit {
   public form: FormGroup | any;
   public kycDetails: any; // Variable to store KYC details
   public kycStatusTextColor: string = 'white';
+  public isPictureShowUpVisible = false;
 
 
   constructor(private kycService: UserService,
