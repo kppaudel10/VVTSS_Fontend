@@ -27,6 +27,8 @@ export class BlueBookComponent implements OnInit {
       citizenshipNo: ['', Validators.required],
       vehicleType: ['', Validators.required],
       vehicleIdentificationNo: ['', Validators.required],
+      numberPlate: ['', Validators.required],
+
     });
 
     this.searchForm = this.formBuilder.group({

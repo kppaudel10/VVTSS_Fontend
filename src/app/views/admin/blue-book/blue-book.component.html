@@ -6,12 +6,12 @@
   <c-card-body>
     <form cForm class="row g-2" [formGroup]="form" (ngSubmit)="saveBlueBookData()">
       <c-row>
-        <c-col [md]="4">
+        <c-col [md]="3">
           <label cLabel for="citizenshipNo">Citizenship No:<sup>*</sup></label>
           <input cFormControl id="citizenshipNo" name="citizenshipNo" formControlName="citizenshipNo" type="text"/>
         </c-col>
 
-        <c-col [md]="4">
+        <c-col [md]="3">
           <label cLabel>Vehicle Type:<sup>*</sup></label>
           <select aria-label="vehicleType" cSelect formControlName="vehicleType">
             <option value="0">Scooter</option>
@@ -20,11 +20,18 @@
           </select>
         </c-col>
 
-        <c-col [md]="4">
+        <c-col [md]="3">
           <label cLabel for="vehicleIdentificationNo">Vehicle Identification No:<sup>*</sup></label>
           <input cFormControl id="vehicleIdentificationNo" name="vehicleIdentificationNo"
                  formControlName="vehicleIdentificationNo" type="text"/>
         </c-col>
+
+        <c-col [md]="3">
+          <label cLabel for="numberPlate">Number Plate:<sup>*</sup></label>
+          <input cFormControl id="numberPlate" name="numberPlate"
+                 formControlName="numberPlate" type="text"/>
+        </c-col>
+
       </c-row>
       <c-col class="mt-3 mr-4" align="end">
         <button cButton color="primary" type="submit">Submit</button>
@@ -44,7 +51,7 @@
         </c-col>
       </c-row>
     </form>
-    <h5 align="center" class="mt-3">Blue Book Details</h5>
+    <h3 align="center" class="mt-3">Blue Book Details</h3>
     <table bordered cTable hover class="text-center mt-3">
       <thead>
       <tr>
