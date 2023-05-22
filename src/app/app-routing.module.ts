@@ -20,12 +20,12 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    canActivate: [AuthGuard] 
+    //canActivate: [AuthGuard] 
   },
   {
     path: 'home',
     component: DefaultLayoutComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     data: {
       title: 'Home'
     },

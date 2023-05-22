@@ -38,9 +38,9 @@ export class UserService extends BaseService {
   }
 
 // checketd the the token or not
-  isLoggedIn() {
+  /*isLoggedIn() {
     return !!localStorage.getItem('token');
-  }
+  }*/
 
 // deletet the login
   logOut() {
