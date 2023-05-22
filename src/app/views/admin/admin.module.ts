@@ -15,6 +15,7 @@ import { OwnershipRequestViewComponent } from './ownership-request-view/ownershi
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NumberPlateScanComponent } from './number-plate-scan/number-plate-scan.component';
 import { NumberPlateScanProcessComponent } from './number-plate-scan-process/number-plate-scan-process.component';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { NumberPlateScanProcessComponent } from './number-plate-scan-process/num
     NavModule,
     IconModule,
     TabsModule,
-    
+    MatIconModule,
     GridModule,
     ProgressModule,
     ReactiveFormsModule,

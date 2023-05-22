@@ -5,13 +5,13 @@
             <c-col [md]="6">
                 <label cLabel for="citizenshipNo">Select Image Of Number Plate</label>
                 <input class="text-center" cFormControl id="citizenshipNo" name="citizenshipNo" formControlName="citizenshipNo" 
-                    type="text" placeholder="choose"/>
+                type="file" placeholder="choose"/>
             </c-col>
 
-            <c-col >
+            <c-col class="text-center mt-3" >
                 <label cLabel for="idd">Select Image</label>
                 <input class="text-center img" cFormControl  
-                    type="file" placeholder="Image Of Number Plate"/>
+                     value="Image of Number Plate"/>
             </c-col>
             <c-col class="mt-3 mr-4" align="end">
                 <button cButton color="primary" type="submit" [routerLink]="'/home/plate-scan-process'" >Process</button>
