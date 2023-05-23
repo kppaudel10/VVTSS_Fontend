@@ -25,3 +25,15 @@ sup {
 li{
   font-size: 17px;
 }
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.my-2{
+  padding: 12px 24px;
+  font-size: 20px;
+  width: 300px;
+}

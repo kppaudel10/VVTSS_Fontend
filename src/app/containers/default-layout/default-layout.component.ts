@@ -40,7 +40,7 @@ export class DefaultLayoutComponent implements OnInit {
         switch (module.moduleName) {
           case 'A-Dashboard':
             icon = IconSubset.cilUser;
-            url = ``;
+            url = '/home/dash';
             break;
           case 'U-Dashboard':
             icon = IconSubset.cilBarChart;

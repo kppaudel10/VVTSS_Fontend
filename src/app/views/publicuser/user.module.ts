@@ -15,7 +15,9 @@ import { AvatarModule,
     TabsModule,
     WidgetModule ,
     PaginationModule,
-    ModalModule  } from '@coreui/angular';
+    ModalModule,  
+    AccordionModule,
+    SharedModule} from '@coreui/angular';
 import { SellVehicleComponent } from './sell-vehicle/sell-vehicle.component';
 import { BuyRequestComponent } from './buy-request/buy-request.component';
 import { UserRequestComponent } from './user-request/user-request.component';
@@ -58,6 +60,8 @@ import { BrowserModule } from '@angular/platform-browser';
     PaginationModule,
     MatSnackBarModule,
     ToastrModule,
+    AccordionModule,
+    SharedModule
     
     
    

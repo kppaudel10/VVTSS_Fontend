@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-number-plate-scan',
@@ -7,25 +8,33 @@ import {FormBuilder} from "@angular/forms";
   styleUrls: ['./number-plate-scan.component.scss']
 })
 export class NumberPlateScanComponent implements OnInit {
+  uploadForm!: FormGroup; 
+  selectedImageSrc!: string;
 
-  public numberPlateForm: FormData | any;
-  public selectedImage: File | any
-
-  constructor(private formBuilder: FormBuilder) {
-  }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.numberPlateForm = this.formBuilder.group({
-      numberPlateImage: ['']
-    })
+    // Initialize the reactive form
+    this.uploadForm = this.formBuilder.group({
+      numberplate: [''] 
+    });
   }
 
-  uploadImage(event: any) {
-    const file: File = event.target.files[0];
-    this.selectedImage = file;
-    console.log("selectedImage", this.selectedImage.value[0])
-    // this.numberPlateForm.controls['numberPlateImage'].patchValue([file]);
-    // this.numberPlateForm.get('numberPlateImage').updateValueAndValidity()
-  }
+  onFileChange(event: any): void {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
 
+      // Read the image file using FileReader
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.selectedImageSrc = e.target.result;
+      };
+      reader.readAsDataURL(file);
+      
+      this.uploadForm.patchValue({
+        numberplate: file
+      });
+      this.uploadForm.get('numberplate')?.updateValueAndValidity();
+    }
+  }
 }

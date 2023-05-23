@@ -17,6 +17,7 @@ import {
   NumberPlateScanProcessComponent
 } from './views/admin/number-plate-scan-process/number-plate-scan-process.component';
 import {AuthGuard} from "./baseService/auth/auth.guard";
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,6 @@ const routes: Routes = [
   {
     path: 'home',
     component: DefaultLayoutComponent,
-    // canActivate: [AuthGuard],
     data: {
       title: 'Home'
     },
@@ -120,6 +120,10 @@ const routes: Routes = [
         path: 'plate-scan-process',
         component: NumberPlateScanProcessComponent,
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'dash',
+        component: DashboardComponent
       }
 
     ]

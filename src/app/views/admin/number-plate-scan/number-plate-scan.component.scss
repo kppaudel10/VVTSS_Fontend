@@ -1,7 +1,12 @@
-.img{
-    height: 300px;
-   
-    
-}
-
+.selected-image {
+   border: 1px solid gray;
+    height: 500px; /* Adjust the desired height */
+    width: 800px; /* Adjust the desired width */
+    margin-left: 10rem;
+  }
+  
+  .displayed-image {
+    max-height: 50rem;
+    max-width: 50rem;
+  }
 

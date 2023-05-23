@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
         console.log('response Success', res);
         localStorage.setItem("token", (res.data.token));
         this.notify.showSuccess("Login successfully", 'Success');
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home/dash']);
       },
 
       (error: any) => {
