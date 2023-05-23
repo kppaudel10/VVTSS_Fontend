@@ -16,6 +16,7 @@ export class UserKycUpdateComponent implements OnInit {
   public kycDetails: any; // Variable to store KYC details
   public kycStatusTextColor: string = 'white';
   public isPictureShowUpVisible = false;
+  public isKycFormClose: boolean = false
 
 
   constructor(private kycService: UserService,
@@ -46,7 +47,7 @@ export class UserKycUpdateComponent implements OnInit {
   }
 
   submitForm() {
-    if (this.form?.invalid) {
+    if (this.form?.invalid && !this.isKycFormClose) {
       this.notificationService.showWarnig('Please check each field before submit the application  ',
         'Warning !!');
       return;
@@ -69,7 +70,7 @@ export class UserKycUpdateComponent implements OnInit {
           this.form.controls[controlName].setValue(this.form.controls.value);
         });
         this.notificationService.showSuccess(response.message, "Success !!")
-       this.closeKycForm();
+        this.closeKycForm();
 
       },
       (error: any) => {
@@ -113,6 +114,7 @@ export class UserKycUpdateComponent implements OnInit {
 
   closeKycForm() {
     this.visible = false;
+    this.isKycFormClose = true;
     this.ngOnInit();
     // this.route.navigate(['/home/user/update-kyc']);
   }

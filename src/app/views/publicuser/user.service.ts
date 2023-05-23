@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class UserService extends BaseService {
+
   submitForm(value: any) {
     throw new Error('Method not implemented.');
   }
@@ -37,15 +38,10 @@ export class UserService extends BaseService {
     return true;
   }
 
-// checketd the the token or not
-  /*isLoggedIn() {
-    return !!localStorage.getItem('token');
-  }*/
-
-// deletet the login
+// delete the login
   logOut() {
     localStorage.removeItem('token');
-    this.rout.navigate(['']);
+    this.rout.navigate(['/login']);
   }
 
 
@@ -56,6 +52,17 @@ export class UserService extends BaseService {
   // Api to fetch user role privilege
   public getCallInit(): Observable<any> {
     return this.http.get(`${this.serviceUrl}/init`, this.getHeaders())
+  }
+
+  // Api to fetch profile picture of login user
+  public getProfilePicture(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.http.get(`${this.serviceUrl}/api/public-user/profile-picture`, {
+      headers,
+      observe: 'response',
+      responseType: 'blob'
+    })
   }
 
   // Api to save user kyc data
@@ -76,8 +83,9 @@ export class UserService extends BaseService {
   // Api to fetch image
   public getFetchImage(imageUrl: any) {
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Replace 'your-token' with the actual token
-    return this.http.get(imageUrl, {headers, observe: 'response', responseType: 'arraybuffer'})
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.http.get(imageUrl, {headers, observe: 'response', responseType: 'blob'})
+    // return this.http.get(imageUrl, this.getHeaders())
   }
 
   // Api to take action on Kyc request such as Accept/Reject

@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { UserService } from 'src/app/views/publicuser/user.service'
+import {Component, OnInit} from '@angular/core';
+import {UserService} from 'src/app/views/publicuser/user.service'
 //import { navItems } from './_nav';
+import {IconSubset} from 'src/app/icons/icon-subset';
 
-import { IconSubset } from 'src/app/icons/icon-subset';
 //import { INavData } from '@coreui/angular';
 
 @Component({
@@ -18,7 +18,8 @@ export class DefaultLayoutComponent implements OnInit {
     suppressScrollX: true,
   };
 
-  constructor(private dash: UserService) { }
+  constructor(private dash: UserService) {
+  }
 
   ngOnInit(): void {
     this.dash.getCallInit().subscribe((response: any) => {
@@ -46,15 +47,15 @@ export class DefaultLayoutComponent implements OnInit {
             url = '/home/user/update-kyc';
             break;
 
-            case 'Sell Vehicle':
-              icon = IconSubset.cibCcPaypal;
-              url = '/home/user/sell-vehicle';
-              break;
+          case 'Sell Vehicle':
+            icon = IconSubset.cibCcPaypal;
+            url = '/home/user/sell-vehicle';
+            break;
 
-              case 'Buy Request':
-              icon = IconSubset.cilBasket;
-              url = '/home/user/buy-request';
-              break;
+          case 'Buy Request':
+            icon = IconSubset.cilBasket;
+            url = '/home/user/buy-request';
+            break;
 
           case 'License':
             icon = IconSubset.cilBold;
@@ -77,7 +78,7 @@ export class DefaultLayoutComponent implements OnInit {
 
           case 'OwnerShip Request':
             icon = IconSubset.cilNotes;
-            url = '/home/ownershp-request';
+            url = '/home/ownership-request';
             break;
 
           default:
@@ -89,7 +90,7 @@ export class DefaultLayoutComponent implements OnInit {
         return {
           name: module.moduleName,
           url: url,
-          iconComponent: { name: icon }
+          iconComponent: {name: icon}
         };
 
 
