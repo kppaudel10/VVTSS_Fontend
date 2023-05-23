@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
     private _snack: MatSnackBar,
     private login: UserService,
     private router: Router,
-    private notify: NotificationService,) { }
+    private notify: NotificationService,) {
+  }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -43,10 +44,10 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         console.log('response Success', res);
         localStorage.setItem("token", (res.data.token));
-        this.notify.showSuccess(res.message.message , 'Success');
+        this.notify.showSuccess(res.message.message, 'Success');
         this.router.navigate(['/home']);
       },
-      
+
       (error: any) => {
         console.log('response Success', error);
         this.notify.showError(error.error.message, 'Error !!');

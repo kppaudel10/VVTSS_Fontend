@@ -77,7 +77,8 @@ export class UserService extends BaseService {
   public getFetchImage(imageUrl: any) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Replace 'your-token' with the actual token
-    return this.http.get(imageUrl, {headers, observe: 'response', responseType: 'arraybuffer'})
+    return this.http.get(imageUrl, {headers, observe: 'response', responseType: 'blob'})
+    // return this.http.get(imageUrl, this.getHeaders())
   }
 
   // Api to take action on Kyc request such as Accept/Reject

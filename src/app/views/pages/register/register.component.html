@@ -13,17 +13,17 @@
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input type="text" autoComplete="name" id="name" name="name" cFormControl placeholder=" Enter Name" 
+                  <input type="text" autoComplete="name" id="name" name="name" cFormControl placeholder=" Enter Name"
                     formControlName="name" name="name" [ngClass]="{'is-invalid' : submitted && f['name'].errors }" />
                   <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
                     <small *ngIf="f['name'].errors['required']">Name is required</small>
                   </div>
-                  
+
                 </c-input-group>
 
                 <c-input-group class="mb-3">
                   <span cInputGroupText>@</span>
-                  <input type="text" autoComplete="email" id="email" name="email" cFormControl 
+                  <input type="text" autoComplete="email" id="email" name="email" cFormControl
                     placeholder=" Enter Email" formControlName="email"
                     [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
                   <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
@@ -35,7 +35,7 @@
                   <span cInputGroupText>
                     <svg cIcon name="cil-phone"></svg>
                   </span>
-                  <input type="text" autoComplete="mobileNumber" id="mobileNumber" name="mobileNumber" cFormControl 
+                  <input type="text" autoComplete="mobileNumber" id="mobileNumber" name="mobileNumber" cFormControl
                     placeholder=" Enter MobileNumber" formControlName="mobileNumber"
                     [ngClass]="{ 'is-invalid' : submitted && f['mobileNumber'].errors }" />
                   <div *ngIf="submitted && f['mobileNumber'].errors" class="invalid-feedback">
@@ -47,7 +47,7 @@
                   <span cInputGroupText>
                     <svg cIcon name="cilLockLocked"></svg>
                   </span>
-                  <input autoComplete="password" id="password" name="password" cFormControl 
+                  <input autoComplete="password" id="password" name="password" cFormControl
                     placeholder=" Enter Password" formControlName="password" type="password"
                     [ngClass]="{ 'is-invalid' : submitted && f['password'].errors }" />
                   <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
@@ -55,26 +55,26 @@
                   </div>
                 </c-input-group>
 
-                
+
                   <c-input-group class="mb-4">
                   <span cInputGroupText>
                     <svg cIcon name="cilLockLocked"></svg>
                   </span>
-                  
+
                   <input
                     autoComplete="current-password"  id="confirmPassword" name="confirmPassword" formControlName="confirmPassword"
-                    cFormControl 
+                    cFormControl
                     placeholder="Repeat Password"
                     type="password"  [ngClass]="{ 'is-invalid' : submitted && f['confirmPassword'].errors }"/>
                     <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback">
                       <small *ngIf="f['confirmPassword'].errors['required']">Password is required</small>
                       <small *ngIf="f['confirmPassword'].errors['passwordMismatch']">Passwords do not match.</small>
                     </div>
-                </c-input-group> 
+                </c-input-group>
 
                 <c-row>
                   <c-col xs="6">
-                    <button cButton type="submit" class="px-4" color="primary" (onclick)="showToaster()">
+                    <button cButton type="submit" class="px-4" color="primary">
                       Register
                     </button>
                   </c-col>

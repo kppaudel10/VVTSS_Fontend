@@ -6,7 +6,6 @@ import baseURL from "../../../baseService/helper";
 import {UserService} from "../user.service";
 import {NotificationService} from "../../../baseService/notification.service";
 import {Router} from "@angular/router";
-import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-user-request-view',
@@ -16,22 +15,22 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class UserRequestViewComponent extends BaseService implements OnInit {
   public selectedUserData: any;
   public kycDisplayForm: FormGroup | any
-  public imageList: string[] = [];
-  public images: string[] = [];
   public profilePictureUrl: any
   public citizenshipFontUrl: any
   public citizenshipBackUrl: any
   public selectUserId: any
   public isPictureShowUpVisible: boolean = false;
-  public selectedImageIndex: number = 0;
   public selectedImageName: string | undefined;
+  public profileImage: string | any
+  public citizenshipFont: string | any
+  public citizenshipBack: string | any
+  public selectedImageKeyName: string | any
 
   constructor(private userDataService: UserDataService,
               private formBuilder: FormBuilder,
               private userService: UserService,
               private notificationService: NotificationService,
-              private router: Router,
-              private sanitizer: DomSanitizer
+              private router: Router
   ) {
     super();
   }
@@ -50,40 +49,46 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
     this.profilePictureUrl = baseURL.concat(this.selectedUserData.profilePictureUrl)
     this.citizenshipFontUrl = baseURL.concat(this.selectedUserData.citizenshipFontUrl)
     this.citizenshipBackUrl = baseURL.concat(this.selectedUserData.citizenshipBackUrl)
-    this.imageList.push(this.profilePictureUrl)
-    this.imageList.push(this.citizenshipFontUrl)
-    this.imageList.push(this.citizenshipBackUrl)
-    console.log("imageList", this.imageList)
 
-    this.imageList.forEach(image => {
-      this.userService.getFetchImage(image)
-        .subscribe((response: any) => {
-          // console.log(JSON.parse(String.fromCharCode.apply(null, new Uint8Array(response.body))
-          // console.log(response.url,'this')
-          // this.images.push(response.url)
-          // console.log("basexx",atob(response.body) )
-          // console.log('b',String.fromCharCode.apply(null, new Uint8Array(response.body)))
-          // const bytes = new Uint8Array(response.body);
-          // @ts-ignore
-          // console.log(JSON.parse(JSON.stringify(String.fromCharCode.apply(null,bytes))),'bat');
-          // const binary = Array.from(bytes).map(byte => String.fromCharCode(byte)).join('');
-          // console.log(binary,"b")
+    // call for profile picture
+    this.userService.getFetchImage(this.profilePictureUrl)
+      .subscribe((response: any) => {
+        // create image form blob
+        this.createImageFromBlob(response.body, 'profile')
+      });
 
-          // const base64 = btoa(binary);
-          // console.log("basexx", atob(base64))
-          // this.images.push('data:image/jpeg;base64,' + base64);
-          // console.log(response.body,'this')
-          // @ts-ignore
-          const data = JSON.parse(String.fromCharCode.apply(null, new Uint8Array(response.body))).data;
-          let objectUrl = 'data:image/jpeg;base64,' + data;
-          const img = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
-          this.images.push(img as string);
+    // call for citizenFont
+    this.userService.getFetchImage(this.citizenshipFontUrl)
+      .subscribe((response: any) => {
+        // create image form blob
+        this.createImageFromBlob(response.body, 'citizenFont')
+      });
 
-        });
-    });
-    console.log("imagesURl", this.images)
+    // call for citizenBack
+    this.userService.getFetchImage(this.citizenshipBackUrl)
+      .subscribe((response: any) => {
+        // create image form blob
+        this.createImageFromBlob(response.body, 'citizenBack')
+      });
+
+
     // patch others text value in form
     this.kycDisplayForm.patchValue(this.selectedUserData)
+  }
+
+  createImageFromBlob(imageData: Blob, keyName: string): void {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      // this.images[this.imageIndex++] = reader.result as string;
+      if (keyName === 'profile') {
+        this.profileImage = reader.result as string;
+      } else if (keyName === 'citizenFont') {
+        this.citizenshipFont = reader.result as string;
+      } else if (keyName === 'citizenBack') {
+        this.citizenshipBack = reader.result as string;
+      }
+    };
+    reader.readAsDataURL(imageData);
   }
 
   getAcceptKycForm(userId: any) {
@@ -101,9 +106,6 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
   }
 
   getRejectKycForm(userId: any) {
-    this.imageList.pop();
-    this.images.pop();
-    console.log('imageafterpop',this.images)
     this.userService.getActionOnKyc(userId, 'reject').subscribe(
       (response: any) => {
         // action here
@@ -121,18 +123,31 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
     this.isPictureShowUpVisible = event;
   }
 
-  openImageDisplayModal(selectedImageIndex: number) {
-    this.selectedImageIndex = selectedImageIndex;
-    if (selectedImageIndex === 0) {
+  openImageDisplayModal(selectedImageKey: string) {
+    this.selectedImageKeyName = selectedImageKey;
+    console.log("selectedImageKey", selectedImageKey)
+    if (selectedImageKey === 'profile') {
       this.selectedImageName = "Profile Picture"
-    } else if (selectedImageIndex === 1) {
+    } else if (selectedImageKey === 'citizenshipFont') {
       this.selectedImageName = "Citizenship Font"
-    } else if (selectedImageIndex === 2) {
+    } else if (selectedImageKey === 'citizenshipBack') {
       this.selectedImageName = "Citizenship Back"
     } else {
       this.selectedImageName = "Unknown"
     }
     this.isPictureShowUpVisible = true;
+  }
+
+  getImageByImageKeyName(selectedImageKey: string) {
+    if (selectedImageKey === 'profile') {
+      return this.profileImage;
+    } else if (selectedImageKey === 'citizenshipFont') {
+      return this.citizenshipFont;
+    } else if (selectedImageKey === 'citizenshipBack') {
+      return this.citizenshipBack;
+    } else {
+      return null;
+    }
   }
 
 }
