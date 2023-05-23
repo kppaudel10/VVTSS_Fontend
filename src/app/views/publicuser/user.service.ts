@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class UserService extends BaseService {
+
   submitForm(value: any) {
     throw new Error('Method not implemented.');
   }
@@ -37,15 +38,10 @@ export class UserService extends BaseService {
     return true;
   }
 
-// checketd the the token or not
-  /*isLoggedIn() {
-    return !!localStorage.getItem('token');
-  }*/
-
-// deletet the login
+// delete the login
   logOut() {
     localStorage.removeItem('token');
-    this.rout.navigate(['']);
+    this.rout.navigate(['/login']);
   }
 
 

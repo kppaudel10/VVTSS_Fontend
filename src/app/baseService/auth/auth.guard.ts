@@ -1,22 +1,26 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-import { UserService } from 'src/app/views/publicuser/user.service';
+import {Injectable} from '@angular/core';
+import {CanActivate, Router} from '@angular/router';
+import {Observable, of} from 'rxjs';
+import {AuthService} from "./auth.service";
+import {NotificationService} from "../notification.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard{
-  constructor(private auth: UserService,
-              private rout: Router){}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      // if(this.auth.isLoggedIn()){
-      //   return true;
-      // }
-   //this.rout.navigate(['']);  
-return false;
+export class AuthGuard implements CanActivate {
+  constructor(private authService: AuthService,
+              private router: Router,
+              private notificationService: NotificationService) {
   }
-  
+
+  canActivate(): Observable<boolean> {
+    if (this.authService.isLoggedIn()) {
+      return of(true);
+    }
+    this.router.navigate(['login'])
+    this.notificationService.showError("", "Session Expired !!")
+    return of(false);
+  }
+
 }
+
