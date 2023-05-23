@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
       return of(true);
     }
     this.router.navigate(['login'])
-    this.notificationService.showError("", "Session Expired !!")
+    this.notificationService.showError("Your credentials are currently invalid.", "Session Expired !!")
     return of(false);
   }
 

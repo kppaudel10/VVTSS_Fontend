@@ -18,7 +18,7 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
   public profilePictureUrl: any
   public citizenshipFontUrl: any
   public citizenshipBackUrl: any
-  public selectUserId: any
+  public selectUserId: number = 0
   public isPictureShowUpVisible: boolean = false;
   public selectedImageName: string | undefined;
   public profileImage: string | any
@@ -44,7 +44,9 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
       citizenshipNo: [''],
     })
     this.selectedUserData = this.userDataService.getUserData();
-    this.selectUserId = this.selectedUserData.userId;
+    if (this.selectedUserData != undefined) {
+      this.selectUserId = this.selectedUserData.userId;
+    }
     // globally set images url
     this.profilePictureUrl = baseURL.concat(this.selectedUserData.profilePictureUrl)
     this.citizenshipFontUrl = baseURL.concat(this.selectedUserData.citizenshipFontUrl)

@@ -54,6 +54,17 @@ export class UserService extends BaseService {
     return this.http.get(`${this.serviceUrl}/init`, this.getHeaders())
   }
 
+  // Api to fetch profile picture of login user
+  public getProfilePicture(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.http.get(`${this.serviceUrl}/api/public-user/profile-picture`, {
+      headers,
+      observe: 'response',
+      responseType: 'blob'
+    })
+  }
+
   // Api to save user kyc data
   public submitFor(data: FormData) {
     return this.http.post(`${this.serviceUrl}/api/public-user/kyc-update`, data, this.getHeadersWithMultipart())
@@ -72,7 +83,7 @@ export class UserService extends BaseService {
   // Api to fetch image
   public getFetchImage(imageUrl: any) {
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Replace 'your-token' with the actual token
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     return this.http.get(imageUrl, {headers, observe: 'response', responseType: 'blob'})
     // return this.http.get(imageUrl, this.getHeaders())
   }

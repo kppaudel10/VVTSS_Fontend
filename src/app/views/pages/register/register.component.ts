@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormGroup, Validators } from '@angular/forms';
-import { FormControl, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import {UserService } from 'src/app/views/publicuser/user.service'
-import { NotificationService } from 'src/app/baseService/notification.service'
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {UserService} from 'src/app/views/publicuser/user.service'
+import {NotificationService} from 'src/app/baseService/notification.service'
 
 @Component({
   selector: 'app-register',
@@ -19,8 +18,9 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private rout: Router,
-              private notifyService : NotificationService,
-              private toastr: ToastrService) { }
+              private notifyService: NotificationService,
+              private toastr: ToastrService) {
+  }
 
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(6)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]], //Validators.pattern('^((?!.*[s])(?=.*[A-Z])(?=.*d).{8,99})')
-      confirmPassword: ['',[Validators.required,this.passwordMatchValidator.bind(this)]],
+      confirmPassword: ['', [Validators.required, this.passwordMatchValidator.bind(this)]],
       mobileNumber: ['', [Validators.required, Validators.minLength(10)]]
     });
   }
@@ -38,34 +38,38 @@ export class RegisterComponent implements OnInit {
     const confirmPassword = control.value;
 
     if (password && confirmPassword && password.value !== confirmPassword) {
-        return { 'passwordMismatch': true };
+      return {'passwordMismatch': true};
     }
 
     return null;
-}
+  }
 
   onSubmit() {
     console.log(this.registerForm?.value)
     this.submitted = true;
     if (this.registerForm?.invalid) {
-      this.notifyService.showError('Invalid User Data','Error !!');
+      this.notifyService.showError('Invalid User Data', 'Error !!');
       return;
     }
 
     this.userService.regiserUser(this.registerForm?.value)?.subscribe(
       (data: any) => {
         console.log(data)
-       this.notifyService.showSuccess(data.message,'Success');
-        this.rout.navigate([''],
-        { state: { name: this.registerForm?.value.name,
-           email: this.registerForm?.value.email,
-           contact: this.registerForm?.value.mobileNumber } });
+        this.notifyService.showSuccess(data.message, 'Success');
+        this.rout.navigate(['/login'],
+          {
+            state: {
+              name: this.registerForm?.value.name,
+              email: this.registerForm?.value.email,
+              contact: this.registerForm?.value.mobileNumber
+            }
+          });
 
-       // this.rout.navigate([''])
+        // this.rout.navigate([''])
       },
       (error: any) => {
 
-       this.notifyService.showError(error.error.message,'Error !!');
+        this.notifyService.showError(error.error.message, 'Error !!');
       });
 
     // this.onReset();
@@ -74,13 +78,14 @@ export class RegisterComponent implements OnInit {
   get f() {
     return this.registerForm?.controls;
   }
+
   onReset(): void {
     this.submitted = false;
     this.registerForm.reset();
   }
 
-  showToaster(){
+  showToaster() {
     this.notifyService.showSuccess("Data shown successfully !!", "Register")
-}
+  }
 
 }
