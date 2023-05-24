@@ -17,6 +17,7 @@ export class UserKycUpdateComponent implements OnInit {
   public kycStatusTextColor: string = 'white';
   public isPictureShowUpVisible = false;
   public isKycFormClose: boolean = false;
+  public isQrCodeGenerateModuleVisible = false;
   items = [1, 2, 3, 4];
   color = ['primary','success','warning'];
 
@@ -138,6 +139,15 @@ export class UserKycUpdateComponent implements OnInit {
         return '';
       }
     }
+  }
+
+  handleQrCodeChange(event: any) {
+    this.isQrCodeGenerateModuleVisible = event;
+  }
+
+  generateAndShowQrCode() {
+    this.isQrCodeGenerateModuleVisible = true;
+    this.ngOnInit();
   }
 
 
