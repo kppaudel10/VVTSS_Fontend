@@ -69,7 +69,7 @@
       <c-col [sm]="6">
         <c-card-body (click)="openImageDisplayModal('citizenshipFont')">
           <h3>Citizenship Front</h3>
-          <img class="citizen" [src]="citizenshipFont" alt="">
+          <img class="citizen" [src]="citizenshipFont" alt="" >
         </c-card-body>
 
       </c-col>
@@ -90,11 +90,10 @@
       </c-card-body>
     </c-row>
   </c-card>
-
 </form>
 
-
-<c-modal id="pictureShowUpModal" [visible]="isPictureShowUpVisible" (visibleChange)="handlePictureVisibleModal($event)">
+<c-modal id="pictureShowUpModal" [visible]="isPictureShowUpVisible" (visibleChange)="handlePictureVisibleModal($event)"
+#verticallyCenteredModal #modalLg size="lg" alignment="center">
   <c-modal-body>
     <c-col>
       <c-card-body>

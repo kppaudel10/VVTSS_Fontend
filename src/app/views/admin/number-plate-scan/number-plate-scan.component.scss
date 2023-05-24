@@ -1,12 +1,12 @@
 .selected-image {
    border: 1px solid gray;
-    height: 500px; /* Adjust the desired height */
-    width: 800px; /* Adjust the desired width */
-    margin-left: 10rem;
+    height: 350px; /* Adjust the desired height */
+    width: 600px; /* Adjust the desired width */
+    margin-left: 20rem;
   }
   
   .displayed-image {
-    max-height: 50rem;
-    max-width: 50rem;
+    max-height: 100%;
+    max-width: 100%;
   }
 

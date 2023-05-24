@@ -6,10 +6,10 @@
              type="file" placeholder="choose" (change)="onFileChange($event)"/>
     </c-col>
   </form>
-  <c-col class="text-center mt-5">
+  <c-col class="text-center mt-5 ">
     <label cLabel for="idd">Selected Image show</label>
     <div class="selected-image text-center">
-    <img class="displayed-image" [src]="selectedImageSrc || 'path_to_default_image'" alt="Selected Image"/>
+    <img class="displayed-image" [src]="selectedImageSrc" alt=""/>
   </div>
   </c-col>
   <c-col class="mt-3 mr-4" align="end">

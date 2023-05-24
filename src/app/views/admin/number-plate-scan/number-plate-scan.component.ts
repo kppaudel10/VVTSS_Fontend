@@ -10,6 +10,8 @@ import { AdminService } from '../admin.service';
 export class NumberPlateScanComponent implements OnInit {
   uploadForm!: FormGroup; 
   selectedImageSrc!: string;
+  public selectedImageName: string | undefined;
+  public isPictureShowUpVisible: boolean = false;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -36,5 +38,17 @@ export class NumberPlateScanComponent implements OnInit {
       });
       this.uploadForm.get('numberplate')?.updateValueAndValidity();
     }
+  }
+
+  handlePictureVisibleModal(event: any) {
+    this.isPictureShowUpVisible = event;
+  }
+  openImageDisplayModal(selectedImageKey: string) {
+    this.selectedImageSrc = selectedImageKey;
+    console.log("selectedImageKey", selectedImageKey)
+    if (selectedImageKey === 'numberpate') {
+      this.selectedImageName = "number plate"
+    }
+    this.isPictureShowUpVisible = true;
   }
 }
