@@ -104,4 +104,15 @@ export class UserService extends BaseService {
     })
   }
 
+  //Api to download qr code image
+  public downloadQrCodeImage() {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.http.get(`${this.serviceUrl}/api/public-user/qr-code/download`, {
+      headers,
+      observe: 'response',
+      responseType: 'blob'
+    });
+  }
+
 }

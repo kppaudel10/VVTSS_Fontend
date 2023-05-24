@@ -198,7 +198,7 @@
 <c-modal #verticallyCenteredModal alignment="center" id="pictureShowUpModal" [visible]="isQrCodeGenerateModuleVisible"
          (visibleChange)="handleQrCodeChange($event)">
   <c-modal-header>
-    <h3 cModalTitle>QR Code Generate</h3>
+    <h3 cModalTitle>Your Qr Code</h3>
     <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
@@ -210,21 +210,21 @@
     <button [cModalToggle]="verticallyCenteredModal.id" cButton color="secondary">
       Close
     </button>
-    <button cButton color="primary">Download</button>
+    <button cButton color="primary" (click)="downloadQrImage()">Download</button>
   </c-modal-footer>
 </c-modal>
 
 
-<!-- <c-modal id="pictureShowUpModal" [visible]="isQrCodeGenerateModuleVisible"
-         (visibleChange)="handleQrCodeChange($event)">
-  <c-modal-body>
-    <c-col>
-      <c-card-body>
-        <img class="image-show-modal" src="./assets/img/avatars/10.png" alt="">
-      </c-card-body>
-    </c-col>
-  </c-modal-body>
-</c-modal> -->
+<!--<c-modal id="ppShowModalId" [visible]="isQrCodeGenerateModuleVisible"-->
+<!--         (visibleChange)="handleQrCodeChange($event)">-->
+<!--  <c-modal-body>-->
+<!--    <c-col>-->
+<!--      <c-card-body>-->
+<!--        <img class="image-show-modal" src="./assets/img/avatars/10.png" alt="">-->
+<!--      </c-card-body>-->
+<!--    </c-col>-->
+<!--  </c-modal-body>-->
+<!--</c-modal> -->
 
 
 

@@ -4,6 +4,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {NotificationService} from "../../../baseService/notification.service";
+import { saveAs } from 'file-saver';
+
 
 @Component({
   selector: 'app-user-kyc-update',
@@ -163,6 +165,20 @@ export class UserKycUpdateComponent implements OnInit {
       this.qrCodeImage = reader.result as string;
     };
     reader.readAsDataURL(imageData);
+  }
+
+  downloadQrImage() {
+    this.userService.downloadQrCodeImage().subscribe((response: any) => {
+      debugger
+      console.log("downloadResponse",response)
+      // Extract the filename from the response headers
+      const contentDispositionHeader: string = response.headers.get('content-disposition');
+      const filename = contentDispositionHeader.split(';')[1].trim().split('=')[1];
+
+      // Save the image using the FileSaver.js library
+      debugger
+      saveAs(response.body, filename);
+    });
   }
 
 
