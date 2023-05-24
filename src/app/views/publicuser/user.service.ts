@@ -93,4 +93,15 @@ export class UserService extends BaseService {
     return this.http.get(`${this.serviceUrl}/api/public-user/kyc-action/` + userId + '/' + actionType, this.getHeaders())
   }
 
+  // Api to generate Qr code
+  public getGenerateQrCode() {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.http.get(`${this.serviceUrl}/api/public-user/qr-code-generate`, {
+      headers,
+      observe: 'response',
+      responseType: 'blob'
+    })
+  }
+
 }

@@ -194,15 +194,17 @@
 </c-modal>
 
 
-<button [cModalToggle]="verticallyCenteredModal.id" cButton>Centered modal</button>
+<!--<button [cModalToggle]="verticallyCenteredModal.id" cButton>Centered modal</button>-->
 <c-modal #verticallyCenteredModal alignment="center" id="pictureShowUpModal" [visible]="isQrCodeGenerateModuleVisible"
-(visibleChange)="handleQrCodeChange($event)">
+         (visibleChange)="handleQrCodeChange($event)">
   <c-modal-header>
     <h3 cModalTitle>QR Code Generate</h3>
     <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
-    <img class="image-show-modal" src="./assets/img/avatars/10.png" alt="">
+    <div class="image-container">
+      <img class="image-show-modal" [src]="qrCodeImage" alt="">
+    </div>
   </c-modal-body>
   <c-modal-footer>
     <button [cModalToggle]="verticallyCenteredModal.id" cButton color="secondary">
@@ -211,11 +213,6 @@
     <button cButton color="primary">Download</button>
   </c-modal-footer>
 </c-modal>
-
-
-
-
-
 
 
 <!-- <c-modal id="pictureShowUpModal" [visible]="isQrCodeGenerateModuleVisible"

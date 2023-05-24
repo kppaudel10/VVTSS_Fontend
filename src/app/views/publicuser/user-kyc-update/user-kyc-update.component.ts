@@ -18,11 +18,12 @@ export class UserKycUpdateComponent implements OnInit {
   public isPictureShowUpVisible = false;
   public isKycFormClose: boolean = false;
   public isQrCodeGenerateModuleVisible = false;
+  public qrCodeImage: string | any
   items = [1, 2, 3, 4];
-  color = ['primary','success','warning'];
+  color = ['primary', 'success', 'warning'];
 
 
-  constructor(private kycService: UserService,
+  constructor(private userService: UserService,
               private formBuilder: FormBuilder,
               private cdr: MatSnackBar,
               private route: Router,
@@ -65,7 +66,7 @@ export class UserKycUpdateComponent implements OnInit {
         formData.append(formControlName, this.form.get(formControlName).value);
       }
     });
-    this.kycService.submitFor(formData).subscribe(
+    this.userService.submitFor(formData).subscribe(
       (response: any) => {
         // Handle successful form submission
         console.log('respose is: ', response)
@@ -85,7 +86,7 @@ export class UserKycUpdateComponent implements OnInit {
 
   getUserBasicDetails() {
 
-    this.kycService.getKycBasicDetails().subscribe(
+    this.userService.getKycBasicDetails().subscribe(
       (data: any) => {
         this.kycDetails = data.data; // Store the retrieved KYC details in the variable
         this.form.patchValue(this.kycDetails);
@@ -146,8 +147,22 @@ export class UserKycUpdateComponent implements OnInit {
   }
 
   generateAndShowQrCode() {
+    // fetch qr image
+    this.userService.getGenerateQrCode().subscribe((response: any) => {
+      // create image form blob
+      this.createImageFromBlob(response.body)
+    });
     this.isQrCodeGenerateModuleVisible = true;
     this.ngOnInit();
+  }
+
+  createImageFromBlob(imageData: Blob): void {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      // this.images[this.imageIndex++] = reader.result as string;
+      this.qrCodeImage = reader.result as string;
+    };
+    reader.readAsDataURL(imageData);
   }
 
 
