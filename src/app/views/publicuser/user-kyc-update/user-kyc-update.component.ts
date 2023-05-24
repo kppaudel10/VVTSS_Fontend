@@ -18,6 +18,7 @@ export class UserKycUpdateComponent implements OnInit {
   public isPictureShowUpVisible = false;
   public isKycFormClose: boolean = false;
   items = [1, 2, 3, 4];
+  color = ['primary','success','warning'];
 
 
   constructor(private kycService: UserService,

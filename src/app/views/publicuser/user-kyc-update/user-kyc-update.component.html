@@ -121,7 +121,7 @@
   <form cForm [formGroup]="form" (ngSubmit)="submitForm()" enctype="multipart/form-data">
     <c-modal-header>
       <h3 cModalTitle>Kyc Update </h3>
-      <p id="kycStatusInfo" [textContent]="getKycStatus()" [style.color]="kycStatusTextColor"></p>
+      <button color="primary" cButton id="kycStatusInfo" [textContent]="getKycStatus()"></button>
       <button cButtonClose type="button" (click)="closeKycForm()"></button>
     </c-modal-header>
     <c-modal-body>
