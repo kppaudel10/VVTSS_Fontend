@@ -81,6 +81,7 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
   createImageFromBlob(imageData: Blob, keyName: string): void {
     const reader = new FileReader();
     reader.onloadend = () => {
+      
       // this.images[this.imageIndex++] = reader.result as string;
       if (keyName === 'profile') {
         this.profileImage = reader.result as string;

@@ -1,1 +1,139 @@
-<p>ownership-request-view works!</p>
+<c-card class="">
+    <form>
+        <c-row>
+            <c-card-header class="text-center">
+                <h3>Seller Information</h3>
+            </c-card-header>
+            <c-col class="mt-5 ">
+                <c-card-body class="u-imag">
+                    <img src="profileImage" alt="">
+                </c-card-body>
+            </c-col>
+
+            <!-- next right card -->
+
+            <c-col [sm]="6">
+                <c-card-body>
+                    <c-row class="mb-3">
+                        <label [sm]="2" cCol cLabel="col" for="name">
+                            Name:
+                        </label>
+                        <c-col [sm]="8">
+                            <input cFormControl id="name" type="text" placeholder="exaplme" />
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-3">
+                        <label [sm]="2" cCol cLabel="col" for="contact">
+                            contact:
+                        </label>
+                        <c-col [sm]="8">
+                            <input cFormControl id="contact" plaintext readonly type="text"  />
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-3">
+                        <label [sm]="2" cCol cLabel="col" for="email">
+                            Email:
+                        </label>
+                        <c-col [sm]="8">
+                            <input cFormControl id="email" plaintext readonly type="text"  />
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-3">
+                        <label [sm]="2" cCol cLabel="col" for="address">
+                            Address:
+                        </label>
+                        <c-col [sm]="8">
+                            <input cFormControl id="address" plaintext readonly type="text" />
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-3">
+                        <label [sm]="2" cCol cLabel="col" for="citizenshipNo">
+                            Citizenship No:
+                        </label>
+                        <c-col [sm]="10">
+                            <input cFormControl id="citizenshipNo" plaintext readonly type="text"/>
+                        </c-col>
+                    </c-row>
+
+                </c-card-body>
+            </c-col>
+        </c-row>
+    </form>
+
+    
+<!-- buyer info -->
+    <form>
+        <c-row>
+            <c-card-footer class="text-center">
+                <h3>Buyer Information</h3>
+            </c-card-footer>
+            <c-col class="mt-5 ">
+                <c-card-body class="u-imag">
+                    <img src="profileImage" alt="">
+                </c-card-body>
+            </c-col>
+
+            <!-- next right card -->
+
+            <c-col [sm]="6">
+                <c-card-body>
+                    <c-row class="mb-3">
+                        <label [sm]="2" cCol cLabel="col" for="name">
+                            Name:
+                        </label>
+                        <c-col [sm]="8">
+                            <input cFormControl id="name" type="text"  placeholder="exaplme" />
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-3">
+                        <label [sm]="2" cCol cLabel="col" for="contact">
+                            contact:
+                        </label>
+                        <c-col [sm]="8">
+                            <input cFormControl id="contact" plaintext readonly type="text"  />
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-3">
+                        <label [sm]="2" cCol cLabel="col" for="email">
+                            Email:
+                        </label>
+                        <c-col [sm]="8">
+                            <input cFormControl id="email" plaintext readonly type="text"  />
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-3">
+                        <label [sm]="2" cCol cLabel="col" for="address">
+                            Address:
+                        </label>
+                        <c-col [sm]="8">
+                            <input cFormControl id="address" plaintext readonly type="text"  />
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-3">
+                        <label [sm]="2" cCol cLabel="col" for="citizenshipNo">
+                            Citizenship No:
+                        </label>
+                        <c-col [sm]="10">
+                            <input cFormControl id="citizenshipNo" plaintext readonly type="text"
+                                 />
+                        </c-col>
+                    </c-row>
+                </c-card-body>
+            </c-col>
+        </c-row>
+        <c-row class="" align="end">
+            <c-card-body>
+                <button class="btn" color="success" cButton>Approved</button>
+                <button color="danger" cButton>Reject</button>
+            </c-card-body>
+        </c-row>
+    </form>
+</c-card>
