@@ -20,14 +20,40 @@
 
     <c-row class="mb-3">
         <label cLabel="col" cCol [sm]="2" for="inputPassword3">
-         Buyer Mobile No:
+         Vehicle Identification No:
         </label>
         <c-col [sm]="8">
           <input cFormControl id="inputPassword3" type="text" />
         </c-col>
       </c-row>
+      <h4><strong>Instruction: </strong> If You are ready to sell Vehcle then click to the Procss Button</h4>
 
-    <button cButton type="submit">Sign in</button>
+      <c-col class="mt-3 mr-4" align="end">
+        <button [cModalToggle]="verticallyCenteredModal.id" 
+        cButton color="primary" type="submit">Process</button>
+      </c-col>
   </form>
 </c-card-body>
 </c-card>
+
+
+
+<c-modal #verticallyCenteredModal alignment="center" id="pictureShowUpModal" >
+  <form>
+  <c-modal-header class="text-center">
+    <h3 cModalTitle>Enter Pin Code wcich is sent to your Email </h3>
+    <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+      <c-card-body>
+        <div class="mb-3">
+          <label cLabel for="inputEmail-1">Pin Code</label>
+          <input cFormControl id="pincode" name="pincode" formControlName="pincode" type="email">
+          </div>
+      </c-card-body>
+  </c-modal-body>
+  <c-modal-footer>
+    <button cButton color="primary">Submit</button>
+  </c-modal-footer>
+</form>
+</c-modal>

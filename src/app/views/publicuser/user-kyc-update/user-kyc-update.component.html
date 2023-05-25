@@ -140,47 +140,45 @@
       <div class="mb-3">
         <label cLabel for="email">Email:<sup>*</sup></label>
         <input cFormControl id="email" name="email" type="email" formControlName="email" placeholder="Enter Email"
-               readonly>
+          readonly>
       </div>
 
       <div class="mb-3">
         <label cLabel for="contact">Contact:<sup>*</sup></label>
         <input cFormControl id="contact" name="contact" formControlName="contact" type="text"
-               placeholder="Enter Contact No:" readonly>
+          placeholder="Enter Contact No:" readonly>
       </div>
 
       <div class="mb-3">
         <label cLabel for="address">Address:<sup>*</sup></label>
         <input cFormControl id="address" name="address" formControlName="address" type="text"
-               placeholder="Enter Address">
+          placeholder="Enter Address">
       </div>
 
       <div class="mb-3">
         <label cLabel for="formFileMultiple">Pasportsize Photo</label>
         <input cFormControl id="formFileMultiple" name="profilePicture" formControlName="profilePicture" multiple
-               type="file" (change)="uploadImage($event, 'profilePicture')"/>
+          type="file" (change)="uploadImage($event, 'profilePicture')" />
       </div>
 
       <div class="mb-3">
         <label cLabel for="address">Citizen Number:<sup>*</sup></label>
         <input cFormControl id="citizenshipNo" name="citizenshipNo" formControlName="citizenshipNo" type="text"
-               placeholder="Enter Address">
+          placeholder="Enter Address">
       </div>
 
       <c-card-body>
         <h5>Upload Given Information</h5>
         <div class="mb-3">
           <label cLabel for="citizenshipFont">Citizenship Front:<sup>*</sup></label>
-          <input cFormControl id="citizenshipFont" name="citizenshipFont" formControlName="citizenshipFont"
-                 type="file" (change)="uploadImage($event, 'citizenshipFont')"/>
+          <input cFormControl id="citizenshipFont" name="citizenshipFont" formControlName="citizenshipFont" type="file"
+            (change)="uploadImage($event, 'citizenshipFont')" />
         </div>
-
         <div class="mb-3">
           <label cLabel for="citizenshipBack">Citizenship Back:<sup>*</sup></label>
-          <input cFormControl id="citizenshipBack" name="citizenshipBack" formControlName="citizenshipBack"
-                 type="file" (change)="uploadImage($event, 'citizenshipBack')"/>
+          <input cFormControl id="citizenshipBack" name="citizenshipBack" formControlName="citizenshipBack" type="file"
+            (change)="uploadImage($event, 'citizenshipBack')" />
         </div>
-
       </c-card-body>
       <!-- end form -->
     </c-modal-body>
@@ -193,10 +191,10 @@
   </form>
 </c-modal>
 
-
+<!-- qr code model start -->
 <button [cModalToggle]="verticallyCenteredModal.id" cButton>Centered modal</button>
 <c-modal #verticallyCenteredModal alignment="center" id="pictureShowUpModal" [visible]="isQrCodeGenerateModuleVisible"
-(visibleChange)="handleQrCodeChange($event)">
+  (visibleChange)="handleQrCodeChange($event)">
   <c-modal-header>
     <h3 cModalTitle>QR Code Generate</h3>
     <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>
@@ -211,23 +209,4 @@
     <button cButton color="primary">Download</button>
   </c-modal-footer>
 </c-modal>
-
-
-
-
-
-
-
-<!-- <c-modal id="pictureShowUpModal" [visible]="isQrCodeGenerateModuleVisible"
-         (visibleChange)="handleQrCodeChange($event)">
-  <c-modal-body>
-    <c-col>
-      <c-card-body>
-        <img class="image-show-modal" src="./assets/img/avatars/10.png" alt="">
-      </c-card-body>
-    </c-col>
-  </c-modal-body>
-</c-modal> -->
-
-
-
+<!-- qr code model end -->
