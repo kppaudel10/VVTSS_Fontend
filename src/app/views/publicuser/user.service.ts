@@ -115,6 +115,16 @@ export class UserService extends BaseService {
     });
   }
 
+  //Api to validate buyer detail and generate token and send to user email
+  public validateUserAndGenerateToken(data: any) {
+    return this.http.post(`${this.serviceUrl}/api/pincode/generate`, data, this.getHeaders());
+  }
+
+  // Api to validate User pin code
+  public validateUserPinCode(pinCode: any) {
+    return this.http.get(`${this.serviceUrl}/api/pincode/validate?pinCode=` + pinCode, this.getHeaders());
+  }
+
   // Api to save user vehicle buy request
   public saveVehicleBuyRequest(data: any) {
     return this.http.post(`${this.serviceUrl}/api/vehicle/buy-request`, data, this.getHeaders());

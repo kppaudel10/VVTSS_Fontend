@@ -11,6 +11,9 @@ import {UserService} from "../user.service";
 export class BuyRequestComponent implements OnInit {
 
   public burRequestForm: FormGroup | any;
+  public userFormData: FormData | any;
+  public isPinCodePopVisible = false;
+  public pinCodeForm: FormGroup | any;
 
   constructor(private formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -22,6 +25,10 @@ export class BuyRequestComponent implements OnInit {
       ownerName: ['', Validators.required],
       ownerMobileNumber: ['', Validators.required],
       vehicleIdentificationNo: ['', Validators.required],
+    });
+
+    this.pinCodeForm = this.formBuilder.group({
+      pinCode: ['', Validators.required]
     })
   }
 
@@ -32,16 +39,13 @@ export class BuyRequestComponent implements OnInit {
       return;
     }
 
+    // first validate user request and send email
     let data = this.burRequestForm.getRawValue();
-    console.log("licenseData", data)
-    this.userService.saveVehicleBuyRequest(data).subscribe(
+    this.userFormData = data;
+    this.userService.validateUserAndGenerateToken(this.userFormData).subscribe(
       (response: any) => {
-        // Handle successful form submission
-        Object.keys(this.burRequestForm.controls).forEach((controlName) => {
-          this.burRequestForm.controls[controlName].setValue(null);
-        });
-        this.notificationService.showSuccess(response.message, "Success !!")
         // reload the page
+        this.isPinCodePopVisible = true;
         this.ngOnInit();
       },
       (error: any) => {
@@ -50,5 +54,46 @@ export class BuyRequestComponent implements OnInit {
       });
 
   }
+
+  validateUserPinCode() {
+    if (this.pinCodeForm?.invalid) {
+      this.notificationService.showWarnig('Please enter the pin code properly.',
+        'Warning !!');
+      return;
+    }
+    let data = this.pinCodeForm.getRawValue();
+    this.userService.validateUserPinCode(data.pinCode).subscribe(
+      (response: any) => {
+        // if user enter the valid pin code then we need to save that user request
+        this.saveBuyRequest(this.userFormData)
+      },
+      (error: any) => {
+        // Handle error during form submission
+        this.notificationService.showError(error.error.message, "Error !!")
+      });
+  }
+
+  saveBuyRequest(data: any) {
+    this.userService.saveVehicleBuyRequest(data).subscribe(
+      (response: any) => {
+        // Handle successful form submission
+        Object.keys(this.burRequestForm.controls).forEach((controlName) => {
+          this.burRequestForm.controls[controlName].setValue(null);
+        });
+        this.notificationService.showSuccess(response.message, "Success !!")
+        // reload the page
+        this.isPinCodePopVisible = false;
+        this.ngOnInit();
+      },
+      (error: any) => {
+        // Handle error during form submission
+        this.notificationService.showError(error.error.message, "Error !!")
+      });
+  }
+
+  handlePincodePopUp(event: any) {
+    this.isPinCodePopVisible = event;
+  }
+
 
 }

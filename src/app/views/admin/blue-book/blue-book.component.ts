@@ -52,6 +52,7 @@ export class BlueBookComponent implements OnInit {
           this.form.controls[controlName].setValue(null);
         });
         this.notificationService.showSuccess(response.message, "Success !!")
+        this.ngOnInit();
       },
       (error: any) => {
         // Handle error during form submission

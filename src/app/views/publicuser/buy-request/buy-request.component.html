@@ -37,16 +37,17 @@
       </c-row>
 
       <c-col class="mt-3 mr-4" align="end">
-        <button [cModalToggle]="verticallyCenteredModal.id"
-                cButton color="primary" type="submit">Process
+        <button
+          cButton color="primary" type="submit">Process
         </button>
       </c-col>
     </form>
   </c-card-body>
 </c-card>
 
-<c-modal #verticallyCenteredModal alignment="center" id="pictureShowUpModal">
-  <form>
+<c-modal #verticallyCenteredModal alignment="center" id="pictureShowUpModal"
+         [visible]="isPinCodePopVisible" (visibleChange)="handlePincodePopUp($event)">
+  <form [formGroup]="pinCodeForm" (ngSubmit)="validateUserPinCode()">
     <c-modal-header class="text-center">
       <h3 cModalTitle>Enter Pin Code wcich is sent to your Email </h3>
       <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>
@@ -55,12 +56,12 @@
       <c-card-body>
         <div class="mb-3">
           <label cLabel for="pincode">Pin Code</label>
-          <input cFormControl id="pincode" name="pincode" formControlName="pincode" type="text">
+          <input cFormControl id="pincode" name="pinCode" formControlName="pinCode" type="text">
         </div>
       </c-card-body>
     </c-modal-body>
     <c-modal-footer>
-      <button cButton color="primary">Submit</button>
+      <button cButton color="primary" type="submit">Submit</button>
     </c-modal-footer>
   </form>
 </c-modal>
