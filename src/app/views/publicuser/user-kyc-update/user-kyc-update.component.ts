@@ -4,7 +4,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {NotificationService} from "../../../baseService/notification.service";
-import { saveAs } from 'file-saver';
 
 
 @Component({
@@ -168,18 +167,18 @@ export class UserKycUpdateComponent implements OnInit {
   }
 
   downloadQrImage() {
+    debugger
     this.userService.downloadQrCodeImage().subscribe((response: any) => {
-      debugger
-      console.log("downloadResponse",response)
-      // Extract the filename from the response headers
-      const contentDispositionHeader: string = response.headers.get('content-disposition');
-      const filename = contentDispositionHeader.split(';')[1].trim().split('=')[1];
+      let fileName = response.headers.get("Content-Disposition").split(";")[1].split("=")[1];
+      let imageBlob = response.body as Blob;
+      let a = document.createElement('a');
+      a.download = fileName;
+      a.href = window.URL.createObjectURL(imageBlob);
+      a.click();
 
-      // Save the image using the FileSaver.js library
-      debugger
-      saveAs(response.body, filename);
+    }, (error) => {
+      console.error('API request failed:', error);
     });
   }
-
 
 }

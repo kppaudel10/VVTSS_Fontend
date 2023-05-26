@@ -115,4 +115,9 @@ export class UserService extends BaseService {
     });
   }
 
+  // Api to save user vehicle buy request
+  public saveVehicleBuyRequest(data: any) {
+    return this.http.post(`${this.serviceUrl}/api/vehicle/buy-request`, data, this.getHeaders());
+  }
+
 }
