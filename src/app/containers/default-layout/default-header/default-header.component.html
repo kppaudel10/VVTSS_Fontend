@@ -122,17 +122,18 @@
       </li>
       <li></li>
       <li>
-        <a routerLink="./" cDropdownItem>
+        <button routerLink="./" cDropdownItem  (click)="toggleClose()">
           <svg cIcon class="me-2" name="cilUser"></svg>
           Profile
-        </a>
+        </button>
       </li>
       <li>
-        <a routerLink="./" cDropdownItem>
+        <button cButton  cDropdownItem>
           <svg cIcon class="me-2" name="cilSettings"></svg>
           Settings
-        </a>
+        </button>
       </li>
+
       <li>
         <hr cDropdownDivider/>
       </li>
@@ -147,3 +148,17 @@
   </c-dropdown>
 </ng-template>
 
+
+<!-- Model For User Profile Design -->
+<c-modal  size="lg" id="liveProfile" [visible]="visible" (visibleChange)="handleProfileChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle>Large modal</h5>
+    <button  (click)="toggleClose()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>Woohoo, you are reading this text in a modal!</c-modal-body>
+  <c-modal-footer>
+    <button (click)="toggleClose()" cButton color="secondary">
+      Close
+    </button>
+  </c-modal-footer>
+</c-modal>

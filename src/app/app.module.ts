@@ -40,6 +40,7 @@ import {
   GridModule,
   HeaderModule,
   ListGroupModule,
+  ModalModule,
   NavModule,
   ProgressModule,
   SharedModule,
@@ -97,7 +98,8 @@ const APP_CONTAINERS = [
     FormModule,
     HttpClientModule,
     MatSnackBarModule,
-    CommonModule
+    CommonModule,
+    ModalModule,
     
     
   ],

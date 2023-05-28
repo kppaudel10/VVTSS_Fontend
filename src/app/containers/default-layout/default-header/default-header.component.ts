@@ -52,4 +52,14 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
     };
     reader.readAsDataURL(imageData);
   }
+
+  public visible = false;
+
+  toggleClose() {
+    this.visible = !this.visible;
+  }
+
+  handleProfileChange(event: any) {
+    this.visible = event;
+  }
 }

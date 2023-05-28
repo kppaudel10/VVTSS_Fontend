@@ -18,6 +18,7 @@ import {
 } from './views/admin/number-plate-scan-process/number-plate-scan-process.component';
 import {AuthGuard} from "./baseService/auth/auth.guard";
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { SellVehicleDetailsComponent } from './views/publicuser/sell-vehicle-details/sell-vehicle-details.component';
 
 const routes: Routes = [
   {
@@ -124,8 +125,11 @@ const routes: Routes = [
       {
         path: 'dash',
         component: DashboardComponent
-      }
-
+      },
+      {
+        path: 'sell-vehicle-detail',
+        component: SellVehicleDetailsComponent
+      },
     ]
 
   },
