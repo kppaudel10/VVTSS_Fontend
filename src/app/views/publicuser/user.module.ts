@@ -26,6 +26,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { SellVehicleDetailsComponent } from './sell-vehicle-details/sell-vehicle-details.component';
 
 
 
@@ -35,7 +36,8 @@ import { BrowserModule } from '@angular/platform-browser';
     SellVehicleComponent,
     BuyRequestComponent,
     UserRequestComponent,
-    UserRequestViewComponent
+    UserRequestViewComponent,
+    SellVehicleDetailsComponent
 
   ],
   imports: [
