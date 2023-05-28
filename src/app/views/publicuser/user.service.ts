@@ -130,4 +130,9 @@ export class UserService extends BaseService {
     return this.http.post(`${this.serviceUrl}/api/vehicle/buy-request`, data, this.getHeaders());
   }
 
+  // Api to fetch user vehicle buy request lsit
+  public getVehicleBuyRequestList() {
+    return this.http.get(`${this.serviceUrl}/api/vehicle/buy-request/list`, this.getHeaders());
+  }
+
 }

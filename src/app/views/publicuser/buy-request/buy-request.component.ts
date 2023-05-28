@@ -14,6 +14,7 @@ export class BuyRequestComponent implements OnInit {
   public userFormData: FormData | any;
   public isPinCodePopVisible = false;
   public pinCodeForm: FormGroup | any;
+  public buyRequestList: string[] | any;
 
   constructor(private formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -21,15 +22,20 @@ export class BuyRequestComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.burRequestForm = this.formBuilder.group({
-      ownerName: ['', Validators.required],
-      ownerMobileNumber: ['', Validators.required],
-      vehicleIdentificationNo: ['', Validators.required],
-    });
-
-    this.pinCodeForm = this.formBuilder.group({
-      pinCode: ['', Validators.required]
-    })
+    if (!this.isPinCodePopVisible) {
+      this.burRequestForm = this.formBuilder.group({
+        ownerName: ['', Validators.required],
+        ownerMobileNumber: ['', Validators.required],
+        vehicleIdentificationNo: ['', Validators.required],
+      });
+      this.getBuyRequestOfLoginUser();
+    }
+    if (this.isPinCodePopVisible) {
+      debugger
+      this.pinCodeForm = this.formBuilder.group({
+        pinCode: ['', Validators.required]
+      })
+    }
   }
 
   public processBuyRequest() {
@@ -93,6 +99,31 @@ export class BuyRequestComponent implements OnInit {
 
   handlePincodePopUp(event: any) {
     this.isPinCodePopVisible = event;
+  }
+
+  getVehicleTypeName(typeInt: any) {
+    if (typeInt === "0" || typeInt === 0) {
+      return "Scooter";
+    } else if (typeInt === "1" || typeInt === 1) {
+      return "Bike";
+    } else if (typeInt === "2" || typeInt === 2) {
+      return "Car";
+    } else {
+      return "";
+    }
+
+  }
+
+  getBuyRequestOfLoginUser() {
+    this.userService.getVehicleBuyRequestList().subscribe(
+      (response: any) => {
+        this.buyRequestList = response.data;
+        console.log("buyRequestList", this.buyRequestList)
+      },
+      (error: any) => {
+        // Handle error during form submission
+        this.notificationService.showError(error.error.message, "Error !!")
+      });
   }
 
 
