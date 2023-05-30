@@ -200,7 +200,7 @@
     <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
-    <img class="image-show-modal" src="./assets/img/avatars/10.png" alt="">
+    <img class="image-show-modal" [src]="qrCodeImage" alt="">
   </c-modal-body>
   <c-modal-footer>
     <button [cModalToggle]="verticallyCenteredModal.id" cButton color="secondary">
