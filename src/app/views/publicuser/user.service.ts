@@ -140,4 +140,11 @@ export class UserService extends BaseService {
     return this.http.get(`${this.serviceUrl}/api/vehicle/sell-request`, this.getHeaders());
   }
 
+  // add new Vehicle
+
+  public addNewVehicle(vehiclel: any) {
+    return this.http.post(`${this.serviceUrl}/api/vehicle/save`, vehiclel, this.getHeaders());
+  }
+
+
 }
