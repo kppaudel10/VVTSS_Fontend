@@ -23,7 +23,7 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
               private userService: UserService) {
     super();
   }
-
+  
   ngOnInit() {
 
     // call for profile picture
