@@ -20,6 +20,7 @@ export class UserKycUpdateComponent implements OnInit {
   public isKycFormClose: boolean = false;
   public isQrCodeGenerateModuleVisible = false;
   public qrCodeImage: string | any
+  public downloadImageName: string | any
   items = [1, 2, 3, 4];
   color = ['primary', 'success', 'warning'];
 
@@ -167,14 +168,18 @@ export class UserKycUpdateComponent implements OnInit {
   }
 
   downloadQrImage() {
-    debugger
     this.userService.downloadQrCodeImage().subscribe((response: any) => {
-      let fileName = response.headers.get("Content-Disposition").split(";")[1].split("=")[1];
       let imageBlob = response.body as Blob;
-      let a = document.createElement('a');
-      a.download = fileName;
-      a.href = window.URL.createObjectURL(imageBlob);
-      a.click();
+      const downloadLink = document.createElement('a');
+      const url = URL.createObjectURL(imageBlob);
+      console.log("url", url)
+      downloadLink.href = url;
+      downloadLink.download = 'Qrcode.png'; // Set the desired filename
+
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      URL.revokeObjectURL(url);
 
     }, (error) => {
       console.error('API request failed:', error);

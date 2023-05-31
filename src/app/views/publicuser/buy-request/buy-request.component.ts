@@ -33,7 +33,7 @@ export class BuyRequestComponent implements OnInit {
     if (this.isPinCodePopVisible) {
       debugger
       this.pinCodeForm = this.formBuilder.group({
-        pinCode: ['', Validators.required]
+        pinCode: ['']
       })
     }
   }
