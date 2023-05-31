@@ -12,6 +12,7 @@ export class AddVehicleComponent implements OnInit {
 
   addVehicleForm: FormGroup = new FormGroup({});
   submitted = false;
+  public vehicleList: any[] | undefined;
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
@@ -20,11 +21,13 @@ export class AddVehicleComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.getAndShowVehicleList();
     this.addVehicleForm = this.formBuilder.group({
       manufactureYear: ['', Validators.required],
       vehicleType: ['', Validators.required],
       companyCode: ['', Validators.required],
-
+      companyName: ['', Validators.required],
     });
   }
 
@@ -51,9 +54,34 @@ export class AddVehicleComponent implements OnInit {
         this.notificationService.showError(error.error.message, "Error !!")
       })
   }
-
-  get f() {
+// get Vehicle List Api
+  getAndShowVehicleList() {
+    this.userService.getVehicleListByVendorId().subscribe(
+        (response: any) => {
+          this.vehicleList = response.data;
+        },
+        (error: any) => {
+          console.error(error);
+           // Handle error during form submission
+        this.notificationService.showError(error.error.message, "Error !!")
+        }
+      );
+  }
+// this is Validation 
+  get vehicleFormControls() {
     return this.addVehicleForm?.controls;
   }
 
+  getVehicleTypeName(typeInt: any) {
+    if (typeInt === "0" || typeInt === 0) {
+      return "Scooter";
+    } else if (typeInt === "1" || typeInt === 1) {
+      return "Bike";
+    } else if (typeInt === "2" || typeInt === 2) {
+      return "Car";
+    } else {
+      return "";
+    }
+
+  }
 }

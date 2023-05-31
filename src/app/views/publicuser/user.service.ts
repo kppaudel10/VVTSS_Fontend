@@ -145,6 +145,9 @@ export class UserService extends BaseService {
   public addNewVehicle(vehiclel: any) {
     return this.http.post(`${this.serviceUrl}/api/vehicle/save`, vehiclel, this.getHeaders());
   }
-
-
+  // Api to Get All Vehicle-List
+  // Api to fetch user sell-vehicle
+  public getVehicleListByVendorId() {
+    return this.http.get(`${this.serviceUrl}/api/vehicle/list`, this.getHeaders());
+  }
 }
