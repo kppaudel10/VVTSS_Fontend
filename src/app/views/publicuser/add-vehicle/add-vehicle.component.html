@@ -6,12 +6,13 @@
     <c-card-body>
       <form [formGroup]="addVehicleForm" (ngSubmit)="savevehicle()" cForm class="row g-2" >
         <c-row>
-          <c-col [md]="4">
+          <c-col [md]="3">
             <label cLabel for="manufactureYear">ManufactureYear:<sup>*</sup></label>
-            <input cFormControl id="manufactureYear" name="manufactureYear" formControlName="manufactureYear" type="text"/>
+            <input cFormControl id="manufactureYear" name="manufactureYear"
+             formControlName="manufactureYear" type="text"/>
           </c-col>
   
-          <c-col [md]="4">
+          <c-col [md]="3">
             <label cLabel>Vehicle Type:<sup>*</sup></label>
           <select aria-label="vehicleType" cSelect formControlName="vehicleType">
             <option value="0">Scooter</option>
@@ -20,10 +21,16 @@
           </select>
           </c-col>  
   
-          <c-col [md]="4">
+          <c-col [md]="3">
             <label cLabel for="companyCode"> CompanyCode:<sup>*</sup></label>
             <input cFormControl id="companyCode" name="companyCode"
                    formControlName="companyCode" type="text"/>
+          </c-col>
+
+          <c-col [md]="3">
+            <label cLabel for="companyName"> Company Name:<sup>*</sup></label>
+            <input cFormControl id="companyName" name="companyName"
+                   formControlName="companyName" type="text"/>
           </c-col>
   
         </c-row>
@@ -42,22 +49,22 @@
     <table cTable hover bordered class="text-center">
         <thead>
         <tr>
-          <th scope="col">manufactureYear</th>
-          <th scope="col">identificationNo</th>
-          <th scope="col">vehicleType</th>
           <th scope="col">companyName</th>
+          <th scope="col">companyCode</th>
+          <th scope="col">vehicleType</th>
+          <th scope="col">Identification No</th>
           <th scope="col">companyCode</th>
           
         </tr>
     
         </thead>
         <tbody>
-        <tr>
-          <td>dbn</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
+        <tr *ngFor="let item of vehicleList">
+          <td>{{item.company_name}}</td>
+          <td>{{item.company_code}}</td>
+          <td>{{getVehicleTypeName(item.vehicle_type)}}</td>
+          <td>{{item.identification_no}}</td>
+          <td>{{item.manufacture_year}}</td>
     
         </tbody>
       </table>
