@@ -185,7 +185,8 @@ export const iconSubset = {
   cilUserUnfollow,
   cilPhone,
   cilBarChart,
-  cilCheckCircle
+  cilCheckCircle,
+  
 };
 
 

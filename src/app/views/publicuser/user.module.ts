@@ -27,6 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { SellVehicleDetailsComponent } from './sell-vehicle-details/sell-vehicle-details.component';
+import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 
 
 
@@ -37,7 +38,8 @@ import { SellVehicleDetailsComponent } from './sell-vehicle-details/sell-vehicle
     BuyRequestComponent,
     UserRequestComponent,
     UserRequestViewComponent,
-    SellVehicleDetailsComponent
+    SellVehicleDetailsComponent,
+    AddVehicleComponent
 
   ],
   imports: [
