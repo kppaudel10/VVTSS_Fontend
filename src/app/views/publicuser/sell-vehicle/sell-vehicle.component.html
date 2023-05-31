@@ -1,62 +1,65 @@
 <c-card class="p-4">
-    <c-card-body class="text-center"> 
-<form>
-  <table cTable hover bordered>
-    <thead>
-    <tr>
-      <th scope="col">Buyer Name</th>
-      <th scope="col">Buyer contact</th>
-      <th scope="col">Requiest Date</th>
-      <th scope="col">Vehicle Type</th>
-      <th scope="col">Identification no</th>
-      <th scope="col">Action</th>
-    </tr>
+  <c-card-body class="text-center">
+    <form>
+      <table cTable hover bordered>
+        <thead>
+        <tr>
+          <th scope="col">Buyer Name</th>
+          <th scope="col">Buyer Contact</th>
+          <th scope="col">Request Date</th>
+          <th scope="col">Vehicle Type</th>
+          <th scope="col">Identification no</th>
+          <th scope="col">Action</th>
+        </tr>
 
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of sellVehicleList">
-      <td>{{item.BuyerName}}</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of sellVehicleList">
+          <td>{{item.buyerName}}</td>
+          <td>{{item.buyerMobileNumber}}</td>
+          <td>{{item.requestDate}}</td>
+          <td>{{getVehicleTypeName(item.vehicleType)}}</td>
+          <td>{{item.vehicleIdentificationNo}}</td>
 
-      <td>
-        <button cButton color="success" style="width: 5rem;" routerLink="/home/sell-vehicle-detail">View</button>
-      </td>
-    </tr>
-   
-    </tbody>
-  </table>
-  <div class="" align="start">
-      <h4 id="buyInfo"><strong style="color: red;">Instruction: </strong> If You are ready to sell Vehcle then click to the Procss Button</h4>
-</div>
-      <c-col class="mt-3 mr-4" align="end">
-        <button [cModalToggle]="verticallyCenteredModal.id" 
-        cButton color="primary" type="submit">Process</button>
-      </c-col>
-  </form>
-</c-card-body>
+          <td>
+            <button cButton color="success" style="width: 5rem;"
+                    [routerLink]="'/home/sell-vehicle-detail'" (click)="getAndSetSelectedBuyerData(item)">View
+            </button>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+      <!--      <div class="" align="start">
+              <h4 id="buyInfo"><strong style="color: red;">Instruction: </strong> If You are ready to sell Vehcle then click
+                to the Procss Button</h4>
+            </div>
+            <c-col class="mt-3 mr-4" align="end">
+              <button [cModalToggle]="verticallyCenteredModal.id"
+                      cButton color="primary" type="submit">Process
+              </button>
+            </c-col>-->
+    </form>
+  </c-card-body>
 </c-card>
 
 
-
-<c-modal #verticallyCenteredModal alignment="center" id="pictureShowUpModal" >
+<c-modal #verticallyCenteredModal alignment="center" id="pictureShowUpModal">
   <form>
-  <c-modal-header class="text-center">
-    <h3 cModalTitle>Enter Pin Code wcich is sent to your Email </h3>
-    <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>
-  </c-modal-header>
-  <c-modal-body>
+    <c-modal-header class="text-center">
+      <h3 cModalTitle>Enter Pin Code wcich is sent to your Email </h3>
+      <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
       <c-card-body>
         <div class="mb-3">
-          <label cLabel for="inputEmail-1">Pin Code</label>
+          <label cLabel for="pincode">Pin Code</label>
           <input cFormControl id="pincode" name="pincode" formControlName="pincode" type="email">
-          </div>
+        </div>
       </c-card-body>
-  </c-modal-body>
-  <c-modal-footer>
-    <button cButton color="primary">Submit</button>
-  </c-modal-footer>
-</form>
+    </c-modal-body>
+    <c-modal-footer>
+      <button cButton color="primary">Submit</button>
+    </c-modal-footer>
+  </form>
 </c-modal>
