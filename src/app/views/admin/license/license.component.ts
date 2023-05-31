@@ -26,7 +26,7 @@ export class LicenseComponent implements OnInit {
     console.log("licenseList", this.licenseList)
     this.form = this.formBuilder.group({
       citizenshipNo: ['', Validators.required],
-      vehicleType: ['', Validators.required],
+      licenseCategory: ['', Validators.required],
       validDate: ['', Validators.required],
       district: ['', Validators.required],
     });

@@ -16,11 +16,17 @@
         </c-col>
 
         <c-col [md]="3">
-          <label cLabel>Vehicle Type:<sup>*</sup></label>
-          <select aria-label="vehicleType" cSelect formControlName="vehicleType">
-            <option value="0">Scooter</option>
-            <option value="1">Bike</option>
-            <option value="2">Car</option>
+          <label cLabel>License Category:<sup>*</sup></label>
+          <select aria-label="vehicleType" cSelect formControlName="licenseCategory">
+            <option value="0">A(Motorcycle, Scooter, Moped)</option>
+            <option value="1">B(Car, Jeep, Delivery Van)</option>
+            <option value="2">C(Tempo, Auto rickshaw)</option>
+            <option value="3">D(Power tiller)</option>
+            <option value="4">E(Tractor)</option>
+            <option value="5">F(Minibus, Mini-truck)</option>
+            <option value="6">G(Truck, Bus, Lorry)</option>
+            <option value="7">H(Road Roller, Dozer)</option>
+            <option value="7">J(Other)</option>
           </select>
         </c-col>
 
@@ -52,7 +58,7 @@
       <thead>
       <tr>
         <th scope="col">License No</th>
-        <th scope="col">Vehicle Type</th>
+        <th scope="col">License Category</th>
         <th scope="col">Valid Date</th>
         <th scope="col">District</th>
         <th scope="col">Citizenship No</th>
@@ -62,11 +68,11 @@
       <tbody>
       <tr *ngFor="let item of licenseList">
         <td>{{item.licenseNo}}</td>
-        <td>{{getVehicleTypeName(item.vehicleType)}}</td>
+        <td>{{item.licenseCategoryName}}</td>
         <td>{{item.validDate}}</td>
         <td>{{item.district}}</td>
         <td>{{item.citizenshipNo}}</td>
-        <td>{{item.licensedUserName}}</td>
+        <td>{{item.licensedOwnUserName}}</td>
       </tr>
       </tbody>
     </table>
