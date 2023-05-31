@@ -66,8 +66,8 @@
     </c-row>
     <c-row class="" align="end">
       <c-card-body>
-        <button class="btn" color="success" cButton>Approved</button>
-        <button color="danger" cButton>Reject</button>
+        <button class="btn" color="success" cButton (click)="acceptBuyRequest(buyerUserData.id)">Approved</button>
+        <button color="danger" cButton (click)="rejectBuyRequest(buyerUserData.id)">Reject</button>
       </c-card-body>
     </c-row>
   </form>
