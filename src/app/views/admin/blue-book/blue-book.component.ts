@@ -2,13 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AdminService} from "../admin.service";
 import {NotificationService} from "../../../baseService/notification.service";
+import {GlobalMethodService} from "../../global.method.service";
 
 @Component({
   selector: 'app-blue-book',
   templateUrl: './blue-book.component.html',
   styleUrls: ['./blue-book.component.scss']
 })
-export class BlueBookComponent implements OnInit {
+export class BlueBookComponent extends GlobalMethodService implements OnInit {
 
   public form: FormGroup | any;
   public searchForm: FormGroup | any;
@@ -17,6 +18,7 @@ export class BlueBookComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private adminService: AdminService,
               private notificationService: NotificationService) {
+    super();
   }
 
   ngOnInit(): void {
@@ -93,18 +95,5 @@ export class BlueBookComponent implements OnInit {
       this.ngOnInit();
     }
   }
-
-  getVehicleTypeName(typeInt: any) {
-    if (typeInt === "0" || typeInt === 0) {
-      return "Scooter";
-    } else if (typeInt === "1" || typeInt === 1) {
-      return "Bike";
-    } else if (typeInt === "2" || typeInt === 2) {
-      return "Car";
-    } else {
-      return "";
-    }
-
-  }
-
+  
 }

@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../user.service';
-import { NotificationService } from 'src/app/baseService/notification.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../user.service';
+import {NotificationService} from 'src/app/baseService/notification.service';
+import {GlobalMethodService} from "../../global.method.service";
 
 @Component({
   selector: 'app-add-vehicle',
   templateUrl: './add-vehicle.component.html',
   styleUrls: ['./add-vehicle.component.scss']
 })
-export class AddVehicleComponent implements OnInit {
+export class AddVehicleComponent extends GlobalMethodService implements OnInit {
 
   addVehicleForm: FormGroup = new FormGroup({});
   submitted = false;
   public vehicleList: any[] | undefined;
 
   constructor(private formBuilder: FormBuilder,
-    private userService: UserService,
-    private notificationService: NotificationService) {
+              private userService: UserService,
+              private notificationService: NotificationService) {
+    super();
   }
 
 
@@ -54,34 +56,24 @@ export class AddVehicleComponent implements OnInit {
         this.notificationService.showError(error.error.message, "Error !!")
       })
   }
+
 // get Vehicle List Api
   getAndShowVehicleList() {
     this.userService.getVehicleListByVendorId().subscribe(
-        (response: any) => {
-          this.vehicleList = response.data;
-        },
-        (error: any) => {
-          console.error(error);
-           // Handle error during form submission
+      (response: any) => {
+        this.vehicleList = response.data;
+      },
+      (error: any) => {
+        console.error(error);
+        // Handle error during form submission
         this.notificationService.showError(error.error.message, "Error !!")
-        }
-      );
+      }
+    );
   }
-// this is Validation 
+
+// this is Validation
   get vehicleFormControls() {
     return this.addVehicleForm?.controls;
   }
 
-  getVehicleTypeName(typeInt: any) {
-    if (typeInt === "0" || typeInt === 0) {
-      return "Scooter";
-    } else if (typeInt === "1" || typeInt === 1) {
-      return "Bike";
-    } else if (typeInt === "2" || typeInt === 2) {
-      return "Car";
-    } else {
-      return "";
-    }
-
-  }
 }

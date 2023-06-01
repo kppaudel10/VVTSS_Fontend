@@ -2,13 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NotificationService} from "../../../baseService/notification.service";
 import {UserService} from "../user.service";
+import {GlobalMethodService} from "../../global.method.service";
 
 @Component({
   selector: 'app-buy-request',
   templateUrl: './buy-request.component.html',
   styleUrls: ['./buy-request.component.scss']
 })
-export class BuyRequestComponent implements OnInit {
+export class BuyRequestComponent extends GlobalMethodService implements OnInit {
 
   public burRequestForm: FormGroup | any;
   public userFormData: FormData | any;
@@ -19,6 +20,7 @@ export class BuyRequestComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private notificationService: NotificationService,
               private userService: UserService) {
+    super();
   }
 
   ngOnInit(): void {
@@ -68,7 +70,7 @@ export class BuyRequestComponent implements OnInit {
       return;
     }
     let data = this.pinCodeForm.getRawValue();
-    console.log("pincode",data)
+    console.log("pincode", data)
     this.userService.validateUserPinCode(data.pinCode).subscribe(
       (response: any) => {
         // if user enter the valid pin code then we need to save that user request
@@ -100,19 +102,6 @@ export class BuyRequestComponent implements OnInit {
 
   handlePincodePopUp(event: any) {
     this.isPinCodePopVisible = event;
-  }
-
-  getVehicleTypeName(typeInt: any) {
-    if (typeInt === "0" || typeInt === 0) {
-      return "Scooter";
-    } else if (typeInt === "1" || typeInt === 1) {
-      return "Bike";
-    } else if (typeInt === "2" || typeInt === 2) {
-      return "Car";
-    } else {
-      return "";
-    }
-
   }
 
   getBuyRequestOfLoginUser() {
