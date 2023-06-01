@@ -3,6 +3,8 @@ import {AdminDataService} from "../admin.data.service";
 import {UserService} from "../../publicuser/user.service";
 import {BaseService} from "../../../baseService/baseService";
 import baseURL from "../../../baseService/helper";
+import {NotificationService} from "../../../baseService/notification.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-ownership-request-view',
@@ -16,7 +18,9 @@ export class OwnershipRequestViewComponent extends BaseService implements OnInit
   public sellerProfilePicture: string | undefined;
 
   constructor(private adminDataService: AdminDataService,
-              private userService: UserService) {
+              private userService: UserService,
+              private notificationService: NotificationService,
+              private router: Router) {
     super();
   }
 
@@ -51,5 +55,45 @@ export class OwnershipRequestViewComponent extends BaseService implements OnInit
     };
     reader.readAsDataURL(imageData);
   }
+
+  acceptBuyRequest(id: number) {
+    const data = {
+      id: id,
+      actionType: 'accept',
+      actionBy: 'admin'
+    };
+    this.userService.takeActionSellRequest(data).subscribe(
+      (response: any) => {
+        console.log("acceptdata", response)
+        // Handle successful form submission
+        this.notificationService.showSuccess(response.data, "Success !!")
+        // reload the page
+        this.router.navigate(['/home/ownership-request']);
+      },
+      (error: any) => {
+        // Handle error during form submission
+        this.notificationService.showError(error.error.message, "Error !!")
+      });
+  }
+
+  rejectBuyRequest(id: number) {
+    const data = {
+      id: id,
+      actionType: 'reject',
+      actionBy: 'admin'
+    };
+    this.userService.takeActionSellRequest(data).subscribe(
+      (response: any) => {
+        // Handle successful form submission
+        this.notificationService.showSuccess(response.data, "Success !!")
+        // reload the page
+        this.router.navigate(['/home/ownership-request']);
+      },
+      (error: any) => {
+        // Handle error during form submission
+        this.notificationService.showError(error.error.message, "Error !!")
+      });
+  }
+
 
 }
