@@ -68,6 +68,7 @@ export class BuyRequestComponent implements OnInit {
       return;
     }
     let data = this.pinCodeForm.getRawValue();
+    console.log("pincode",data)
     this.userService.validateUserPinCode(data.pinCode).subscribe(
       (response: any) => {
         // if user enter the valid pin code then we need to save that user request

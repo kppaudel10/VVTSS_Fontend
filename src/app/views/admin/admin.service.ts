@@ -2,7 +2,6 @@ import {BaseService} from "../../baseService/baseService";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Injectable} from "@angular/core";
-import { BehaviorSubject } from "rxjs";
 
 
 @Injectable({
@@ -46,5 +45,9 @@ export class AdminService extends BaseService {
     return this.http.get(`${this.serviceUrl}/api/blue-book/list?searchValue=` + searchValue, this.getHeaders());
   }
 
+  // Api to fetch ownership request list
+  public getOwnershipRequestList() {
+    return this.http.get(`${this.serviceUrl}/api/vehicle/ownership-request/list`, this.getHeaders());
+  }
 
 }
