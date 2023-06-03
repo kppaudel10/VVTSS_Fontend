@@ -85,13 +85,12 @@
       </li>
     </c-pagination>
   </c-card-footer>
-
 </c-card>
 
 
-<c-modal #verticallyCenteredModal alignment="center" id="pictureShowUpModal"
+<c-modal #verticallyCenteredModal backdrop="static" alignment="center" id="pictureShowUpModal"
          [visible]="isPinCodePopVisible" (visibleChange)="handlePincodePopUp($event)">
-  <form [formGroup]="pinCodeForm" (ngSubmit)="validateUserPinCode()">
+  <form cForm [formGroup]="pinCodeForm" (ngSubmit)="validateUserPinCode()">
     <c-modal-header class="text-center">
       <h3 cModalTitle>Enter Pin Code wcich is sent to your Email </h3>
       <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>
@@ -100,7 +99,7 @@
       <c-card-body>
         <div class="mb-3">
           <label cLabel for="pincode">Pin Code</label>
-          <input cFormControl id="pincode" name="pinCode" formControlName="pinCode" type="text">
+          <input cFormControl id="pinCode" name="pinCode" form formControlName="pinCode" type="text">
         </div>
       </c-card-body>
     </c-modal-body>

@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserService} from '../user.service';
-import {NotificationService} from 'src/app/baseService/notification.service';
-import {GlobalMethodService} from "../../global.method.service";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
+import { NotificationService } from 'src/app/baseService/notification.service';
+import { GlobalMethodService } from "../../global.method.service";
 
 @Component({
   selector: 'app-add-vehicle',
@@ -13,11 +13,14 @@ export class AddVehicleComponent extends GlobalMethodService implements OnInit {
 
   addVehicleForm: FormGroup = new FormGroup({});
   submitted = false;
-  public vehicleList: any[] | undefined;
+  public vehicleList: any[] = [];
+  currentPage = 1;
+  itemsPerPage = 5;
+  totalPages = 0;
 
   constructor(private formBuilder: FormBuilder,
-              private userService: UserService,
-              private notificationService: NotificationService) {
+    private userService: UserService,
+    private notificationService: NotificationService) {
     super();
   }
 
@@ -57,11 +60,12 @@ export class AddVehicleComponent extends GlobalMethodService implements OnInit {
       })
   }
 
-// get Vehicle List Api
+  // get Vehicle List Api
   getAndShowVehicleList() {
     this.userService.getVehicleListByVendorId().subscribe(
       (response: any) => {
         this.vehicleList = response.data;
+        this.totalPages = Math.ceil(this.vehicleList.length / this.itemsPerPage);
       },
       (error: any) => {
         console.error(error);
@@ -71,9 +75,35 @@ export class AddVehicleComponent extends GlobalMethodService implements OnInit {
     );
   }
 
-// this is Validation
   get vehicleFormControls() {
-    return this.addVehicleForm?.controls;
+    return this.addVehicleForm.controls;
   }
 
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
+  }
+
+  getPageNumbers(): number[] {
+    return Array(this.totalPages).fill(0).map((_, index) => index + 1);
+  }
+
+  getItemsForCurrentPage() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.vehicleList.slice(startIndex, endIndex);
+  }
 }

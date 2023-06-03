@@ -122,7 +122,7 @@ export class UserService extends BaseService {
 
   // Api to validate User pin code
   public validateUserPinCode(pinCode: any) {
-    return this.http.get(`${this.serviceUrl}/api/pincode/validate?pinCode=` + pinCode, this.getHeaders());
+    return this.http.get(`${this.serviceUrl}/api/pincode/validate?pinCode=`+ pinCode, this.getHeaders());
   }
 
   // Api to save user vehicle buy request

@@ -1,6 +1,6 @@
 <c-card class="p-4">
   <c-card-body class="text-center">
-    <form>
+    
       <table cTable hover bordered>
         <thead>
         <tr>
@@ -39,13 +39,13 @@
                       cButton color="primary" type="submit">Process
               </button>
             </c-col>-->
-    </form>
+  
   </c-card-body>
 </c-card>
 
 
 <c-modal #verticallyCenteredModal alignment="center" id="pictureShowUpModal">
-  <form>
+  <form cForm>
     <c-modal-header class="text-center">
       <h3 cModalTitle>Enter Pin Code wcich is sent to your Email </h3>
       <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>

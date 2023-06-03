@@ -8,8 +8,8 @@
       <c-row>
         <c-col [md]="3">
           <label cLabel for="manufactureYear">ManufactureYear:<sup>*</sup></label>
-          <input cFormControl id="manufactureYear" name="manufactureYear"
-                 formControlName="manufactureYear" type="text"/>
+          <input cFormControl id="manufactureYear" name="manufactureYear" formControlName="manufactureYear"
+            type="text" />
         </c-col>
 
         <c-col [md]="3">
@@ -23,14 +23,12 @@
 
         <c-col [md]="3">
           <label cLabel for="companyCode"> CompanyCode:<sup>*</sup></label>
-          <input cFormControl id="companyCode" name="companyCode"
-                 formControlName="companyCode" type="text"/>
+          <input cFormControl id="companyCode" name="companyCode" formControlName="companyCode" type="text" />
         </c-col>
 
         <c-col [md]="3">
           <label cLabel for="companyName"> Company Name:<sup>*</sup></label>
-          <input cFormControl id="companyName" name="companyName"
-                 formControlName="companyName" type="text"/>
+          <input cFormControl id="companyName" name="companyName" formControlName="companyName" type="text" />
         </c-col>
 
       </c-row>
@@ -38,30 +36,37 @@
         <button cButton color="primary" type="submit">Submit</button>
       </c-col>
     </form>
-    <hr/>
+    <hr />
   </c-card-body>
-
-
   <table cTable hover bordered class="text-center">
     <thead>
-    <tr>
-      <th scope="col">Company Name</th>
-      <th scope="col">Company Code</th>
-      <th scope="col">Vehicle Type</th>
-      <th scope="col">Identification No</th>
-      <th scope="col">Manufacture Year</th>
-
-    </tr>
+      <tr>
+        <th scope="col">Company Name</th>
+        <th scope="col">Company Code</th>
+        <th scope="col">Vehicle Type</th>
+        <th scope="col">Identification No</th>
+        <th scope="col">Manufacture Year</th>
+      </tr>
 
     </thead>
     <tbody>
-    <tr *ngFor="let item of vehicleList">
-      <td>{{item.company_name}}</td>
-      <td>{{item.company_code}}</td>
-      <td>{{getVehicleTypeName(item.vehicle_type)}}</td>
-      <td>{{item.identification_no}}</td>
-      <td>{{item.manufacture_year}}</td>
+
+      <tr *ngFor="let item of getItemsForCurrentPage()">
+        <td>{{item.company_name}}</td>
+        <td>{{item.company_code}}</td>
+        <td>{{getVehicleTypeName(item.vehicle_type)}}</td>
+        <td>{{item.identification_no}}</td>
+        <td>{{item.manufacture_year}}</td>
 
     </tbody>
   </table>
+  <c-pagination align="end" aria-label="Page navigation example mt-4">
+    <li cPageItem>
+      <a cPageLink (click)="previousPage()">Previous</a>
+    </li>
+
+    <li cPageItem>
+      <a cPageLink (click)="nextPage()">Next</a>
+    </li>
+  </c-pagination>
 </c-card>
