@@ -16,6 +16,7 @@ export class BuyRequestComponent extends GlobalMethodService implements OnInit {
   public isPinCodePopVisible = false;
   public pinCodeForm: FormGroup | any;
   public buyRequestList: string[] | any;
+  
 
   constructor(private formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -34,7 +35,7 @@ export class BuyRequestComponent extends GlobalMethodService implements OnInit {
     }
     if (this.isPinCodePopVisible) {
       this.pinCodeForm = this.formBuilder.group({
-        pinCode: ['', Validators.required]
+        pinCode: ['',Validators.required]
       })
     }
   }
@@ -69,9 +70,9 @@ export class BuyRequestComponent extends GlobalMethodService implements OnInit {
         'Warning !!');
       return;
     }
-    let data = this.pinCodeForm.getRawValue();
+    let data = this.pinCodeForm?.getRawValue();
     console.log("pincode", data)
-    this.userService.validateUserPinCode(data.pinCode).subscribe(
+    this.userService.validateUserPinCode(data?.pinCode)?.subscribe(
       (response: any) => {
         // if user enter the valid pin code then we need to save that user request
         this.saveBuyRequest(this.userFormData)

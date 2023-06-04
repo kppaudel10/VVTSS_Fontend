@@ -122,7 +122,7 @@
       </li>
       <li></li>
       <li>
-        <button routerLink="./" cDropdownItem  (click)="toggleClose()">
+        <button  cDropdownItem  [cModalToggle]="staticBackdropModal.id">
           <svg cIcon class="me-2" name="cilUser"></svg>
           Profile
         </button>
@@ -149,15 +149,18 @@
 
 
 <!-- Model For User Profile Design -->
-<c-modal  size="lg" id="liveProfile" [visible]="visible" (visibleChange)="handleProfileChange($event)">
+
+
+<c-modal #staticBackdropModal backdrop="static" id="staticBackdropModal">
   <c-modal-header>
-    <h5 cModalTitle>Large modal</h5>
-    <button  (click)="toggleClose()" cButtonClose></button>
+    <h5 cModalTitle>Modal title</h5>
+    <button [cModalToggle]="staticBackdropModal.id" cButtonClose></button>
   </c-modal-header>
-  <c-modal-body>Woohoo, you are reading this text in a modal!</c-modal-body>
+  <c-modal-body>Woohoo, you&#39;re reading this text in a modal!</c-modal-body>
   <c-modal-footer>
-    <button (click)="toggleClose()" cButton color="secondary">
+    <button [cModalToggle]="staticBackdropModal.id" cButton color="secondary">
       Close
     </button>
+    <button cButton color="primary">close</button>
   </c-modal-footer>
 </c-modal>
