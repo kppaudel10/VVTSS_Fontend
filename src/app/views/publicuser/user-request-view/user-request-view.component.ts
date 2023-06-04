@@ -20,6 +20,7 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
   public citizenshipBackUrl: any
   public selectUserId: number = 0
   public isPictureShowUpVisible: boolean = false;
+  public isPpShowUpVisible: boolean = false;
   public selectedImageName: string | undefined;
   public profileImage: string | any
   public citizenshipFont: string | any
@@ -81,7 +82,7 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
   createImageFromBlob(imageData: Blob, keyName: string): void {
     const reader = new FileReader();
     reader.onloadend = () => {
-      
+
       // this.images[this.imageIndex++] = reader.result as string;
       if (keyName === 'profile') {
         this.profileImage = reader.result as string;
@@ -126,19 +127,26 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
     this.isPictureShowUpVisible = event;
   }
 
+  handlePpVisibleModal(event: any) {
+    this.isPpShowUpVisible = event;
+  }
+
   openImageDisplayModal(selectedImageKey: string) {
     this.selectedImageKeyName = selectedImageKey;
     console.log("selectedImageKey", selectedImageKey)
     if (selectedImageKey === 'profile') {
       this.selectedImageName = "Profile Picture"
+      this.isPpShowUpVisible = true
     } else if (selectedImageKey === 'citizenshipFont') {
       this.selectedImageName = "Citizenship Font"
+      this.isPictureShowUpVisible = true;
     } else if (selectedImageKey === 'citizenshipBack') {
       this.selectedImageName = "Citizenship Back"
+      this.isPictureShowUpVisible = true;
     } else {
       this.selectedImageName = "Unknown"
+      this.isPictureShowUpVisible = false;
     }
-    this.isPictureShowUpVisible = true;
   }
 
   getImageByImageKeyName(selectedImageKey: string) {
