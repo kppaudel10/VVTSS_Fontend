@@ -1,0 +1,39 @@
+.u-imag img {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  margin-left: 7rem;
+}
+
+c-col .citizen {
+  width: 400px;
+  border: 1px solid black;
+  height: 250px;
+}
+
+.btn {
+  margin: 10px;
+}
+
+c-card-body .image-show-modal {
+  width: 700px;
+
+  height: 400px;
+  margin-left: 2rem;
+
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.image-show-modal {
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: 50px;
+}
+
+

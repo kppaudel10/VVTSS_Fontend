@@ -1,0 +1,121 @@
+<form [formGroup]="kycDisplayForm">
+  <c-card class="p-4">
+    <c-row>
+      <c-card-header class="text-center">
+        <h2>Kyc Information</h2>
+      </c-card-header>
+
+      <c-col class="mt-5 ">
+        <c-card-body class="u-imag" (click)="openImageDisplayModal('profile')">
+          <img [src]="profileImage" alt="">
+        </c-card-body>
+      </c-col>
+
+      <!-- next right card -->
+
+      <c-col [sm]="6">
+        <c-card-body>
+          <c-row class="mb-3">
+            <label [sm]="2" cCol cLabel="col" for="name">
+              Name:
+            </label>
+            <c-col [sm]="8">
+              <input cFormControl id="name" plaintext readonly type="text" formControlName="name"/>
+            </c-col>
+          </c-row>
+
+          <c-row class="mb-3">
+            <label [sm]="2" cCol cLabel="col" for="contact">
+              contact:
+            </label>
+            <c-col [sm]="8">
+              <input cFormControl id="contact" plaintext readonly type="text" formControlName="contact"/>
+            </c-col>
+          </c-row>
+
+          <c-row class="mb-3">
+            <label [sm]="2" cCol cLabel="col" for="email">
+              Email:
+            </label>
+            <c-col [sm]="8">
+              <input cFormControl id="email" plaintext readonly type="text" formControlName="email"/>
+            </c-col>
+          </c-row>
+
+          <c-row class="mb-3">
+            <label [sm]="2" cCol cLabel="col" for="address">
+              Address:
+            </label>
+            <c-col [sm]="8">
+              <input cFormControl id="address" plaintext readonly type="text" formControlName="address"/>
+            </c-col>
+          </c-row>
+
+          <c-row class="mb-3">
+            <label [sm]="2" cCol cLabel="col" for="citizenshipNo">
+              Citizenship No:
+            </label>
+            <c-col [sm]="10">
+              <input cFormControl id="citizenshipNo" plaintext readonly type="text" formControlName="citizenshipNo"/>
+            </c-col>
+          </c-row>
+
+        </c-card-body>
+      </c-col>
+    </c-row>
+    <!-- ccitizenship -->
+    <c-row class="text-center" [sm]="3">
+      <!-- front -->
+      <c-col [sm]="6">
+        <c-card-body (click)="openImageDisplayModal('citizenshipFont')">
+          <h3>Citizenship Front</h3>
+          <img class="citizen" [src]="citizenshipFont" alt="">
+        </c-card-body>
+
+      </c-col>
+
+      <!-- back -->
+      <c-col>
+        <c-card-body (click)="openImageDisplayModal('citizenshipBack')">
+          <h3>Citizenship Back</h3>
+          <img class="citizen" [src]="citizenshipBack" alt="">
+        </c-card-body>
+      </c-col>
+    </c-row>
+
+    <c-row class="" align="end">
+      <c-card-body>
+        <button class="btn" color="success" cButton (click)="getAcceptKycForm(selectUserId)">Accept</button>
+        <button color="danger" cButton (click)="getRejectKycForm(selectUserId)">Reject</button>
+      </c-card-body>
+    </c-row>
+  </c-card>
+</form>
+
+<c-modal id="pictureShowUpModal" [visible]="isPictureShowUpVisible" (visibleChange)="handlePictureVisibleModal($event)"
+         #verticallyCenteredModal #modalLg size="lg" alignment="center">
+  <c-modal-body>
+    <c-col>
+      <c-card-body>
+        <h3 [textContent]="selectedImageName"></h3>
+        <img class="image-show-modal" [src]="getImageByImageKeyName(selectedImageKeyName)" alt="">
+      </c-card-body>
+    </c-col>
+  </c-modal-body>
+</c-modal>
+
+<c-modal #verticallyCenteredModal alignment="center" id="profilePictureShowUpModal" [visible]="isPpShowUpVisible"
+         (visibleChange)="handlePpVisibleModal($event)">
+  <!--<c-modal-header>
+    <h3 cModalTitle>Profile Picture</h3>
+    &lt;!&ndash;    <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>&ndash;&gt;
+  </c-modal-header>-->
+  <c-modal-body class="text-center">
+    <c-card-body>
+      <div class="image-container">
+        <img class="image-show-modal" [src]="profileImage" alt="">
+      </div>
+    </c-card-body>
+  </c-modal-body>
+</c-modal>
+
