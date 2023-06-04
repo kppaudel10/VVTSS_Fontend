@@ -33,9 +33,8 @@ export class BuyRequestComponent extends GlobalMethodService implements OnInit {
       this.getBuyRequestOfLoginUser();
     }
     if (this.isPinCodePopVisible) {
-      debugger
       this.pinCodeForm = this.formBuilder.group({
-        pinCode: ['']
+        pinCode: ['', Validators.required]
       })
     }
   }
@@ -64,6 +63,7 @@ export class BuyRequestComponent extends GlobalMethodService implements OnInit {
   }
 
   validateUserPinCode() {
+    debugger
     if (this.pinCodeForm?.invalid) {
       this.notificationService.showWarnig('Please enter the pin code properly.',
         'Warning !!');
