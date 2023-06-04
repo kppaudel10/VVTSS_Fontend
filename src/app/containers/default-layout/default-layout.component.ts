@@ -81,9 +81,14 @@ export class DefaultLayoutComponent implements OnInit {
             url = '/home/ownership-request';
             break;
 
-            case 'Add New Vehicle':
+          case 'Add New Vehicle':
             icon = IconSubset.cilSave;
             url = '/home/add-vehicle';
+            break;
+
+          case 'User List':
+            icon = IconSubset.cilSave;
+            url = '/home/user-list';
             break;
 
           default:

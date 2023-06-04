@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NumberPlateScanComponent } from './number-plate-scan/number-plate-scan.component';
 import { NumberPlateScanProcessComponent } from './number-plate-scan-process/number-plate-scan-process.component';
 import {MatIconModule} from '@angular/material/icon';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserListViewComponent } from './user-list-view/user-list-view.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import {MatIconModule} from '@angular/material/icon';
     OwnershipRequestComponent,
     OwnershipRequestViewComponent,
     NumberPlateScanComponent,
-    NumberPlateScanProcessComponent
+    NumberPlateScanProcessComponent,
+    UserListComponent,
+    UserListViewComponent
   ],
   imports: [
     CommonModule,
