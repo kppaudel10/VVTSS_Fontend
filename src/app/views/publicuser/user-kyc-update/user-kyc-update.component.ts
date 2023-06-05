@@ -125,19 +125,19 @@ export class UserKycUpdateComponent implements OnInit {
     // this.route.navigate(['/home/user/update-kyc']);
   }
 
-  getKycStatus(): string {
+  getKycStatus(){
     if (this.kycDetails === null || this.kycDetails === undefined) {
       return '';
     } else {
       if (this.kycDetails['isKycPending'] === true) {
-        this.kycStatusTextColor = 'blue';
-        return "PENDING......!";
+       this.kycStatusTextColor = this.color[0];
+        return "PENDING";
       } else if (this.kycDetails['isKycCompleted'] === true) {
-        this.kycStatusTextColor = 'green';
-        return "VERIFIED......!"
+        this.kycStatusTextColor = this.color[1];
+        return "VERIFIED"
       } else if (this.kycDetails['isKycRejected'] === true) {
-        this.kycStatusTextColor = 'red';
-        return "REJECTED........!"
+        this.kycStatusTextColor = this.color[2];
+        return "REJECTED"
       } else {
         return '';
       }
@@ -147,7 +147,6 @@ export class UserKycUpdateComponent implements OnInit {
   handleQrCodeChange(event: any) {
     this.isQrCodeGenerateModuleVisible = event;
   }
-
   generateAndShowQrCode() {
     // fetch qr image
     this.userService.getGenerateQrCode().subscribe((response: any) => {

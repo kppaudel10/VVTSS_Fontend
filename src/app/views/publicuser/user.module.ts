@@ -28,6 +28,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { SellVehicleDetailsComponent } from './sell-vehicle-details/sell-vehicle-details.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { DialogModule } from '@angular/cdk/dialog';
+import {MatDialogModule } from '@angular/material/dialog'
 
 
 
@@ -39,7 +42,8 @@ import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
     UserRequestComponent,
     UserRequestViewComponent,
     SellVehicleDetailsComponent,
-    AddVehicleComponent
+    AddVehicleComponent,
+    UserProfileComponent
 
   ],
   imports: [
@@ -65,7 +69,9 @@ import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
     MatSnackBarModule,
     ToastrModule,
     AccordionModule,
-    SharedModule
+    SharedModule,
+    DialogModule,
+    MatDialogModule
     
     
    

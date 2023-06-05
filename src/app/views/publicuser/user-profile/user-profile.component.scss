@@ -1,0 +1,25 @@
+.userimage img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid green;
+}
+
+:host {
+    display: block;
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px;
+   width: 100%;
+    animation: custom-dialog-enter 1s ease;
+  }
+  
+  @keyframes custom-dialog-enter {
+    from {
+      transform: scale(0) rotate(360deg);
+    }
+  
+    to {
+      transform: none;
+    }
+  }

@@ -3,6 +3,8 @@ import {Router} from '@angular/router';
 
 import {ClassToggleService, HeaderComponent} from '@coreui/angular';
 import {UserService} from "../../../views/publicuser/user.service";
+import { MatDialog } from '@angular/material/dialog';
+import { UserProfileComponent } from 'src/app/views/publicuser/user-profile/user-profile.component';
 
 @Component({
   selector: 'app-default-header',
@@ -20,7 +22,8 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
 
   constructor(private classToggler: ClassToggleService,
               private rout: Router,
-              private userService: UserService) {
+              private userService: UserService,
+              private dialog: MatDialog) {
     super();
   }
   
@@ -52,6 +55,22 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
     };
     reader.readAsDataURL(imageData);
   }
-  
+  public visible = false;
+
+  toggleLiveDemo() {
+    this.visible = !this.visible;
+  }
+
+  handleLiveDemoChange(event: any) {
+    this.visible = event;
+  }
+
+  // user Dialog Box  
+  openUserProfie(){
+    this.dialog.open(UserProfileComponent,{
+      width: '60%',
+      
+    })
+  }
 
 }
