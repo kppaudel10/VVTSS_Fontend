@@ -50,4 +50,9 @@ export class AdminService extends BaseService {
     return this.http.get(`${this.serviceUrl}/api/vehicle/ownership-request/list`, this.getHeaders());
   }
 
+  // Api to fetch ownership request list
+  public getActiveUserList() {
+    return this.http.get(`${this.serviceUrl}/api/public-user/active/list`, this.getHeaders())
+  }
+
 }

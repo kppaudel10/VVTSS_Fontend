@@ -1,25 +1,27 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { DefaultLayoutComponent } from './containers';
-import { LoginComponent } from './views/pages/login/login.component';
-import { RegisterComponent } from './views/pages/register/register.component';
-import { UserKycUpdateComponent } from './views/publicuser/user-kyc-update/user-kyc-update.component';
-import { SellVehicleComponent } from './views/publicuser/sell-vehicle/sell-vehicle.component';
-import { BuyRequestComponent } from './views/publicuser/buy-request/buy-request.component';
-import { UserRequestComponent } from './views/publicuser/user-request/user-request.component';
-import { UserRequestViewComponent } from './views/publicuser/user-request-view/user-request-view.component';
-import { LicenseComponent } from './views/admin/license/license.component';
-import { BlueBookComponent } from './views/admin/blue-book/blue-book.component';
-import { OwnershipRequestComponent } from './views/admin/ownership-request/ownership-request.component';
-import { OwnershipRequestViewComponent } from './views/admin/ownership-request-view/ownership-request-view.component';
-import { NumberPlateScanComponent } from './views/admin/number-plate-scan/number-plate-scan.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {DefaultLayoutComponent} from './containers';
+import {LoginComponent} from './views/pages/login/login.component';
+import {RegisterComponent} from './views/pages/register/register.component';
+import {UserKycUpdateComponent} from './views/publicuser/user-kyc-update/user-kyc-update.component';
+import {SellVehicleComponent} from './views/publicuser/sell-vehicle/sell-vehicle.component';
+import {BuyRequestComponent} from './views/publicuser/buy-request/buy-request.component';
+import {UserRequestComponent} from './views/publicuser/user-request/user-request.component';
+import {UserRequestViewComponent} from './views/publicuser/user-request-view/user-request-view.component';
+import {LicenseComponent} from './views/admin/license/license.component';
+import {BlueBookComponent} from './views/admin/blue-book/blue-book.component';
+import {OwnershipRequestComponent} from './views/admin/ownership-request/ownership-request.component';
+import {OwnershipRequestViewComponent} from './views/admin/ownership-request-view/ownership-request-view.component';
+import {NumberPlateScanComponent} from './views/admin/number-plate-scan/number-plate-scan.component';
 import {
   NumberPlateScanProcessComponent
 } from './views/admin/number-plate-scan-process/number-plate-scan-process.component';
-import { AuthGuard } from "./baseService/auth/auth.guard";
-import { DashboardComponent } from './views/dashboard/dashboard.component';
-import { SellVehicleDetailsComponent } from './views/publicuser/sell-vehicle-details/sell-vehicle-details.component';
-import { AddVehicleComponent } from './views/publicuser/add-vehicle/add-vehicle.component';
+import {AuthGuard} from "./baseService/auth/auth.guard";
+import {DashboardComponent} from './views/dashboard/dashboard.component';
+import {SellVehicleDetailsComponent} from './views/publicuser/sell-vehicle-details/sell-vehicle-details.component';
+import {AddVehicleComponent} from './views/publicuser/add-vehicle/add-vehicle.component';
+import {UserListComponent} from "./views/admin/user-list/user-list.component";
+import {UserListViewComponent} from "./views/admin/user-list-view/user-list-view.component";
 
 const routes: Routes = [
   {
@@ -134,6 +136,14 @@ const routes: Routes = [
       {
         path: 'add-vehicle',
         component: AddVehicleComponent
+      },
+      {
+        path: 'user-list',
+        component: UserListComponent
+      },
+      {
+        path: 'user-list-view',
+        component: UserListViewComponent
       }
 
     ]
@@ -145,7 +155,7 @@ const routes: Routes = [
     component: RegisterComponent
   },
 
-  { path: '', redirectTo: '', pathMatch: 'full' },
+  {path: '', redirectTo: '', pathMatch: 'full'},
 ];
 
 @NgModule({

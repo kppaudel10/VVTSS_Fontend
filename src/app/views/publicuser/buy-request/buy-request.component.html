@@ -85,14 +85,18 @@
          [visible]="isPinCodePopVisible" (visibleChange)="handlePincodePopUp($event)">
   <form cForm [formGroup]="pinCodeForm" (ngSubmit)="validateUserPinCode()">
     <c-modal-header class="text-center">
-      <h3 cModalTitle>Enter Pin Code wcich is sent to your Email </h3>
+      <h3 cModalTitle>Enter Pin Code which is sent to your Email </h3>
       <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
       <c-card-body>
         <div class="mb-3">
+<<<<<<< HEAD
+          <label cLabel for="pincodeid">Pin Code</label>
+          <input cFormControl id="pincodeid" name="pinCodename" formControlName="pinCode" type="text">
+=======
           <label cLabel for="pincode">Pin Code</label>
-          <input cFormControl id="pinCode" name="pinCode" formControlName="pinCode" type="text">
+          <input cFormControl id="pinCode" name="pinCode" form formControlName="pinCode" type="text">
         </div>
       </c-card-body>
     </c-modal-body>

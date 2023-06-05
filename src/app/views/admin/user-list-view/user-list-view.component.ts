@@ -1,18 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {UserDataService} from "../user-request/user.data.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {BaseService} from "../../../baseService/baseService";
-import baseURL from "../../../baseService/helper";
-import {UserService} from "../user.service";
+import {UserDataService} from "../../publicuser/user-request/user.data.service";
+import {UserService} from "../../publicuser/user.service";
 import {NotificationService} from "../../../baseService/notification.service";
 import {Router} from "@angular/router";
+import baseURL from "../../../baseService/helper";
+import {BaseService} from "../../../baseService/baseService";
 
 @Component({
-  selector: 'app-user-request-view',
-  templateUrl: './user-request-view.component.html',
-  styleUrls: ['./user-request-view.component.scss']
+  selector: 'app-user-list-view',
+  templateUrl: './user-list-view.component.html',
+  styleUrls: ['./user-list-view.component.scss']
 })
-export class UserRequestViewComponent extends BaseService implements OnInit {
+export class UserListViewComponent extends BaseService implements OnInit {
   public selectedUserData: any;
   public kycDisplayForm: FormGroup | any
   public profilePictureUrl: any
@@ -162,4 +162,3 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
   }
 
 }
-
