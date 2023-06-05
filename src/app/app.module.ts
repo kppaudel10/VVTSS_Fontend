@@ -15,11 +15,11 @@ import {
 
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
-
 // Import app component
 import { AppComponent } from './app.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import {DialogModule} from '@angular/cdk/dialog';
+import {MatDialogModule } from '@angular/material/dialog'
 // Import containers
 import {
   DefaultFooterComponent,
@@ -46,9 +46,7 @@ import {
   SharedModule,
   SidebarModule,
   TabsModule,
-  UtilitiesModule,
-  
-  
+  UtilitiesModule, 
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
@@ -100,9 +98,10 @@ const APP_CONTAINERS = [
     MatSnackBarModule,
     CommonModule,
     ModalModule,
+    DialogModule,
+    MatDialogModule
     
-    
-    
+      
   ],
   providers: [
     {

@@ -123,7 +123,7 @@
 
 <!-- model pop -->
 
-<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+<c-modal backdrop="static" id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
   <form cForm [formGroup]="form" (ngSubmit)="submitForm()" enctype="multipart/form-data">
     <c-modal-header>
       <h3 cModalTitle>Kyc Update </h3>
@@ -192,8 +192,7 @@
 </c-modal>
 
 
-<button [cModalToggle]="verticallyCenteredModal.id" cButton>Centered modal</button>
-<c-modal #verticallyCenteredModal alignment="center" id="pictureShowUpModal" [visible]="isQrCodeGenerateModuleVisible"
+<c-modal #verticallyCenteredModal alignment="center" backdrop="static" id="pictureShowUpModal" [visible]="isQrCodeGenerateModuleVisible"
          (visibleChange)="handleQrCodeChange($event)">
   <c-modal-header>
     <h3 cModalTitle>Your Qr Code</h3>

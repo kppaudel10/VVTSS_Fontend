@@ -12,13 +12,12 @@
       alt: 'CoreUI Logo'
     }"
     [brandNarrow]="{
-      src: 'assets/images/brand/coreui-angular.svg',
+      src: '/',
       width: 46,
       height: 46,
       alt: 'CoreUI Logo'
     }"
-    routerLink="./"
-  >
+    routerLink="./">
   </c-sidebar-brand>
     <perfect-scrollbar [config]="perfectScrollbarConfig">
   <!--  [perfectScrollbar]="perfectScrollbarConfig"-->
@@ -26,7 +25,6 @@
     [navItems]="navItems" 
     dropdownMode="close">
   </c-sidebar-nav>
-  
     </perfect-scrollbar>
   <c-sidebar-toggler
     *ngIf="!sidebar.narrow"
@@ -46,5 +44,5 @@
     </c-container>
   </div>
   <!--app footer-->
-  <app-default-footer></app-default-footer>
+  <!-- <app-default-footer></app-default-footer> -->
 </div>

@@ -90,7 +90,8 @@ import {
   cilUserUnfollow,
   cilPhone,
   cilBarChart,
-  cilCheckCircle
+  cilCheckCircle,
+  cilAccountLogout
 } from '@coreui/icons';
 
 export const iconSubset = {
@@ -186,6 +187,8 @@ export const iconSubset = {
   cilPhone,
   cilBarChart,
   cilCheckCircle,
+  cilAccountLogout
+  
   
 };
 
