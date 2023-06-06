@@ -14,7 +14,8 @@
 
       <c-card-body class="bg-gradient text-center">
         <div class="button-container">
-          <button [cModalToggle]="staticBackdropModal.id" cButton color="primary" variant="outline" class="shadow my-2">
+          <button [cModalToggle]="staticBackdropModal.id" cButton color="primary"
+           variant="outline" class="shadow my-2" (click)="getLoginUserLicenseList()" >
             Licenses
           </button>
           <button cButton color="primary" variant="outline" class="shadow my-2">Blue Book</button>
@@ -194,7 +195,8 @@
 </c-modal>
 
 
-<c-modal #verticallyCenteredModal alignment="center" backdrop="static" id="pictureShowUpModal" [visible]="isQrCodeGenerateModuleVisible"
+<c-modal #verticallyCenteredModal alignment="center" backdrop="static" id="pictureShowUpModal" 
+ [visible]="isQrCodeGenerateModuleVisible"
          (visibleChange)="handleQrCodeChange($event)">
   <c-modal-header>
     <h3 cModalTitle>Your Qr Code</h3>
@@ -213,7 +215,7 @@
 
 
 <!-- license modal -->
-<c-modal #staticBackdropModal id="staticBackdropModal" >
+<c-modal #staticBackdropModal id="staticBackdropModal" alignment="center">
   <c-modal-body>
     <table  bordered cTable class="text-center">
       <thead>
@@ -225,11 +227,11 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>@mdo</td>
+      <tr *ngFor="let item of loginUserLicenseData">
+        <td>{{item.licensedOwnUserName}}</td>
+        <td>{{item.licenseNo}}</td>
+        <td>{{item.licenseCategoryName}}</td>
+        <td>{{item.validDate}}</td>
       </tr>
       </tbody>
     </table>
