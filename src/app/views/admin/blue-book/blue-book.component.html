@@ -63,7 +63,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let item of blueBookList">
+      <tr *ngFor="let item of getItemsForCurrentPage()">
         <td>{{item.citizenshipNo}}</td>
         <td>{{getVehicleTypeName(item.vehicleType)}}</td>
         <td>{{item.vehicleIdentificationNo}}</td>
@@ -74,19 +74,11 @@
     </table>
     <c-pagination align="end" aria-label="Page navigation example mt-4">
       <li cPageItem>
-        <a cPageLink [routerLink]="">Previous</a>
+        <a cPageLink (click)="previousPage()">Previous</a>
       </li>
+  
       <li cPageItem>
-        <a cPageLink [routerLink]="">1</a>
-      </li>
-      <li cPageItem>
-        <a cPageLink [routerLink]="">2</a>
-      </li>
-      <li cPageItem>
-        <a cPageLink [routerLink]="">3</a>
-      </li>
-      <li cPageItem>
-        <a cPageLink [routerLink]="">Next</a>
+        <a cPageLink (click)="nextPage()">Next</a>
       </li>
     </c-pagination>
   </c-card-footer>

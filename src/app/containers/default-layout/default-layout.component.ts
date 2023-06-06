@@ -87,13 +87,13 @@ export class DefaultLayoutComponent implements OnInit {
             break;
 
           case 'User List':
-            icon = IconSubset.cilSave;
+            icon = IconSubset.cilList;
             url = '/home/user-list';
             break;
 
           default:
             icon =
-              url = '///'
+              url = '/login'
             break;
         }
 

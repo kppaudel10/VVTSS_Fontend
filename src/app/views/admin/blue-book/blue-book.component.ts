@@ -13,7 +13,10 @@ export class BlueBookComponent extends GlobalMethodService implements OnInit {
 
   public form: FormGroup | any;
   public searchForm: FormGroup | any;
-  public blueBookList: any[] | undefined;
+  public blueBookList: any[] = [];
+  currentPage = 1;
+  itemsPerPage = 5;
+  totalPages = 0;
 
   constructor(private formBuilder: FormBuilder,
               private adminService: AdminService,
@@ -82,6 +85,7 @@ export class BlueBookComponent extends GlobalMethodService implements OnInit {
       this.adminService.searchBlueBookDetail(searchData['searchValue']).subscribe(
         (response: any) => {
           this.blueBookList = response.data;
+          this.totalPages = Math.ceil(this.blueBookList.length / this.itemsPerPage);
         },
         error => {
           console.error(error);
@@ -95,5 +99,35 @@ export class BlueBookComponent extends GlobalMethodService implements OnInit {
       this.ngOnInit();
     }
   }
-  
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
+  }
+
+  getPageNumbers(): number[] {
+    return Array(this.totalPages).fill(0).map((_, index) => index + 1);
+  }
+
+  getItemsForCurrentPage() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.blueBookList.slice(startIndex, endIndex);
+  }
 }
+
+  
+

@@ -15,7 +15,7 @@ export class AddVehicleComponent extends GlobalMethodService implements OnInit {
   submitted = false;
   public vehicleList: any[] = [];
   currentPage = 1;
-  itemsPerPage = 5;
+  itemsPerPage = 8;
   totalPages = 0;
 
   constructor(private formBuilder: FormBuilder,
