@@ -155,4 +155,10 @@ export class UserService extends BaseService {
   public getVehicleListByVendorId() {
     return this.http.get(`${this.serviceUrl}/api/vehicle/list`, this.getHeaders());
   }
+
+     // Api to fetch login user license list
+     public getLoginUserLicense() {
+      return this.http.get(`${this.serviceUrl}/api/license/login-user`, this.getHeaders())
+    }
+  
 }

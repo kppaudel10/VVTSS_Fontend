@@ -13,7 +13,7 @@ export class LicenseComponent implements OnInit {
   public form: FormGroup | any;
   public searchForm: FormGroup | any;
   public licenseList: any[] | undefined;
-
+  
   constructor(private formBuilder: FormBuilder,
               private adminService: AdminService,
               private notificationService: NotificationService) {
