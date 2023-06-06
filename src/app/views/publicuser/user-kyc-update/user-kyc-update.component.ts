@@ -21,6 +21,7 @@ export class UserKycUpdateComponent implements OnInit {
   public isQrCodeGenerateModuleVisible = false;
   public qrCodeImage: string | any
   public downloadImageName: string | any
+  public loginUserLicenseData: any[] | undefined;
   items = [1, 2, 3, 4];
   color = ['primary', 'success', 'warning'];
 
@@ -183,6 +184,18 @@ export class UserKycUpdateComponent implements OnInit {
     }, (error) => {
       console.error('API request failed:', error);
     });
+  }
+
+  getLoginUserLicenseList(){
+    this.userService.getLoginUserLicense().subscribe(
+      (response: any) => {
+        this.loginUserLicenseData = response.data;
+        console.log("loginuserdata",response.data)
+      },
+      (error: any) => {
+        // Handle error during form submission
+        this.notificationService.showError(error.error.message, "Error !!")
+      });
   }
 
 }
