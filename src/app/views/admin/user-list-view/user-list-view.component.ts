@@ -95,6 +95,10 @@ export class UserListViewComponent extends BaseService implements OnInit {
     reader.readAsDataURL(imageData);
   }
 
+  backToHomePage(){
+    this.router.navigate(['/home/user-list']);
+  }
+  
   getAcceptKycForm(userId: any) {
     this.userService.getActionOnKyc(userId, 'accept').subscribe(
       (response: any) => {

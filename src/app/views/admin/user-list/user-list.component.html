@@ -12,13 +12,13 @@
       </thead>
       <tbody>
 
-      <tr *ngFor="let item of userKycRequestList">
+      <tr *ngFor="let item of activeUserList">
         <td>{{item.name}}</td>
         <td>{{item.contact}}</td>
         <td>{{item.email}}</td>
         <td>{{item.address}}</td>
         <td>
-          <button cButton color="secondary" [routerLink]="'/home/user-request-view'"
+          <button cButton color="secondary" [routerLink]="'/home/user-list-view'"
                   (click)="setSelectedUserDataAsSharedData(item)">View
           </button>
         </td>

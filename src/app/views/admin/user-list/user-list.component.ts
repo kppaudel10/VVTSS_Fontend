@@ -9,7 +9,7 @@ import {AdminService} from "../admin.service";
 })
 export class UserListComponent implements OnInit {
 
-  public userKycRequestList: any[] | undefined
+  public activeUserList: any[] | undefined
   public selectedUserData: any
 
   constructor(private adminService: AdminService,
@@ -19,13 +19,13 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
     // get and set user kyc request
     this.getActiveUserList();
-    console.log("userKycRequest", this.userKycRequestList)
+    console.log("userKycRequest", this.activeUserList)
   }
 
   getActiveUserList() {
     this.adminService.getActiveUserList().subscribe(
       (response: any) => {
-        this.userKycRequestList = response.data;
+        this.activeUserList = response.data;
       },
       error => {
         console.error(error);
