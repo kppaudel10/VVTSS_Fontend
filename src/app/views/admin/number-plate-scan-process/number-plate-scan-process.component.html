@@ -1,6 +1,6 @@
 <c-card class="p-4">
     <c-card-header class="text-center">
-        <h3>User's Number Plate Details</h3>
+        <h3>User's Details based on input number plate</h3>
     </c-card-header>
 
     <c-card-body>
@@ -12,11 +12,11 @@
            
             <c-col class="detali">
                 <c-row class="mb-3">
-                    <label cLabel="col" class="col-sm-2" for="inputPassword">
+                    <label cLabel="col" class="col-sm-2" for="name" >
                       Name: 
                     </label>
                     <c-col [sm]="8">
-                      <input cFormControl id="inputPassword" type="text" />
+                      <input cFormControl id="name" type="text" formControlName="name" />
                     </c-col>
                   </c-row>
                   <c-row class="mb-3">
@@ -24,7 +24,7 @@
                       Contact: 
                     </label>
                     <c-col [sm]="8">
-                      <input cFormControl id="inputPassword" type="text" />
+                      <input cFormControl id="inputPassword" type="text" readonly/>
                     </c-col>
                   </c-row>
 
@@ -33,7 +33,7 @@
                       Email: 
                     </label>
                     <c-col [sm]="8">
-                      <input cFormControl id="inputPassword" type="text" />
+                      <input cFormControl id="inputPassword" type="text" formControlName="email" />
                     </c-col>
                   </c-row>
 
@@ -42,7 +42,7 @@
                       Address: 
                     </label>
                     <c-col [sm]="8">
-                      <input cFormControl id="inputPassword" type="text" />
+                      <input cFormControl id="inputPassword" type="text" formControlName="address" />
                     </c-col>
                   </c-row>
 
@@ -51,7 +51,7 @@
                       Citizenship No: 
                     </label>
                     <c-col [sm]="8">
-                      <input cFormControl id="inputPassword" type="text" />
+                      <input cFormControl id="inputPassword" type="text" formControlName="citizenshipNo"/>
                     </c-col>
                   </c-row>
             </c-col>

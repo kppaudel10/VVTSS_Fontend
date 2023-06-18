@@ -55,9 +55,9 @@ export class AdminService extends BaseService {
     return this.http.get(`${this.serviceUrl}/api/public-user/active/list`, this.getHeaders())
   }
 
-   // Api to fetch login user license list
-   public getLoginUserLicense() {
-    return this.http.get(`${this.serviceUrl}/api/license/login-user`, this.getHeaders())
+   // Api to fetch ownership request list
+   public scanNumberPlate(data : FormData) {
+    return this.http.post(`${this.serviceUrl}/api/number-plate/scan`,data, this.getHeaders())
   }
-
+  
 }
