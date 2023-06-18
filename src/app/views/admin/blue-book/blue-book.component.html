@@ -58,6 +58,7 @@
         <th scope="col">Citizenship No</th>
         <th scope="col">Vehicle Type</th>
         <th scope="col">Vehicle Identification No</th>
+        <th scope="col">Number Plate</th>
         <th scope="col">Effective Date</th>
         <th scope="col">BlueBook Owned User</th>
       </tr>
@@ -67,6 +68,7 @@
         <td>{{item.citizenshipNo}}</td>
         <td>{{getVehicleTypeName(item.vehicleType)}}</td>
         <td>{{item.vehicleIdentificationNo}}</td>
+        <td>{{item.numberPlate}}</td>
         <td>{{item.effectiveDate}}</td>
         <td>{{item.currentBlueBookOwnUserName}}</td>
       </tr>
@@ -76,7 +78,7 @@
       <li cPageItem>
         <a cPageLink (click)="previousPage()">Previous</a>
       </li>
-  
+
       <li cPageItem>
         <a cPageLink (click)="nextPage()">Next</a>
       </li>
