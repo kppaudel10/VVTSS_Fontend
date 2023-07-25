@@ -215,7 +215,8 @@
 
 
 <!-- license modal -->
-<c-modal #staticBackdropModal id="staticBackdropModal" alignment="center">
+<c-modal #staticBackdropModal id="staticBackdropModal.id" alignment="center"
+[visible]="isLicenseModalVisible" (visibleChange)="handleLicenseModal($event)">
   <c-modal-body>
     <table  bordered cTable class="text-center">
       <thead>
@@ -241,8 +242,6 @@
 </c-modal>
 
 <!-- examle modal -->
-
-<button [cModalToggle]="staticBackdropModalopen.id" cButton>open</button>
 
 <c-modal alignment="center" #staticBackdropModalopen backdrop="static" size="lg" id="staticBackdropModal">
   <c-modal-header>

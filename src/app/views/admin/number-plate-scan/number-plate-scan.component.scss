@@ -10,3 +10,28 @@
     max-width: 100%;
   }
 
+.numertPLateWidth{
+  width: 400px;
+  height: 300px;
+  border-color: rgb(0, 255, 42);
+  text-align: center;
+  margin: auto;
+}
+
+.numertPLateWidth .boldNumber{
+  border: dotted red;
+  width: 200px;
+  height: 50px;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  margin: auto;
+  margin-bottom: 5rem;
+} 
+.ocr{
+  margin-top: 2.5rem;
+}
+
+.txt{
+  margin-bottom: 2rem;
+}

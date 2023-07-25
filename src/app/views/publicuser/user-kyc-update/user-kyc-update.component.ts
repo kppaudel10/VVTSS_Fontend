@@ -22,6 +22,7 @@ export class UserKycUpdateComponent implements OnInit {
   public qrCodeImage: string | any
   public downloadImageName: string | any
   public loginUserLicenseData: any[] | undefined;
+  public isLicenseModalVisible = false;
   items = [1, 2, 3, 4];
   color = ['primary', 'success', 'warning'];
 
@@ -148,6 +149,11 @@ export class UserKycUpdateComponent implements OnInit {
   handleQrCodeChange(event: any) {
     this.isQrCodeGenerateModuleVisible = event;
   }
+
+  handleLicenseModal(event: any) {
+    this.isLicenseModalVisible = event;
+  }
+
   generateAndShowQrCode() {
     // fetch qr image
     this.userService.getGenerateQrCode().subscribe((response: any) => {

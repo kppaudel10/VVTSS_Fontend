@@ -4,6 +4,7 @@ import {AdminService} from '../admin.service';
 import {NotificationService} from 'src/app/baseService/notification.service';
 import {UserDataService} from '../../publicuser/user-request/user.data.service';
 import {Router} from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-number-plate-scan',
@@ -16,12 +17,15 @@ export class NumberPlateScanComponent implements OnInit {
   public selectedImageName: string | undefined;
   public isPictureShowUpVisible: boolean = false;
   public ocrResponse: any;
+  public isOnlyOcrTextModalVisible = false;
+  public ocrText : string | undefined;
 
   constructor(private formBuilder: FormBuilder,
               private notificationService: NotificationService,
               private adminService: AdminService,
               private userDataService: UserDataService,
-              private router: Router) {
+              private router: Router,
+              private cdr: MatSnackBar,) {
   }
 
   ngOnInit(): void {
@@ -60,7 +64,12 @@ export class NumberPlateScanComponent implements OnInit {
     this.isPictureShowUpVisible = true;
   }
 
+  handleOnlyOcrModal(event: any) {
+    this.isOnlyOcrTextModalVisible = event;
+  }
+
   processScanImage() {
+    debugger
     if (this.uploadForm?.invalid) {
       this.notificationService.showWarnig('Please choose image with contain number plate',
         'Warning !!');
@@ -74,8 +83,16 @@ export class NumberPlateScanComponent implements OnInit {
 
     this.adminService.scanNumberPlate(formData).subscribe(
       (response: any) => {
+        debugger
         this.userDataService.setUserData(response.data);
+        debugger
+        if(response.data == null || response.data == undefined || response.data.userId == null){
+          this.ocrText = response.data.ocrText;
+          this.isOnlyOcrTextModalVisible = true;
+          // this.ngOnInit();
+        }else{
         this.router.navigate(['/home/plate-scan-process'])
+        }
       },
       error => {
         console.error(error);

@@ -64,7 +64,6 @@ export class BuyRequestComponent extends GlobalMethodService implements OnInit {
   }
 
   validateUserPinCode() {
-    debugger
     if (this.pinCodeForm?.invalid) {
       this.notificationService.showWarnig('Please enter the pin code properly.',
         'Warning !!');

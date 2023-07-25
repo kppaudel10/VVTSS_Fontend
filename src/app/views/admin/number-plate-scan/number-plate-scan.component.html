@@ -17,3 +17,47 @@
   </c-col>
 </form>
 </c-card>
+
+<!-- show only Ocr text and some random messgae -->
+
+<c-modal #staticBackdropModal backdrop="static" size="lg" id="staticBackdropModal" alignment="center"
+ [visible]="isOnlyOcrTextModalVisible" (visibleChange)="handleOnlyOcrModal($event)" >
+  <c-modal-header>
+    <h5 cModalTitle>OCR Scanner</h5>
+    <button [cModalToggle]="staticBackdropModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <c-card class="numertPLateWidth">
+      <p class="ocr">Scan Number Plate (OCR)</p>
+     <h3 class="boldNumber text-center">{{ocrText}}</h3>
+     <p class="txt">Info : "The user associated with the provided number plate is either
+       not registered in the system or does not exist."</p>
+    </c-card>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="staticBackdropModal.id" cButton color="secondary">
+      Close
+    </button>
+  </c-modal-footer>
+</c-modal>
+
+<!-- <button [cModalToggle]="staticBackdropModalopen.id" cButton>open</button>
+
+<c-modal alignment="center" #staticBackdropModalopen backdrop="static" size="lg" id="staticBackdropModal">
+  <c-modal-header>
+    <h5 cModalTitle>OCR Scanner</h5>
+    <button [cModalToggle]="staticBackdropModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <c-card class="numertPLateWidth">
+      <p class="ocr">Scan Number Plate (OCR)</p>
+     <h3 class="boldNumber text-center">PRp-J-33-12</h3>
+     <p class="txt">Lorem ipsum dolor sit amet cona quidem quasi velit illum. Nisi, quo fugit.</p>
+    </c-card>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="staticBackdropModal.id" cButton color="secondary">
+      Close
+    </button>
+  </c-modal-footer>
+</c-modal> -->
