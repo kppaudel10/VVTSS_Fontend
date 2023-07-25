@@ -52,7 +52,7 @@ export class UserRequestViewComponent extends BaseService implements OnInit {
     this.profilePictureUrl = baseURL.concat(this.selectedUserData.profilePictureUrl)
     this.citizenshipFontUrl = baseURL.concat(this.selectedUserData.citizenshipFontUrl)
     this.citizenshipBackUrl = baseURL.concat(this.selectedUserData.citizenshipBackUrl)
-
+    
     // call for profile picture
     this.userService.getFetchImage(this.profilePictureUrl)
       .subscribe((response: any) => {

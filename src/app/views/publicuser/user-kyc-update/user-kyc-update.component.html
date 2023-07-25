@@ -223,7 +223,8 @@
         <th scope="col">Name</th>
         <th scope="col">License No</th>
         <th scope="col">License Category</th>
-        <th scope="col">valid date</th>
+        <th scope="col">Valid Date</th>
+
       </tr>
       </thead>
       <tbody>
@@ -232,8 +233,32 @@
         <td>{{item.licenseNo}}</td>
         <td>{{item.licenseCategoryName}}</td>
         <td>{{item.validDate}}</td>
+
       </tr>
       </tbody>
     </table>
 </c-modal-body>
+</c-modal>
+
+<!-- examle modal -->
+
+<button [cModalToggle]="staticBackdropModalopen.id" cButton>open</button>
+
+<c-modal alignment="center" #staticBackdropModalopen backdrop="static" size="lg" id="staticBackdropModal">
+  <c-modal-header>
+    <h5 cModalTitle>OCR Scanner</h5>
+    <button [cModalToggle]="staticBackdropModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <c-card class="numertPLateWidth">
+      <p class="ocr">Scan Number Plate (OCR)</p>
+     <h3 class="boldNumber text-center">PRp-J-33-12</h3>
+     <p class="txt">Lorem ipsum dolor sit amet cona quidem quasi velit illum. Nisi, quo fugit.</p>
+    </c-card>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="staticBackdropModal.id" cButton color="secondary">
+      Close
+    </button>
+  </c-modal-footer>
 </c-modal>
