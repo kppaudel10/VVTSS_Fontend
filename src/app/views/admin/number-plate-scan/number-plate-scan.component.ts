@@ -19,6 +19,7 @@ export class NumberPlateScanComponent implements OnInit {
   public ocrResponse: any;
   public isOnlyOcrTextModalVisible = false;
   public ocrText : string | undefined;
+  public vehicleRelatedData : string[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -69,7 +70,6 @@ export class NumberPlateScanComponent implements OnInit {
   }
 
   processScanImage() {
-    debugger
     if (this.uploadForm?.invalid) {
       this.notificationService.showWarnig('Please choose image with contain number plate',
         'Warning !!');
@@ -83,14 +83,22 @@ export class NumberPlateScanComponent implements OnInit {
 
     this.adminService.scanNumberPlate(formData).subscribe(
       (response: any) => {
-        debugger
         this.userDataService.setUserData(response.data);
-        debugger
         if(response.data == null || response.data == undefined || response.data.userId == null){
           this.ocrText = response.data.ocrText;
           this.isOnlyOcrTextModalVisible = true;
           // this.ngOnInit();
         }else{
+          // bind the vehicle related data 
+          var licenseStatus = response.data.isLicenseValid == true ? 'yes' : 'no';
+          this.vehicleRelatedData.push("Is Licensed Valid : ".concat(licenseStatus));
+          this.vehicleRelatedData.push("License Valid Date : ".concat(response.data.licenseValidDate))
+          this.vehicleRelatedData.push("BlueBook Effective Date : ".concat(response.data.blueBookEffectiveDate))
+          this.vehicleRelatedData.push("BlueBook Effective Date : ".concat(response.data.blueBookEffectiveDate))
+          this.vehicleRelatedData.push("Vehicle Identification Number : ".concat(response.data.vehicleIdentificationNo))
+          this.vehicleRelatedData.push("Vehicle Manufacture Year : ".concat(response.data.manufactureYear))
+          this.vehicleRelatedData.push("Company Name : ".concat(response.data.vehicleCompanyName))
+          this.userDataService.setVehicleRelatedData(this.vehicleRelatedData);
         this.router.navigate(['/home/plate-scan-process'])
         }
       },

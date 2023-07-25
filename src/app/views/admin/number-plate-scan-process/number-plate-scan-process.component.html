@@ -62,9 +62,20 @@
   </c-card-body>
 
   <c-card-footer>
-    <h3>Check Status
+    <h4>
+      Vehicle Related Information:
+    </h4>
+    <!-- <h2>Check Status
       <mat-icon fontIcon="check-circle"></mat-icon>
-    </h3>
-    <svg cIcon name="cilcheckcircle" size="xl" title=""></svg>
+    </h2>
+    <svg cIcon name="cilcheckcircle" size="xl" title=""></svg> -->
+
+    <h2 *ngFor="let item of vehicleRelatedData">{{ item }}</h2>
+
   </c-card-footer>
+  <c-row class="" align="end">
+    <c-card-body>
+      <button class="btn" color="success" cButton (click)="backToHomePage()">Back</button>
+    </c-card-body>
+  </c-row>
 </c-card>
