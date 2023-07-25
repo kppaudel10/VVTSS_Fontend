@@ -1,18 +1,19 @@
 <c-card class="p-4">
-  <form *ngIf="uploadForm" [formGroup]="uploadForm" class="">
+  <form cForm [formGroup]="uploadForm" (ngSubmit)="processScanImage()" 
+  enctype="multipart/form-data">
     <c-col [md]="6">
       <label cLabel for="numberplate">Select Image Of Number Plate</label>
-      <input class="text-center" cFormControl id="numberplate" name="numberplate" formControlName="numberplate"
+      <input class="text-center" cFormControl id="numberplate" name="scanImage" formControlName="scanImage"
              type="file" placeholder="choose" (change)="onFileChange($event)"/>
     </c-col>
-  </form>
-  <c-col class="text-center mt-5 ">
+      <c-col class="text-center mt-5 ">
     <label cLabel for="idd">Selected Image show</label>
     <div class="selected-image text-center">
     <img class="displayed-image" [src]="selectedImageSrc" alt=""/>
   </div>
   </c-col>
   <c-col class="mt-3 mr-4" align="end">
-    <button cButton color="primary" type="submit" [routerLink]="'/home/plate-scan-process'">Process</button>
+    <button cButton color="primary" type="submit">Process</button>
   </c-col>
+</form>
 </c-card>

@@ -1,67 +1,73 @@
 <c-card class="p-4">
-    <c-card-header class="text-center">
-        <h3>User's Number Plate Details</h3>
-    </c-card-header>
+  <c-card-header class="text-center">
+    <h3>User's Details based on input number plate</h3>
+  </c-card-header>
 
-    <c-card-body>
-        <c-row class="">
-            <c-col class="mt-3">
-                <img class="image" src="/src/assets/images/brand/coreui-angular.svg" alt="Image of what idont know">
-            </c-col>
+  <c-card-body>
+    <c-row class="">
+      <c-col class="mt-3">
+        <img class="image" [src]="userProfile" alt="user profile">
+      </c-col>
 
-           
-            <c-col class="detali">
-                <c-row class="mb-3">
-                    <label cLabel="col" class="col-sm-2" for="inputPassword">
-                      Name: 
-                    </label>
-                    <c-col [sm]="8">
-                      <input cFormControl id="inputPassword" type="text" />
-                    </c-col>
-                  </c-row>
-                  <c-row class="mb-3">
-                    <label cLabel="col" class="col-sm-2" for="inputPassword">
-                      Contact: 
-                    </label>
-                    <c-col [sm]="8">
-                      <input cFormControl id="inputPassword" type="text" />
-                    </c-col>
-                  </c-row>
 
-                  <c-row class="mb-3">
-                    <label cLabel="col" class="col-sm-2" for="inputPassword">
-                      Email: 
-                    </label>
-                    <c-col [sm]="8">
-                      <input cFormControl id="inputPassword" type="text" />
-                    </c-col>
-                  </c-row>
-
-                  <c-row class="mb-3">
-                    <label cLabel="col" class="col-sm-2" for="inputPassword">
-                      Address: 
-                    </label>
-                    <c-col [sm]="8">
-                      <input cFormControl id="inputPassword" type="text" />
-                    </c-col>
-                  </c-row>
-
-                  <c-row class="mb-3">
-                    <label cLabel="col" class="col-sm-2" for="inputPassword">
-                      Citizenship No: 
-                    </label>
-                    <c-col [sm]="8">
-                      <input cFormControl id="inputPassword" type="text" />
-                    </c-col>
-                  </c-row>
-            </c-col>
+      <c-col class="detali">
+        <c-row class="mb-3">
+          <label cLabel="col" class="col-sm-2" for="name">
+            Name:
+          </label>
+          <c-col [sm]="8">
+            <input cFormControl id="name" type="text" formControlName="name" readonly
+                   [value]="userDataDetail.name"/>
+          </c-col>
         </c-row>
-    </c-card-body>
+        <c-row class="mb-3">
+          <label cLabel="col" class="col-sm-2" for="contact">
+            Contact:
+          </label>
+          <c-col [sm]="8">
+            <input cFormControl id="contact" type="text" readonly [value]="userDataDetail.contact"/>
+          </c-col>
+        </c-row>
 
-    <c-card-footer>
-        <h3>Check Status  <mat-icon  fontIcon="check-circle"></mat-icon></h3>
-        
+        <c-row class="mb-3">
+          <label cLabel="col" class="col-sm-2" for="email">
+            Email:
+          </label>
+          <c-col [sm]="8">
+            <input cFormControl id="email" type="text" formControlName="email"
+                   [value]="userDataDetail.email"/>
+          </c-col>
+        </c-row>
 
-        <svg cIcon name="cilcheckcircle" size="xl" title=""></svg>
-    </c-card-footer>
+        <c-row class="mb-3">
+          <label cLabel="col" class="col-sm-2" for="address">
+            Address:
+          </label>
+          <c-col [sm]="8">
+            <input cFormControl id="address" type="text" formControlName="address"
+                   [value]="userDataDetail.address"/>
+          </c-col>
+        </c-row>
+
+        <c-row class="mb-3">
+          <label cLabel="col" class="col-sm-2" for="ocrtext">
+            OCR Text:
+          </label>
+          <c-col [sm]="8">
+            <input cFormControl id="ocrtext" type="text" formControlName="ocrtext"
+            [value]="userDataDetail.ocrText" />
+          </c-col>
+        </c-row>
+      </c-col>
+    </c-row>
+  </c-card-body>
+
+  <c-card-footer>
+    <h3>Check Status
+      <mat-icon fontIcon="check-circle"></mat-icon>
+    </h3>
+
+
+    <svg cIcon name="cilcheckcircle" size="xl" title=""></svg>
+  </c-card-footer>
 </c-card>

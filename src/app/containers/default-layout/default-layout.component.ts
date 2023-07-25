@@ -28,7 +28,7 @@ export class DefaultLayoutComponent implements OnInit {
 
 
       const filteredModules = response.data.filter((module: any) => {
-        return module.roleName === userRole;
+        return module.moduleName != null && module.moduleId != null;
       });
 
       this.navItems = filteredModules.map((module: any) => {
