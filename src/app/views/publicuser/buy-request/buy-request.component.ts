@@ -25,19 +25,19 @@ export class BuyRequestComponent extends GlobalMethodService implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.isPinCodePopVisible) {
+    // if (!this.isPinCodePopVisible) {
       this.burRequestForm = this.formBuilder.group({
         ownerName: ['', Validators.required],
         ownerMobileNumber: ['', Validators.required],
         vehicleIdentificationNo: ['', Validators.required],
       });
       this.getBuyRequestOfLoginUser();
-    }
-    if (this.isPinCodePopVisible) {
+    // }
+    // if (this.isPinCodePopVisible) {
       this.pinCodeForm = this.formBuilder.group({
-        pinCode: ['']
+        pinCode: ['',Validators.required]
       })
-    }
+    // }
   }
 
   public processBuyRequest() {
@@ -57,7 +57,7 @@ export class BuyRequestComponent extends GlobalMethodService implements OnInit {
         this.ngOnInit();
       },
       (error: any) => {
-        // Handle error during form submission
+        // HpinCodeFormandle error during form submission
         this.notificationService.showError(error.error.message, "Error !!")
       });
 
@@ -71,7 +71,7 @@ export class BuyRequestComponent extends GlobalMethodService implements OnInit {
       return;
     }
     debugger
-    let data = this.pinCodeForm?.getRawValue();
+    let data = this.pinCodeForm.getRawValue();
     console.log("pincode", data)
     this.userService.validateUserPinCode(data?.pinCode)?.subscribe(
       (response: any) => {
