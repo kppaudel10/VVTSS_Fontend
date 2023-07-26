@@ -6,6 +6,7 @@ import {Injectable} from "@angular/core";
 export class UserDataService {
   private userData: any;
   private buyerUserData: any;
+  private vehicleRelatedData: string[] = [];
 
   setUserData(userData: any): void {
     this.userData = userData;
@@ -21,6 +22,14 @@ export class UserDataService {
 
   getBuyerUserData(): any {
     return this.buyerUserData;
+  }
+
+  setVehicleRelatedData(data: any){
+    this.vehicleRelatedData = data;
+  }
+
+  getVehicleRelatedData(){
+    return this.vehicleRelatedData;
   }
 
 }

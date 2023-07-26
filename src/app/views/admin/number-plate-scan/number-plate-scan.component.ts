@@ -90,10 +90,9 @@ export class NumberPlateScanComponent implements OnInit {
           // this.ngOnInit();
         }else{
           // bind the vehicle related data 
-          var licenseStatus = response.data.isLicenseValid == true ? 'yes' : 'no';
+          var licenseStatus = response.data.isLicenseValid == true ? 'YES' : 'NO';
           this.vehicleRelatedData.push("Is Licensed Valid : ".concat(licenseStatus));
           this.vehicleRelatedData.push("License Valid Date : ".concat(response.data.licenseValidDate))
-          this.vehicleRelatedData.push("BlueBook Effective Date : ".concat(response.data.blueBookEffectiveDate))
           this.vehicleRelatedData.push("BlueBook Effective Date : ".concat(response.data.blueBookEffectiveDate))
           this.vehicleRelatedData.push("Vehicle Identification Number : ".concat(response.data.vehicleIdentificationNo))
           this.vehicleRelatedData.push("Vehicle Manufacture Year : ".concat(response.data.manufactureYear))
