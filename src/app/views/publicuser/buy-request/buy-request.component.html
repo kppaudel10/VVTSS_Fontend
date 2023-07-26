@@ -51,17 +51,17 @@
       <thead>
       <tr>
         <th scope="col">Owner Name</th>
-        <th scope="col">Owner Mobile No</th>
         <th scope="col">Vehicle Identification No</th>
         <th scope="col">Vehicle Type</th>
+        <th scope="col">Request Date</th>
         <th scope="col">Status</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let item of buyRequestList">
         <td>{{item.ownerName}}</td>
-        <td>{{getVehicleTypeName(item.vehicleType)}}</td>
         <td>{{item.identificationNo}}</td>
+        <td>{{getVehicleTypeName(item.vehicleType)}}</td>
         <td>{{item.requestDate}}</td>
         <td>{{item.requestStatus}}</td>
       </tr>
