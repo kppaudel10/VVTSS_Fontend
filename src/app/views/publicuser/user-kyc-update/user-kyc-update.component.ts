@@ -22,7 +22,9 @@ export class UserKycUpdateComponent implements OnInit {
   public qrCodeImage: string | any
   public downloadImageName: string | any
   public loginUserLicenseData: any[] | undefined;
+  public loginBlueBookData: any[] | undefined;
   public isLicenseModalVisible = false;
+  public isBlueBookModalVisible = false;
   items = [1, 2, 3, 4];
   color = ['primary', 'success', 'warning'];
 
@@ -154,6 +156,10 @@ export class UserKycUpdateComponent implements OnInit {
     this.isLicenseModalVisible = event;
   }
 
+  handleBluebookModal(event: any) {
+    this.isBlueBookModalVisible = event;
+  }
+
   generateAndShowQrCode() {
     // fetch qr image
     this.userService.getGenerateQrCode().subscribe((response: any) => {
@@ -197,6 +203,19 @@ export class UserKycUpdateComponent implements OnInit {
       (response: any) => {
         this.loginUserLicenseData = response.data;
         console.log("loginuserdata",response.data)
+      },
+      (error: any) => {
+        // Handle error during form submission
+        this.notificationService.showError(error.error.message, "Error !!")
+      });
+  }
+
+  getLoginUserBlueBook(){
+    debugger
+    this.userService.getLoginUserBlueBook().subscribe(
+      (response: any) => {
+        this.loginBlueBookData = response.data;
+        console.log("loginBlueBookData",response.data)
       },
       (error: any) => {
         // Handle error during form submission
