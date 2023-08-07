@@ -122,7 +122,7 @@ export class UserService extends BaseService {
 
   // Api to validate User pin code
   public validateUserPinCode(pinCode: any) {
-    return this.http.get(`${this.serviceUrl}/api/pincode/validate?pinCode=`+ pinCode, this.getHeaders());
+    return this.http.get(`${this.serviceUrl}/api/pincode/validate?pinCode=` + pinCode, this.getHeaders());
   }
 
   // Api to save user vehicle buy request
@@ -150,15 +150,21 @@ export class UserService extends BaseService {
   public addNewVehicle(vehiclel: any) {
     return this.http.post(`${this.serviceUrl}/api/vehicle/save`, vehiclel, this.getHeaders());
   }
+
   // Api to Get All Vehicle-List
   // Api to fetch user sell-vehicle
   public getVehicleListByVendorId() {
     return this.http.get(`${this.serviceUrl}/api/vehicle/list`, this.getHeaders());
   }
 
-     // Api to fetch login user license list
-     public getLoginUserLicense() {
-      return this.http.get(`${this.serviceUrl}/api/license/login-user`, this.getHeaders())
-    }
-  
+  // Api to fetch login user license list
+  public getLoginUserLicense() {
+    return this.http.get(`${this.serviceUrl}/api/license/login-user`, this.getHeaders())
+  }
+
+  // Api to fetch login user license list
+  public getLoginUserBlueBook() {
+    return this.http.get(`${this.serviceUrl}/api/blue-book/list/login-user`, this.getHeaders())
+  }
+
 }

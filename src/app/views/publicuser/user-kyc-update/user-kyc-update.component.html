@@ -15,11 +15,12 @@
       <c-card-body class="bg-gradient text-center">
         <div class="button-container">
           <button [cModalToggle]="staticBackdropModal.id" cButton color="primary"
-           variant="outline" class="shadow my-2" (click)="getLoginUserLicenseList()" >
+                  variant="outline" class="shadow my-2" (click)="getLoginUserLicenseList()">
             Licenses
           </button>
           <button cButton color="primary" variant="outline" class="shadow my-2"
-           (click)="getLoginUserBlueBook()">Blue Book</button>
+                  (click)="getLoginUserBlueBook()">Blue Book
+          </button>
         </div>
       </c-card-body>
 
@@ -196,8 +197,8 @@
 </c-modal>
 
 
-<c-modal #verticallyCenteredModal alignment="center" backdrop="static" id="pictureShowUpModal" 
- [visible]="isQrCodeGenerateModuleVisible"
+<c-modal #verticallyCenteredModal alignment="center" backdrop="static" id="pictureShowUpModal"
+         [visible]="isQrCodeGenerateModuleVisible"
          (visibleChange)="handleQrCodeChange($event)">
   <c-modal-header>
     <h3 cModalTitle>Your Qr Code</h3>
@@ -217,9 +218,9 @@
 
 <!-- license modal -->
 <c-modal #staticBackdropModal id="staticBackdropModal.id" alignment="center"
-[visible]="isLicenseModalVisible" (visibleChange)="handleLicenseModal($event)">
+         [visible]="isLicenseModalVisible" (visibleChange)="handleLicenseModal($event)">
   <c-modal-body>
-    <table  bordered cTable class="text-center">
+    <table bordered cTable class="text-center">
       <thead>
       <tr>
         <th scope="col">Name</th>
@@ -239,33 +240,33 @@
       </tr>
       </tbody>
     </table>
-</c-modal-body>
+  </c-modal-body>
 </c-modal>
 
 
 <!-- license modal -->
 <c-modal #staticBackdropModal id="staticBackdropModalBluebook.id" alignment="center"
-[visible]="isBlueBookModalVisible" (visibleChange)="handleBluebookModal($event)">
+         [visible]="isBlueBookModalVisible" (visibleChange)="handleBluebookModal($event)">
   <c-modal-body>
-    <table  bordered cTable class="text-center">
+    <table bordered cTable class="text-center">
       <thead>
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">License No</th>
-        <th scope="col">License Category</th>
-        <th scope="col">Valid Date</th>
+        <th scope="col">UserName</th>
+        <th scope="col">Vehicle Type</th>
+        <th scope="col">Vehicle Number</th>
+        <th scope="col">Effective Date</th>
 
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let item of loginUserLicenseData">
-        <td>{{item.licensedOwnUserName}}</td>
-        <td>{{item.licenseNo}}</td>
-        <td>{{item.licenseCategoryName}}</td>
-        <td>{{item.validDate}}</td>
+      <tr *ngFor="let item of loginBlueBookData">
+        <td>{{item.currentBlueBookOwnUserName}}</td>
+        <td>{{getVehicleTypeName(item.vehicleType)}}</td>
+        <td>{{item.vehicleIdentificationNo}}</td>
+        <td>{{item.effectiveDate}}</td>
 
       </tr>
       </tbody>
     </table>
-</c-modal-body>
+  </c-modal-body>
 </c-modal>

@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {NotificationService} from "../../../baseService/notification.service";
+import {GlobalMethodService} from "../../global.method.service";
 
 
 @Component({
@@ -11,7 +12,7 @@ import {NotificationService} from "../../../baseService/notification.service";
   templateUrl: './user-kyc-update.component.html',
   styleUrls: ['./user-kyc-update.component.scss']
 })
-export class UserKycUpdateComponent implements OnInit {
+export class UserKycUpdateComponent extends GlobalMethodService implements OnInit {
   public visible = false;
   public form: FormGroup | any;
   public kycDetails: any; // Variable to store KYC details
@@ -34,6 +35,7 @@ export class UserKycUpdateComponent implements OnInit {
               private cdr: MatSnackBar,
               private route: Router,
               private notificationService: NotificationService) {
+    super();
   }
 
   ngOnInit(): void {
@@ -129,12 +131,12 @@ export class UserKycUpdateComponent implements OnInit {
     // this.route.navigate(['/home/user/update-kyc']);
   }
 
-  getKycStatus(){
+  getKycStatus() {
     if (this.kycDetails === null || this.kycDetails === undefined) {
       return '';
     } else {
       if (this.kycDetails['isKycPending'] === true) {
-       this.kycStatusTextColor = this.color[0];
+        this.kycStatusTextColor = this.color[0];
         return "PENDING";
       } else if (this.kycDetails['isKycCompleted'] === true) {
         this.kycStatusTextColor = this.color[1];
@@ -198,11 +200,11 @@ export class UserKycUpdateComponent implements OnInit {
     });
   }
 
-  getLoginUserLicenseList(){
+  getLoginUserLicenseList() {
     this.userService.getLoginUserLicense().subscribe(
       (response: any) => {
         this.loginUserLicenseData = response.data;
-        console.log("loginuserdata",response.data)
+        console.log("loginuserdata", response.data)
       },
       (error: any) => {
         // Handle error during form submission
@@ -210,12 +212,15 @@ export class UserKycUpdateComponent implements OnInit {
       });
   }
 
-  getLoginUserBlueBook(){
+  getLoginUserBlueBook() {
     debugger
     this.userService.getLoginUserBlueBook().subscribe(
       (response: any) => {
         this.loginBlueBookData = response.data;
-        console.log("loginBlueBookData",response.data)
+        this.isBlueBookModalVisible = true;
+        this.ngOnInit();
+        debugger
+        console.log("loginBlueBookData", response.data)
       },
       (error: any) => {
         // Handle error during form submission
