@@ -1,0 +1,110 @@
+<c-card>
+  <c-card-header>
+    <h2><strong>Process Tax Clearance</strong></h2>
+  </c-card-header>
+
+  <c-card-body>
+    <form cForm class="row g-2">
+      <c-row>
+        <c-col [md]="3">
+          <label cLabel for="citizenshipNo">Citizenship No:<sup>*</sup></label>
+          <input cFormControl id="citizenshipNo" name="citizenshipNo" formControlName="citizenshipNo" type="text"/>
+        </c-col>
+
+        <c-col [md]="3">
+          <label cLabel>Vehicle Type:<sup>*</sup></label>
+          <select aria-label="vehicleType" cSelect formControlName="vehicleType">
+            <option value="0">Scooter</option>
+            <option value="1">Bike</option>
+            <option value="2">Car</option>
+          </select>
+        </c-col>
+
+        <c-col [md]="3">
+          <label cLabel for="vehicleIdentificationNo">Vehicle Identification No:<sup>*</sup></label>
+          <input cFormControl id="vehicleIdentificationNo" name="vehicleIdentificationNo"
+                 formControlName="vehicleIdentificationNo" type="text"/>
+        </c-col>
+
+        <c-col [md]="3">
+          <label cLabel for="numberPlate">Number Plate:<sup>*</sup></label>
+          <input cFormControl id="numberPlate" name="numberPlate"
+                 formControlName="numberPlate" type="text"/>
+        </c-col>
+
+        <c-col [md]="3">
+          <label cLabel for="paidAmount">Paid Amount:<sup>*</sup></label>
+          <input cFormControl id="paidAmount" name="paidAmount"
+                 formControlName="paidAmount" type="text"/>
+        </c-col>
+
+        <c-col [md]="3">
+          <label cLabel for="amountpaidsheet">Upload Tax Paid Doc:<sup>*</sup></label>
+          <input cFormControl id="amountpaidsheet" name="amountPaidSheet" formControlName="amountPaidSheet"
+                 type="file"/>
+        </c-col>
+
+      </c-row>
+      <c-col class="mt-3 mr-4" align="end">
+        <button cButton color="primary" type="submit">Submit</button>
+      </c-col>
+    </form>
+  </c-card-body>
+
+  <c-card-footer>
+    <form cForm class="row g-2">
+      <c-row class="mt-4">
+        <c-col [sm]="4">
+          <input cFormControl type="search" placeholder="Searching" formControlName="searchValue" aria-label="Search"
+                 class="me-2" #searchInput>
+        </c-col>
+        <c-col [sm]="1">
+          <button type="submit" cButton color="success" variant="outline">Search</button>
+        </c-col>
+      </c-row>
+    </form>
+    <h3 align="center" class="mt-3">Tax Clearance List </h3>
+    <table bordered cTable hover class="text-center mt-3">
+      <thead>
+      <tr>
+        <th scope="col">Process Date</th>
+        <th scope="col">Citizenship No</th>
+        <th scope="col">Vehicle Type</th>
+        <th scope="col">Identification No</th>
+        <th scope="col">Number Plate</th>
+        <th scope="col">Paid Amount</th>
+        <th scope="col">Valid Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tbody>
+    </table>
+    <c-pagination align="end" aria-label="Page navigation example mt-4">
+      <li cPageItem>
+        <a cPageLink [routerLink]="">Previous</a>
+      </li>
+      <li cPageItem>
+        <a cPageLink [routerLink]="">1</a>
+      </li>
+      <li cPageItem>
+        <a cPageLink [routerLink]="">2</a>
+      </li>
+      <li cPageItem>
+        <a cPageLink [routerLink]="">3</a>
+      </li>
+      <li cPageItem>
+        <a cPageLink [routerLink]="">Next</a>
+      </li>
+    </c-pagination>
+  </c-card-footer>
+
+</c-card>
+
