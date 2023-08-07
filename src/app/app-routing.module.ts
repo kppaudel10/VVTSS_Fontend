@@ -22,6 +22,7 @@ import {SellVehicleDetailsComponent} from './views/publicuser/sell-vehicle-detai
 import {AddVehicleComponent} from './views/publicuser/add-vehicle/add-vehicle.component';
 import {UserListComponent} from "./views/admin/user-list/user-list.component";
 import {UserListViewComponent} from "./views/admin/user-list-view/user-list-view.component";
+import {ProcessTaxComponent} from "./views/publicuser/process-tax/process-tax.component";
 
 const routes: Routes = [
   {
@@ -144,6 +145,10 @@ const routes: Routes = [
       {
         path: 'user-list-view',
         component: UserListViewComponent
+      },
+      {
+        path: 'process-tax',
+        component: ProcessTaxComponent
       }
 
     ]

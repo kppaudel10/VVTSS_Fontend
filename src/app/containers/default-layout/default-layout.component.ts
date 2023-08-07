@@ -91,6 +91,16 @@ export class DefaultLayoutComponent implements OnInit {
             url = '/home/user-list';
             break;
 
+          case 'Process Tax':
+            icon = IconSubset.cilCreditCard;
+            url = '/home/process-tax';
+            break;
+
+          case 'Tax Clearance Request':
+            icon = IconSubset.cilCheck;
+            url = '/home/user-list';
+            break;
+
           default:
             icon =
               url = '/login'

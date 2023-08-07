@@ -32,7 +32,8 @@ import {SellVehicleDetailsComponent} from './sell-vehicle-details/sell-vehicle-d
 import {AddVehicleComponent} from './add-vehicle/add-vehicle.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {DialogModule} from '@angular/cdk/dialog';
-import {MatDialogModule} from '@angular/material/dialog'
+import {MatDialogModule} from '@angular/material/dialog';
+import { ProcessTaxComponent } from './process-tax/process-tax.component'
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import {MatDialogModule} from '@angular/material/dialog'
     UserRequestViewComponent,
     SellVehicleDetailsComponent,
     AddVehicleComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ProcessTaxComponent
 
   ],
   imports: [
