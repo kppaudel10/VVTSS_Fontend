@@ -4,7 +4,8 @@
   </c-card-header>
 
   <c-card-body>
-    <form cForm class="row g-2">
+    <form cForm class="row g-2" [formGroup]="taxProcessForm" (ngSubmit)="saveTaxClearance()"
+          enctype="multipart/form-data">
       <c-row>
         <c-col [md]="3">
           <label cLabel for="citizenshipNo">Citizenship No:<sup>*</sup></label>
@@ -41,7 +42,7 @@
         <c-col [md]="3">
           <label cLabel for="amountpaidsheet">Upload Tax Paid Doc:<sup>*</sup></label>
           <input cFormControl id="amountpaidsheet" name="amountPaidSheet" formControlName="amountPaidSheet"
-                 type="file"/>
+                 (change)="uploadImage($event)" type="file"/>
         </c-col>
 
       </c-row>

@@ -167,4 +167,8 @@ export class UserService extends BaseService {
     return this.http.get(`${this.serviceUrl}/api/blue-book/list/login-user`, this.getHeaders())
   }
 
+  public saveTaxClearance(data: any) {
+    return this.http.post(`${this.serviceUrl}/api/tax-clearance/save`, data, this.getHeadersWithMultipart())
+  }
+
 }
