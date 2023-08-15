@@ -98,7 +98,7 @@ export class DefaultLayoutComponent implements OnInit {
 
           case 'Tax Clearance Request':
             icon = IconSubset.cilCheck;
-            url = '/home/user-list';
+            url = '/home/tax-clearance-request';
             break;
 
           default:

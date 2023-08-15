@@ -27,7 +27,8 @@ export class AdminService extends BaseService {
   // Api to search license list
   public getSearchLicense(searchValue: string) {
     let params = new HttpParams().set('searchValue', searchValue);
-    return this.http.get(`${this.serviceUrl}/api/license/list?searchValue=` + searchValue, this.getHeaders());
+    return this.http.get(`${this.serviceUrl}/api/license/list?searchValue=` + searchValue,
+      this.getHeaders());
   }
 
   // Api to save blue-book details
@@ -55,9 +56,19 @@ export class AdminService extends BaseService {
     return this.http.get(`${this.serviceUrl}/api/public-user/active/list`, this.getHeaders())
   }
 
-   // Api to fetch ownership request list
-   public scanNumberPlate(data : FormData) {
-    return this.http.post(`${this.serviceUrl}/api/number-plate/scan`,data, this.getHeaders())
+  // Api to fetch ownership request list
+  public scanNumberPlate(data: FormData) {
+    return this.http.post(`${this.serviceUrl}/api/number-plate/scan`, data, this.getHeaders())
   }
-  
+
+  // Api to fetch all tax clearance request list
+  public getTaxClearanceList() {
+    return this.http.get(`${this.serviceUrl}/api/tax-clearance/List/all/true`, this.getHeaders())
+  }
+
+  public actionOnTaxClearanceRequest(actionType: any, id: any) {
+    return this.http.get(`${this.serviceUrl}/api/tax-clearance/request/action/`.concat(actionType)
+      .concat("/").concat(id), this.getHeaders())
+  }
+
 }

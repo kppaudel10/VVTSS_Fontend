@@ -23,6 +23,7 @@ import {AddVehicleComponent} from './views/publicuser/add-vehicle/add-vehicle.co
 import {UserListComponent} from "./views/admin/user-list/user-list.component";
 import {UserListViewComponent} from "./views/admin/user-list-view/user-list-view.component";
 import {ProcessTaxComponent} from "./views/publicuser/process-tax/process-tax.component";
+import {TaxClearanceRequestComponent} from "./views/admin/tax-clearance-request/tax-clearance-request.component";
 
 const routes: Routes = [
   {
@@ -149,6 +150,10 @@ const routes: Routes = [
       {
         path: 'process-tax',
         component: ProcessTaxComponent
+      },
+      {
+        path: 'tax-clearance-request',
+        component: TaxClearanceRequestComponent
       }
 
     ]

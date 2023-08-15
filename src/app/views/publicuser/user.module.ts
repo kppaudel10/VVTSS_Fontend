@@ -33,7 +33,8 @@ import {AddVehicleComponent} from './add-vehicle/add-vehicle.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {DialogModule} from '@angular/cdk/dialog';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ProcessTaxComponent } from './process-tax/process-tax.component'
+import { ProcessTaxComponent } from './process-tax/process-tax.component';
+import { TaxClearanceRequestComponent } from '../admin/tax-clearance-request/tax-clearance-request.component'
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { ProcessTaxComponent } from './process-tax/process-tax.component'
     SellVehicleDetailsComponent,
     AddVehicleComponent,
     UserProfileComponent,
-    ProcessTaxComponent
+    ProcessTaxComponent,
+    TaxClearanceRequestComponent
 
   ],
   imports: [

@@ -1,0 +1,73 @@
+<c-container>
+  <c-card class="p-5">
+    <table bordered cTable hover class="text-center">
+      <thead>
+      <tr>
+        <th scope="col">Process Date</th>
+        <th scope="col">Citizenship No</th>
+        <th scope="col">Vehicle Type</th>
+        <th scope="col">Identification No</th>
+        <th scope="col">Number Plate</th>
+        <th scope="col">Paid Amount</th>
+        <th scope="col">Valid Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of taxClearanceList">
+        <td>{{item.processDate}}</td>
+        <td>{{item.citizenshipNo}}</td>
+        <td>{{item.vehicleType}}</td>
+        <td>{{item.identificationNo}}</td>
+        <td>{{item.numberPlate}}</td>
+        <td>{{item.paidAmount}}</td>
+        <td>{{item.validDate}}</td>
+        <td>{{item.isVerified}}</td>
+        <td>
+          <button cButton color="secondary" (click)="showPaidBillSheet(item)">
+            View
+          </button>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+    <c-pagination align="end" aria-label="Page navigation example mt-4">
+      <li cPageItem>
+        <a cPageLink [routerLink]="">Previous</a>
+      </li>
+      <li cPageItem>
+        <a cPageLink [routerLink]="">1</a>
+      </li>
+      <li cPageItem>
+        <a cPageLink [routerLink]="">2</a>
+      </li>
+      <li cPageItem>
+        <a cPageLink [routerLink]="">3</a>
+      </li>
+      <li cPageItem>
+        <a cPageLink [routerLink]="">Next</a>
+      </li>
+    </c-pagination>
+  </c-card>
+</c-container>
+
+<c-modal #verticallyCenteredModal alignment="center" backdrop="static" id="pictureShowUpModal"
+         [visible]="isTaxBillShowModalVisible"
+         (visibleChange)="handleTaxBillChange($event)">
+  <c-modal-header>
+    <h3 cModalTitle>Tax Paid Bill Sheet</h3>
+    <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body class="text-center">
+    <img class="image-show-modal" [src]="taxBillImage" alt="">
+  </c-modal-body>
+  <c-modal-footer>
+    <!--    <button [cModalToggle]="verticallyCenteredModal.id" cButton color="secondary">-->
+    <!--      Close-->
+    <!--    </button>-->
+    <button cButton color="success" (click)="acceptTaxClearanceRequest()" type="button">Accept</button>
+    <button cButton color="danger" (click)="rejectTaxClearanceRequest()" type="button">Reject</button>
+  </c-modal-footer>
+</c-modal>

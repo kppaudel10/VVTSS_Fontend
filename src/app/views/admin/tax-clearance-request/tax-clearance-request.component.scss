@@ -1,0 +1,54 @@
+.my-2 {
+  margin: 2.5rem;
+}
+
+c-card-body img {
+  height: 300px;
+  width: 400px;
+  border: 1px solid rgb(161, 73, 73);
+}
+
+sup {
+  color: red;
+  font-size: 13px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.my-2 {
+  padding: 12px 24px;
+  font-size: 20px;
+  width: 300px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.image-show-modal {
+  max-width: 100%;
+  max-height: 100%;
+
+}
+
+.PENDING {
+  background-color: blue;
+  color: white;
+}
+
+.kyc-verified {
+  background-color: green;
+  color: white;
+}
+
+.kyc-rejected {
+  background-color: red;
+  color: white;
+}
