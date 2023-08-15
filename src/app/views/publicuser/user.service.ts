@@ -171,4 +171,8 @@ export class UserService extends BaseService {
     return this.http.post(`${this.serviceUrl}/api/tax-clearance/save`, data, this.getHeadersWithMultipart())
   }
 
+  public getTaxClearanceList() {
+    return this.http.get(`${this.serviceUrl}/api/tax-clearance/List/loginUser`, this.getHeaders())
+  }
+
 }

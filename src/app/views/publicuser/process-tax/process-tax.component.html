@@ -80,12 +80,16 @@
       </tr>
       </thead>
       <tbody>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <tr *ngFor="let item of taxClearanceList">
+        <td>{{item.processDate}}</td>
+        <td>{{item.citizenshipNo}}</td>
+        <td>{{item.vehicleType}}</td>
+        <td>{{item.identificationNo}}</td>
+        <td>{{item.numberPlate}}</td>
+        <td>{{item.paidAmount}}</td>
+        <td>{{item.validDate}}</td>
+        <td>{{item.isVerified}}</td>
+      </tr>
       </tbody>
     </table>
     <c-pagination align="end" aria-label="Page navigation example mt-4">

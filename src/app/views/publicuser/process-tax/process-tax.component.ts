@@ -11,6 +11,7 @@ import {NotificationService} from "../../../baseService/notification.service";
 export class ProcessTaxComponent implements OnInit {
 
   public taxProcessForm: FormGroup | any;
+  public taxClearanceList: any[] | undefined;
 
   constructor(private userService: UserService,
               private formBuilder: FormBuilder,
@@ -27,10 +28,10 @@ export class ProcessTaxComponent implements OnInit {
       paidAmount: ['', Validators.required],
       amountPaidSheet: [null, Validators.required]
     });
+    this.getLoginUserTaxClearanceList();
   }
 
-  uploadImage(event: any,) {
-    debugger
+  uploadImage(event: any) {
     const file: File = event.target.files[0];
     this.taxProcessForm.controls['amountPaidSheet'].patchValue([file]);
     this.taxProcessForm.get('amountPaidSheet').updateValueAndValidity()
@@ -64,7 +65,19 @@ export class ProcessTaxComponent implements OnInit {
         // Handle error during form submission
         this.notificationService.showError(error.error.message, "Error !!")
       });
+  }
 
+
+  getLoginUserTaxClearanceList() {
+    this.userService.getTaxClearanceList().subscribe(
+      (res: any) => {
+        console.log('taxData', res.data);
+        this.taxClearanceList = res.data;
+      },
+      (error: any) => {
+        this.notificationService.showError(error, "Error !")
+      }
+    )
   }
 
 }
