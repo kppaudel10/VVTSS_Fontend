@@ -175,4 +175,8 @@ export class UserService extends BaseService {
     return this.http.get(`${this.serviceUrl}/api/tax-clearance/List/loginUser`, this.getHeaders())
   }
 
+  public getUserCommonDetails() {
+    return this.http.get(`${this.serviceUrl}/api/public-user/common-detail`, this.getHeaders())
+  }
+
 }

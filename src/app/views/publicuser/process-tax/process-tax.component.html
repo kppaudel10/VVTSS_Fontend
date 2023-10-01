@@ -9,7 +9,8 @@
       <c-row>
         <c-col [md]="3">
           <label cLabel for="citizenshipNo">Citizenship No:<sup>*</sup></label>
-          <input cFormControl id="citizenshipNo" name="citizenshipNo" formControlName="citizenshipNo" type="text"/>
+          <input cFormControl id="citizenshipNo" name="citizenshipNo" formControlName="citizenshipNo" type="text"
+                 [value]="citizenshipNo" readonly/>
         </c-col>
 
         <c-col [md]="3">
@@ -22,15 +23,27 @@
         </c-col>
 
         <c-col [md]="3">
-          <label cLabel for="vehicleIdentificationNo">Vehicle Identification No:<sup>*</sup></label>
+          <!--<label cLabel for="vehicleIdentificationNo">Vehicle Identification No:<sup>*</sup></label>
           <input cFormControl id="vehicleIdentificationNo" name="vehicleIdentificationNo"
-                 formControlName="vehicleIdentificationNo" type="text"/>
+                 formControlName="vehicleIdentificationNo" type="text"/>-->
+          <label cLabel>Vehicle Identification No:<sup>*</sup></label>
+          <select aria-label="vehicleIdentificationNo" cSelect formControlName="vehicleIdentificationNo">
+            <option *ngFor="let num of vehicleIdentificationList" [value]="num">
+              {{num}}
+            </option>
+          </select>
         </c-col>
 
         <c-col [md]="3">
-          <label cLabel for="numberPlate">Number Plate:<sup>*</sup></label>
+          <!--<label cLabel for="numberPlate">Number Plate:<sup>*</sup></label>
           <input cFormControl id="numberPlate" name="numberPlate"
-                 formControlName="numberPlate" type="text"/>
+                 formControlName="numberPlate" type="text"/>-->
+          <label cLabel>Number Plate:<sup>*</sup></label>
+          <select aria-label="numberPlate" cSelect formControlName="numberPlate">
+            <option *ngFor="let num of numberPlateList" [value]="num">
+              {{num}}
+            </option>
+          </select>
         </c-col>
 
         <c-col [md]="3">
@@ -74,9 +87,9 @@
         <th scope="col">Identification No</th>
         <th scope="col">Number Plate</th>
         <th scope="col">Paid Amount</th>
-        <th scope="col">Valid Date</th>
+        <!--        <th scope="col">Valid Date</th>-->
         <th scope="col">Status</th>
-        <th scope="col">Action</th>
+        <!--        <th scope="col">Action</th>-->
       </tr>
       </thead>
       <tbody>
@@ -87,8 +100,8 @@
         <td>{{item.identificationNo}}</td>
         <td>{{item.numberPlate}}</td>
         <td>{{item.paidAmount}}</td>
-        <td>{{item.validDate}}</td>
-        <td>{{item.isVerified}}</td>
+        <!--        <td>{{item.validDate}}</td>-->
+        <td>{{item.status}}</td>
       </tr>
       </tbody>
     </table>

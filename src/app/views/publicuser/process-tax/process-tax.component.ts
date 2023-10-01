@@ -12,6 +12,9 @@ export class ProcessTaxComponent implements OnInit {
 
   public taxProcessForm: FormGroup | any;
   public taxClearanceList: any[] | undefined;
+  public citizenshipNo: any;
+  public vehicleIdentificationList: any[] | undefined;
+  public numberPlateList: any[] | undefined;
 
   constructor(private userService: UserService,
               private formBuilder: FormBuilder,
@@ -19,15 +22,15 @@ export class ProcessTaxComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.taxProcessForm = this.formBuilder.group({
-      citizenshipNo: ['', Validators.required],
+      citizenshipNo: [''],
       vehicleType: ['', Validators.required],
       vehicleIdentificationNo: ['', Validators.required],
       numberPlate: ['', Validators.required],
       paidAmount: ['', Validators.required],
       amountPaidSheet: [null, Validators.required]
     });
+    this.getLoginUserCommonData();
     this.getLoginUserTaxClearanceList();
   }
 
@@ -38,6 +41,7 @@ export class ProcessTaxComponent implements OnInit {
   }
 
   saveTaxClearance() {
+    debugger
     if (this.taxProcessForm?.invalid) {
       this.notificationService.showWarnig('Please check each field before submit the application  ',
         'Warning !!');
@@ -79,5 +83,19 @@ export class ProcessTaxComponent implements OnInit {
       }
     )
   }
+
+  getLoginUserCommonData() {
+    this.userService.getUserCommonDetails().subscribe(
+      (res: any) => {
+        this.citizenshipNo = res.data.citizenshipNo;
+        this.vehicleIdentificationList = res.data.vehicleIdentificationNo;
+        this.numberPlateList = res.data.numberPlate;
+      },
+      (error: any) => {
+        this.notificationService.showError(error, "Error !")
+      }
+    )
+  }
+
 
 }
