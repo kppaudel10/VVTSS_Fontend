@@ -41,7 +41,6 @@ export class ProcessTaxComponent implements OnInit {
   }
 
   saveTaxClearance() {
-    debugger
     if (this.taxProcessForm?.invalid) {
       this.notificationService.showWarnig('Please check each field before submit the application  ',
         'Warning !!');
@@ -69,6 +68,7 @@ export class ProcessTaxComponent implements OnInit {
         // Handle error during form submission
         this.notificationService.showError(error.error.message, "Error !!")
       });
+    this.ngOnInit();
   }
 
 

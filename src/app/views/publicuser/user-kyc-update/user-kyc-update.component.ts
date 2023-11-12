@@ -213,13 +213,11 @@ export class UserKycUpdateComponent extends GlobalMethodService implements OnIni
   }
 
   getLoginUserBlueBook() {
-    debugger
     this.userService.getLoginUserBlueBook().subscribe(
       (response: any) => {
         this.loginBlueBookData = response.data;
         this.isBlueBookModalVisible = true;
         this.ngOnInit();
-        debugger
         console.log("loginBlueBookData", response.data)
       },
       (error: any) => {
