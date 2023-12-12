@@ -6,8 +6,11 @@
           <button cButton (click)="getUserBasicDetails()" color="primary" variant="outline" class="shadow my-2">
             Kyc Update
           </button>
-          <button cButton color="primary" variant="outline" class="shadow my-2" (click)="generateAndShowQrCode()">
+          <!-- <button cButton color="primary" variant="outline" class="shadow my-2" (click)="generateAndShowQrCode()">
             Generate QR
+          </button> -->
+          <button cButton color="primary" variant="outline" class="shadow my-2"
+                  (click)="getLoginUserBlueBook()">Blue Book
           </button>
         </div>
       </c-card-body>
@@ -18,9 +21,9 @@
                   variant="outline" class="shadow my-2" (click)="getLoginUserLicenseList()">
             Licenses
           </button>
-          <button cButton color="primary" variant="outline" class="shadow my-2"
+          <!-- <button cButton color="primary" variant="outline" class="shadow my-2"
                   (click)="getLoginUserBlueBook()">Blue Book
-          </button>
+          </button> -->
         </div>
       </c-card-body>
 
