@@ -67,7 +67,7 @@ export class LicenseComponent implements OnInit {
           this.licenseList = response.data;
         },
         error => {
-          console.error(error);
+          this.notificationService.showError(error.error.message, "Error !!")
         }
       );
   }

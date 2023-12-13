@@ -80,6 +80,7 @@ export class NumberPlateScanComponent implements OnInit {
       const file: File = this.uploadForm.get(formControlName)?.value[0];
       formData.append(formControlName, file);
     });
+    this.notificationService.showInfo("Please wait, Your input data is processing.................!","Info !")
 
     this.adminService.scanNumberPlate(formData).subscribe(
       (response: any) => {
@@ -87,6 +88,8 @@ export class NumberPlateScanComponent implements OnInit {
         if(response.data == null || response.data == undefined || response.data.userId == null){
           this.ocrText = response.data.ocrText;
           this.isOnlyOcrTextModalVisible = true;
+          this.notificationService.showInfo("User does not exists in given number plate("+this.ocrText+").","Info !")
+
           // this.ngOnInit();
         }else{
           // bind the vehicle related data 
@@ -99,10 +102,11 @@ export class NumberPlateScanComponent implements OnInit {
           this.vehicleRelatedData.push("Company Name : ".concat(response.data.vehicleCompanyName))
           this.userDataService.setVehicleRelatedData(this.vehicleRelatedData);
         this.router.navigate(['/home/plate-scan-process'])
+        this.notificationService.showSuccess("User data fetch successfully !","Success !")
         }
       },
       error => {
-        console.error(error);
+        this.notificationService.showError(error.error.message, "Error !!");
       }
     )
   }
