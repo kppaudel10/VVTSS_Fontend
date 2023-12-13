@@ -2,13 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../user.service";
 import {NotificationService} from "../../../baseService/notification.service";
+import {GlobalMethodService} from "../../global.method.service";
 
 @Component({
   selector: 'app-process-tax',
   templateUrl: './process-tax.component.html',
   styleUrls: ['./process-tax.component.scss']
 })
-export class ProcessTaxComponent implements OnInit {
+export class ProcessTaxComponent extends GlobalMethodService implements OnInit {
 
   public taxProcessForm: FormGroup | any;
   public taxClearanceList: any[] | undefined;
@@ -19,6 +20,7 @@ export class ProcessTaxComponent implements OnInit {
   constructor(private userService: UserService,
               private formBuilder: FormBuilder,
               private notificationService: NotificationService) {
+    super();
   }
 
   ngOnInit(): void {
@@ -26,7 +28,6 @@ export class ProcessTaxComponent implements OnInit {
       citizenshipNo: [''],
       vehicleType: ['', Validators.required],
       vehicleIdentificationNo: ['', Validators.required],
-      numberPlate: ['', Validators.required],
       paidAmount: ['', Validators.required],
       amountPaidSheet: [null, Validators.required]
     });
@@ -63,10 +64,12 @@ export class ProcessTaxComponent implements OnInit {
           this.taxProcessForm.controls[controlName].setValue(this.taxProcessForm.controls.value);
         });
         this.notificationService.showSuccess(response.message, "Success !!")
+        this.ngOnInit();
       },
       (error: any) => {
         // Handle error during form submission
         this.notificationService.showError(error.error.message, "Error !!")
+        this.ngOnInit();
       });
     this.ngOnInit();
   }

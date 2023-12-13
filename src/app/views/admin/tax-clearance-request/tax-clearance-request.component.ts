@@ -42,7 +42,6 @@ export class TaxClearanceRequestComponent extends BaseService implements OnInit 
   }
 
   showPaidBillSheet(data: string) {
-    debugger
     this.taxClearanceData = data;
     // fetch bill image
     if (data != null) {
