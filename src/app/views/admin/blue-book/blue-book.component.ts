@@ -15,7 +15,7 @@ export class BlueBookComponent extends GlobalMethodService implements OnInit {
   public searchForm: FormGroup | any;
   public blueBookList: any[] = [];
   currentPage = 1;
-  itemsPerPage = 5;
+  itemsPerPage = 40;
   totalPages = 0;
 
   constructor(private formBuilder: FormBuilder,
