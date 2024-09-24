@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
@@ -18,6 +18,11 @@ import { NumberPlateScanProcessComponent } from './number-plate-scan-process/num
 import {MatIconModule} from '@angular/material/icon';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserListViewComponent } from './user-list-view/user-list-view.component';
+import { TraficFlowPredictionComponent } from './trafic-flow-prediction/trafic-flow-prediction.component';
+import { TrainingComponent } from './training/training.component';
+import { ForecastComponent } from './forecast/forecast.component';
+import { LogComponent } from './log/log.component';
+import { PerformanceComponent } from './performance/performance.component';
 
 
 @NgModule({
@@ -29,12 +34,17 @@ import { UserListViewComponent } from './user-list-view/user-list-view.component
     NumberPlateScanComponent,
     NumberPlateScanProcessComponent,
     UserListComponent,
-    UserListViewComponent
+    UserListViewComponent,
+    TraficFlowPredictionComponent,
+    TrainingComponent,
+    ForecastComponent,
+    LogComponent,
+    PerformanceComponent,
+    
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    
     UserRoutingModule,
     CardModule,
     NavModule,
@@ -57,8 +67,8 @@ import { UserListViewComponent } from './user-list-view/user-list-view.component
     MatDatepickerModule,
     ToastModule,
     BrowserAnimationsModule,
-    
-
-  ]
+    TabsModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AdminModule { }

@@ -1,0 +1,31 @@
+.active-link {
+    font-weight: bold;
+    color: #1976d2; /* Change color for the active link */
+  }
+  nav[mat-tab-nav-bar] {
+    display: flex;
+    justify-content: list-separator;
+    background-color: #f4f4f9;
+    padding: 10px 0;
+  }
+  
+  a[mat-tab-link] {
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #666;
+    transition: all 0.3s ease-in-out;
+    border-bottom: 2px solid transparent;
+  }
+  
+  a[mat-tab-link]:hover {
+    color: #1976d2;
+    border-bottom-color: #1976d2;
+  }
+  
+  a.active-link {
+    color: #1976d2;
+    font-weight: bold;
+    border-bottom-color: #1976d2;
+  }
+  

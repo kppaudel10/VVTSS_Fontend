@@ -1,0 +1,12 @@
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+     *ngFor="let link of navLinks"
+     [routerLink]="link.link"
+     routerLinkActive="active-link" 
+     #rla="routerLinkActive">
+    {{ link.label }}
+  </a>
+</nav>
+
+<!-- Router Outlet where the child components will be rendered -->
+<router-outlet></router-outlet>

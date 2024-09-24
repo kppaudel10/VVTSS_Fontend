@@ -24,6 +24,11 @@ import {UserListComponent} from "./views/admin/user-list/user-list.component";
 import {UserListViewComponent} from "./views/admin/user-list-view/user-list-view.component";
 import {ProcessTaxComponent} from "./views/publicuser/process-tax/process-tax.component";
 import {TaxClearanceRequestComponent} from "./views/admin/tax-clearance-request/tax-clearance-request.component";
+import { TraficFlowPredictionComponent } from './views/admin/trafic-flow-prediction/trafic-flow-prediction.component';
+import { TrainingComponent } from './views/admin/training/training.component';
+import { ForecastComponent } from './views/admin/forecast/forecast.component';
+import { LogComponent } from './views/admin/log/log.component';
+import { PerformanceComponent } from './views/admin/performance/performance.component';
 
 const routes: Routes = [
   {
@@ -154,7 +159,35 @@ const routes: Routes = [
       {
         path: 'tax-clearance-request',
         component: TaxClearanceRequestComponent
-      }
+      },
+      {
+        path: 'trafic-flow-predection',
+        component: TraficFlowPredictionComponent, // Main component
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: 'training', // Child route for training
+            component: TrainingComponent, 
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'forecast', // Child route for training
+            component: ForecastComponent, 
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'log', // Child route for training
+            component: LogComponent, 
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'performance',
+            component: PerformanceComponent,
+            canActivate: [AuthGuard]
+          }
+          
+        ]
+      },
 
     ]
 

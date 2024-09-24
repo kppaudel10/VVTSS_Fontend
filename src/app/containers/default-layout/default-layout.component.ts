@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from 'src/app/views/publicuser/user.service'
+import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/views/publicuser/user.service'
 //import { navItems } from './_nav';
-import {IconSubset} from 'src/app/icons/icon-subset';
+import { IconSubset } from 'src/app/icons/icon-subset';
 
 //import { INavData } from '@coreui/angular';
 
@@ -101,6 +101,11 @@ export class DefaultLayoutComponent implements OnInit {
             url = '/home/tax-clearance-request';
             break;
 
+          case 'Traffic Congestion':
+            icon = IconSubset.cilPaperPlane;
+            url = '/home/trafic-flow-predection';
+            break;
+
           default:
             icon =
               url = '/login'
@@ -110,7 +115,7 @@ export class DefaultLayoutComponent implements OnInit {
         return {
           name: module.moduleName,
           url: url,
-          iconComponent: {name: icon}
+          iconComponent: { name: icon }
         };
 
 
