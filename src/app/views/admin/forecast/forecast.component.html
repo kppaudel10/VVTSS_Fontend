@@ -21,51 +21,33 @@
                 </c-col>
             </c-row>
             <c-col class=" mt-4 btns">
-                <button cButton [cModalToggle]="verticallyCenteredModal.id" color="success">Forecast</button>
-                <button class="bigbot" [cModalToggle]="verticallyCenteredScrollableModal.id" cButton color="success">Forecast In Big Mode</button>
+                <button cButton [cModalToggle]="modalLg.id" color="success">Forecast</button>
+                <button class="bigbot" cButton [cModalToggle]="fullScreen.id" color="success">Forecast In Big
+                    Mode</button>
             </c-col>
         </c-row>
-        
     </form>
 
-    <c-modal #verticallyCenteredModal alignment="center" id="verticallyCenteredModal">
+    <!--Small model-->
+    <c-modal #modalLg id="modalLg" size="lg">
         <c-modal-header>
-          <h5 cModalTitle>Modal title</h5>
-          <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>
+            <h5 cModalTitle>Large modal</h5>
         </c-modal-header>
-        <c-modal-body>
-          Woohoo, you are reading this text in a modal!
-        </c-modal-body>
+        <c-modal-body>...</c-modal-body>
         <c-modal-footer>
-          <button [cModalToggle]="verticallyCenteredModal.id" cButton color="secondary">
-            Close
-          </button>
-          <button cButton color="primary">Save</button>
+            <button [cModalToggle]="modalLg.id" cButton>Close</button>
         </c-modal-footer>
-      </c-modal>
+    </c-modal>
 
-
-      <c-modal #verticallyCenteredScrollableModal
-      [scrollable]="true"
-      alignment="center"
-      id="verticallyCenteredScrollableModal">
-<c-modal-header>
- <h5 cModalTitle>Modal title</h5>
- <button [cModalToggle]="verticallyCenteredScrollableModal.id" cButtonClose></button>
-</c-modal-header>
-<c-modal-body>
- <p>
-    max-height of modal, content will be cropped and scrollable within the modal.
- </p>
- 
- <p>Just like that.</p>
-</c-modal-body>
-<c-modal-footer>
- <button [cModalToggle]="verticallyCenteredScrollableModal.id" cButton color="secondary">
-   Close
- </button>
- <button cButton color="primary">Save</button>
-</c-modal-footer>
-</c-modal>
-
-    </div>
+    <!--Big model-->
+    <c-modal #fullScreen [fullscreen]="true" id="fullScreen">
+        <c-modal-header>
+            <h5 cModalTitle>Full screen</h5>
+            <button [cModalToggle]="fullScreen.id" cButtonClose></button>
+        </c-modal-header>
+        <c-modal-body>...</c-modal-body>
+        <c-modal-footer>
+            <button cButton [cModalToggle]="fullScreen.id">Close</button>
+        </c-modal-footer>
+    </c-modal>
+</div>
