@@ -40,14 +40,17 @@
     </c-modal>
 
     <!--Big model-->
-    <c-modal #fullScreen [fullscreen]="true" id="fullScreen">
-        <c-modal-header>
-            <h5 cModalTitle>Full screen</h5>
-            <button [cModalToggle]="fullScreen.id" cButtonClose></button>
-        </c-modal-header>
-        <c-modal-body>...</c-modal-body>
-        <c-modal-footer>
-            <button cButton [cModalToggle]="fullScreen.id">Close</button>
-        </c-modal-footer>
-    </c-modal>
+   <c-modal #fullScreen [fullscreen]="true" id="fullScreen">
+    <c-modal-header>
+        <h5 cModalTitle>Leaflet Map</h5>
+        <button [cModalToggle]="fullScreen.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+        <div id="map" style="height: 500px;"></div> <!-- Container for the Leaflet map -->
+    </c-modal-body>
+    <c-modal-footer>
+        <button cButton [cModalToggle]="fullScreen.id">Close</button>
+    </c-modal-footer>
+</c-modal>
+
 </div>
