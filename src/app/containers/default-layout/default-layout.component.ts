@@ -103,7 +103,7 @@ export class DefaultLayoutComponent implements OnInit {
 
           case 'Traffic Congestion':
             icon = IconSubset.cilPaperPlane;
-            url = '/home/trafic-flow-predection';
+            url = '/home/trafic-flow-predection/training';
             break;
 
           default:

@@ -2,12 +2,14 @@ import {BaseService} from "../../baseService/baseService";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Injectable} from "@angular/core";
+import { Observable } from "rxjs";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService extends BaseService {
+  [key: string]: any;
 
   constructor(private http: HttpClient, private rout: Router) {
     super();
@@ -69,6 +71,11 @@ export class AdminService extends BaseService {
   public actionOnTaxClearanceRequest(actionType: any, id: any) {
     return this.http.get(`${this.serviceUrl}/api/tax-clearance/request/action/`.concat(actionType)
       .concat("/").concat(id), this.getHeaders())
+  }
+
+  // Api to Train data Log....
+  public trainigDataLogs(data: FormData){
+    return this.http.post(`${this.serviceUrl}/api/traffic-congestion/training/data`, data, this.getHeaders())
   }
 
 }

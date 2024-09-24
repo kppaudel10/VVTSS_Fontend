@@ -8,28 +8,28 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class TraficFlowPredictionComponent implements OnInit {
   navLinks!: any[];
-  activeLinkIndex = -1;
+  activeLinkIndex = 0;
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.navLinks = [
       {
         label: 'Training',
-        link: 'training',  // Remove the dot from the path
+        link: 'training',  
         index: 0
       },
       {
         label: 'Forecast',
-        link: 'forecast',  // Remove the dot from the path
+        link: 'forecast',  
         index: 1
       },
       {
         label: 'Log',
-        link: 'log',  // Remove the dot from the path
+        link: 'log',  
         index: 2
       },
       {
         label: 'Performance',
-        link: 'performance',  // Remove the dot from the path
+        link: 'performance',  
         index: 3
       },
     ];
@@ -37,7 +37,7 @@ export class TraficFlowPredictionComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events.subscribe((res) => {
-      const currentUrl = this.router.url;
+      const currentUrl = this.router.url[0];
       this.activeLinkIndex = this.navLinks.indexOf(
         this.navLinks.find(tab => tab.link === currentUrl.split('/').pop())
       );

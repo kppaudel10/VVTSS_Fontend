@@ -4,6 +4,7 @@ import {Injectable} from "@angular/core";
   providedIn: 'root'
 })
 export class AdminDataService {
+  [x: string]: any;
 
   private buyerAndSellerData: any;
 
