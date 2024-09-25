@@ -4,7 +4,7 @@ import { AdminService } from '../admin.service';
 import { NotificationService } from 'src/app/baseService/notification.service';
 import { Router } from '@angular/router';
 import { LogService } from 'src/app/views/admin/log/log.service'
- 
+
 
 @Component({
   selector: 'app-training',
@@ -12,7 +12,7 @@ import { LogService } from 'src/app/views/admin/log/log.service'
   styleUrls: ['./training.component.scss']
 })
 export class TrainingComponent implements OnInit {
-  
+
   trainingDataForm: FormGroup;
   storingLocations: any[] = []; // Array for storingLocations
   spatialCorrelations: any[] = []; // Array for spatialCorrelation
@@ -34,7 +34,7 @@ export class TrainingComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onFileChange(event: any) {
     const trainingDataFile = event.target.files[0];
@@ -58,17 +58,24 @@ export class TrainingComponent implements OnInit {
     this.adminDataService.trainigDataLogs(formData).subscribe(
       (response: any) => {
         if (response.status) {
+          console.log('Full response:', response);  // Log the response here
           this.storingLocations = []; // Reset storingLocations
           this.spatialCorrelations = []; // Reset spatialCorrelations
-          // set the log for model
-          this.loadLogsGradually(response.data.logs.storingLocations, response.data.logs.spatialCorrelation);
-          
-          // Store the logs in the service to be used in LogComponent
-          this.logservices.setStoringLocations(this.storingLocations);
-          this.logservices.setSpatialCorrelations(this.spatialCorrelations);
-        } else {
-          this.isLoading = false;
-          this.notificationService.showError('Failed to fetch data!', '');
+
+          if (response.data && response.data.logs) {
+            const storingLocations = response?.data.logs.storingLocations || [];
+            const spatialCorrelation = response.data.logs.spatialCorrelation || [];
+            // set the log for model
+            // this.loadLogsGradually(response.data.logs.storingLocations, response.data.logs.spatialCorrelation);
+            this.loadLogsGradually(storingLocations, spatialCorrelation);
+
+            // Store the logs in the service to be used in LogComponent
+            this.logservices.setStoringLocations(this.storingLocations);
+            this.logservices.setSpatialCorrelations(this.spatialCorrelations);
+          } else {
+            this.isLoading = false;
+            this.notificationService.showError('Failed to fetch data!', '');
+          }
         }
       },
       (error: any) => {

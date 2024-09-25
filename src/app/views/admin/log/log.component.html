@@ -11,6 +11,7 @@
         <strong>Correlations:</strong> {{ correlation.correlations.join(', ') }}
       </li>
     </ul>
+    <button cLoadingButton variant="outline" (click)="downloadLogsAsCSV()" cButton color="primary">Download Logs</button>
   </div>
   
   <div *ngIf="!storingLocations.length && !spatialCorrelations.length">
