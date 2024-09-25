@@ -1,1 +1,18 @@
-<p>log works!</p>
+<div *ngIf="storingLocations.length || spatialCorrelations.length">
+    <h3>Storing Locations</h3>
+    <ul>
+      <li *ngFor="let location of storingLocations">{{ location }}</li>
+    </ul>
+  
+    <h3>Spatial Correlations</h3>
+    <ul>
+      <li *ngFor="let correlation of spatialCorrelations">
+        <strong>Location:</strong> {{ correlation.location }} <br>
+        <strong>Correlations:</strong> {{ correlation.correlations.join(', ') }}
+      </li>
+    </ul>
+  </div>
+  
+  <div *ngIf="!storingLocations.length && !spatialCorrelations.length">
+    <p>No logs to display yet.</p>
+  </div>

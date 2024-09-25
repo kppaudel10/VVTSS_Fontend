@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminDataService } from '../admin.data.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { AdminService } from '../admin.service';
 import { NotificationService } from 'src/app/baseService/notification.service';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { LogService } from 'src/app/views/admin/log/log.service'
+ 
 
 @Component({
   selector: 'app-training',
@@ -10,61 +12,62 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./training.component.scss']
 })
 export class TrainingComponent implements OnInit {
-
+  
   trainingDataForm: FormGroup;
-  logs: string[] = [];
+  storingLocations: any[] = []; // Array for storingLocations
+  spatialCorrelations: any[] = []; // Array for spatialCorrelation
   isLoading: boolean = false;
 
+  private chunkSize: number = 3; // Number of logs to show at a time
+  private currentIndex: number = 0;
+
   constructor(
-    private adminDataService: AdminDataService,
+    private adminDataService: AdminService,
     private notificationService: NotificationService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private logservices: LogService
   ) {
-    // Initialize the form group
     this.trainingDataForm = this.fb.group({
-      file: [null],
+      trainingDataFile: [null],
       kValue: ['']
     });
   }
 
-  ngOnInit(): void {
-    // Any initialization logic
-  }
+  ngOnInit(): void {}
 
-  // Method to handle file input
   onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.trainingDataForm.patchValue({
-        file: file
-      });
+    const trainingDataFile = event.target.files[0];
+    if (trainingDataFile) {
+      this.trainingDataForm.get('trainingDataFile')?.setValue(trainingDataFile);
     }
   }
 
-  // Method to handle Train button click
   onTrain() {
-    // Ensure that the form is valid before proceeding
     if (this.trainingDataForm.invalid) {
       this.notificationService.showError('Please provide valid inputs!', '');
       return;
     }
 
-    // Show loading indicator
     this.isLoading = true;
 
-    // Prepare form data to send to the backend
     const formData = new FormData();
-    formData.append('file', this.trainingDataForm.get('file')?.value);
+    formData.append('trainingDataFile', this.trainingDataForm.get('trainingDataFile')?.value);
     formData.append('kValue', this.trainingDataForm.get('kValue')?.value);
 
-    this.adminDataService['trainigDataLogs'](formData).subscribe(
+    this.adminDataService.trainigDataLogs(formData).subscribe(
       (response: any) => {
-        this.isLoading = false;
         if (response.status) {
-          // Set logs to display in modal
-          this.logs = response.data.logs.storingLocations;
+          this.storingLocations = []; // Reset storingLocations
+          this.spatialCorrelations = []; // Reset spatialCorrelations
+          // set the log for model
+          this.loadLogsGradually(response.data.logs.storingLocations, response.data.logs.spatialCorrelation);
+          
+          // Store the logs in the service to be used in LogComponent
+          this.logservices.setStoringLocations(this.storingLocations);
+          this.logservices.setSpatialCorrelations(this.spatialCorrelations);
         } else {
+          this.isLoading = false;
           this.notificationService.showError('Failed to fetch data!', '');
         }
       },
@@ -73,5 +76,34 @@ export class TrainingComponent implements OnInit {
         this.notificationService.showError(error.data.message, 'error');
       }
     );
+  }
+
+  // Method to display logs gradually
+  loadLogsGradually(storingLocations: string[], spatialCorrelations: any[]) {
+    this.isLoading = true;
+    this.currentIndex = 0; // Reset current index
+
+    const loadNextChunk = () => {
+      // Get next chunk of storingLocations and spatialCorrelations
+      const nextStoringLocations = storingLocations.slice(this.currentIndex, this.currentIndex + this.chunkSize);
+      const nextSpatialCorrelations = spatialCorrelations.slice(this.currentIndex, this.currentIndex + this.chunkSize);
+
+      // Add the chunk to the displayed list
+      this.storingLocations.push(...nextStoringLocations);
+      this.spatialCorrelations.push(...nextSpatialCorrelations);
+
+      this.currentIndex += this.chunkSize;
+
+      if (this.currentIndex < storingLocations.length || this.currentIndex < spatialCorrelations.length) {
+        // If there's more data to load, continue after a short delay
+        setTimeout(loadNextChunk, 1000); // Adjust the delay as needed
+      } else {
+        // All data loaded
+        this.isLoading = false;
+      }
+    };
+
+    // Start loading the first chunk
+    loadNextChunk();
   }
 }
