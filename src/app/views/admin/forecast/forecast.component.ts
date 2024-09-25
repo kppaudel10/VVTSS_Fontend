@@ -93,36 +93,58 @@ export class ForecastComponent implements AfterViewInit {
     if (!this.map || !this.forecastData.length) {
       return;
     }
-
-    // Loop through the forecast data and add markers
+  
+    // Define custom icons for different traffic levels
+    const redIcon = L.icon({
+      iconUrl: '../assets/images/marker/red-marker.svg',
+      iconSize: [25, 41], 
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34], 
+    });
+  
+    const yellowIcon = L.icon({
+      iconUrl: '../assets/images/marker/yellow-marker.svg',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+    });
+  
+    const greenIcon = L.icon({
+      iconUrl: '../assets/images/marker/green-marker.svg',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+    });
+  
+    const blueIcon = L.icon({
+      iconUrl: '../assets/images/marker/blue-marker.svg',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+    });
+  
+    // Loop through the forecast data and add location markers
     this.forecastData.forEach((location: any) => {
-      debugger
       const lat = parseFloat(location.latitude);
       const lon = parseFloat(location.longitude);
       const traffic = location.traffic;
-
-      let markerColor = '';
-
-      // Determine marker color based on traffic value
-      if (traffic > 40) {
-        markerColor = 'red';
-      } else if (traffic > 30) {
-        markerColor = 'yellow';
-      } else if (traffic > 15) {
-        markerColor = 'green';
-      } else {
-        markerColor = 'blue'; // Default color for traffic <= 15
+  
+      let selectedIcon = greenIcon; // Default to blue icon
+  
+      // Determine which icon to use based on traffic value
+      if (traffic > 30) {
+        selectedIcon = redIcon;
+      } else if (traffic > 20) {
+        selectedIcon = yellowIcon;
+      } else if (traffic > 10) {
+        selectedIcon = blueIcon;
       }
-
-      // Create a circle marker with the determined color
-      const marker = L.circleMarker([lat, lon], {
-        radius: 8,
-        color: markerColor,
-        fillColor: markerColor,
-        fillOpacity: 0.8
-      });
-
+  
+      // Create a marker with the selected icon
+      const marker = L.marker([lat, lon], { icon: selectedIcon });
+  
       marker.bindPopup(`Traffic: ${traffic}`).addTo(this.map);
     });
   }
+  
 }
