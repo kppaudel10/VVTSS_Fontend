@@ -1,46 +1,61 @@
-<div class="ml-4">
-    <form cForm [formGroup]="trainingDataForm">
-      <c-row>
-        <c-row class="mt-3">
-          <label cLabel="col" class="col-sm-1">Browse :</label>
-          <c-col [sm]="4">
-            <input type="file" cFormControl (change)="onFileChange($event)" />
-          </c-col>
-        </c-row>
-  
-        <c-row class="mt-3">
-          <label cLabel="col" class="col-sm-1">K Value :</label>
-          <c-col [sm]="2">
-            <input type="number" cFormControl formControlName="kValue" />
-          </c-col>
-        </c-row>
-  
-        <div class="mt-4">
-          <button type="button" [cModalToggle]="verticallyCenteredScrollableModal.id" cButton color="success" (click)="onTrain()">Train</button>
-        </div>
+<div class="mt-4">
+  <form cForm [formGroup]="trainingDataForm">
+    <c-row>
+      <c-row class="mt-3">
+        <label cLabel="col" class="col-sm-1">Browse :</label>
+        <c-col [sm]="4">
+          <input type="file" cFormControl (change)="onFileChange($event)" />
+        </c-col>
       </c-row>
-  
-      <!-- Modal to display logs -->
-      <c-modal #verticallyCenteredScrollableModal
-         [scrollable]="true"
-         alignment="center"
-         id="verticallyCenteredScrollableModal">
-        <c-modal-header>
-          <h5 cModalTitle>Train Data Logs</h5>
-          <button [cModalToggle]="verticallyCenteredScrollableModal.id" cButtonClose></button>
-        </c-modal-header>
-        <c-modal-body>
-          <div *ngIf="isLoading">Loading logs...</div>
-          <ul *ngIf="!isLoading">
-            <li *ngFor="let log of logs">{{ log }}</li>
+
+      <c-row class="mt-3">
+        <label cLabel="col" class="col-sm-1">K Value :</label>
+        <c-col [sm]="2">
+          <input type="number" cFormControl formControlName="kValue" />
+        </c-col>
+      </c-row>
+
+      <div class="mt-4">
+        <button type="button" [cModalToggle]="verticallyCenteredScrollableModal.id" cButton color="success"
+          (click)="onTrain()">Train</button>
+      </div>
+    </c-row>
+
+    <!-- Modal to display logs -->
+    <c-modal #verticallyCenteredScrollableModal [scrollable]="true" alignment="center"
+      id="verticallyCenteredScrollableModal">
+      <c-modal-header>
+        <h5 cModalTitle>Train Data Logs</h5>
+        <button [cModalToggle]="verticallyCenteredScrollableModal.id" cButtonClose></button>
+      </c-modal-header>
+      <c-modal-body>
+        <div *ngIf="isLoading">Loading logs...</div>
+
+        <!-- Display Storing Locations -->
+        <div *ngIf="storingLocations.length > 0">
+          <h3>Storing Locations</h3>
+          <ul>
+            <li *ngFor="let location of storingLocations">{{ location }}</li>
           </ul>
-        </c-modal-body>
-        <c-modal-footer>
-            <button [cModalToggle]="verticallyCenteredScrollableModal.id" cButton color="secondary">
-                Close
-              </button>
-        </c-modal-footer>
-      </c-modal>
-    </form>
-  </div>
-  
+        </div>
+
+        <!-- Display Spatial Correlations -->
+        <div *ngIf="spatialCorrelations.length > 0">
+          <h3>Spatial Correlations</h3>
+          <ul>
+            <li *ngFor="let correlation of spatialCorrelations">
+              <strong>Location:</strong> {{ correlation.location }} <br>
+              <strong>Correlations:</strong> {{ correlation.correlations.join(', ') }}
+            </li>
+          </ul>
+        </div>
+
+      </c-modal-body>
+      <c-modal-footer>
+        <button [cModalToggle]="verticallyCenteredScrollableModal.id" cButton color="secondary">
+          Close
+        </button>
+      </c-modal-footer>
+    </c-modal>
+  </form>
+</div>

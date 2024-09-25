@@ -1,46 +1,57 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import * as L from 'leaflet';
+import { Component, OnInit } from '@angular/core';
+import { LogService } from 'src/app/views/admin/log/log.service'
 
 @Component({
   selector: 'app-log',
   templateUrl: './log.component.html',
   styleUrls: ['./log.component.scss']
+
 })
-export class LogComponent implements OnInit, AfterViewInit {
-  private map!: L.Map
-  markers: L.Marker[] = [
-    L.marker([31.9539, 35.9106]), // Amman
-    L.marker([32.5568, 35.8469]) // Irbid
-  ];
+export class LogComponent implements OnInit {
 
-  constructor() { }
+  storingLocations: any[] = [];
+  spatialCorrelations: any[] = [];
 
-  ngOnInit() {
+  constructor(private logService: LogService) {}
+
+  onChange(changeEvent: boolean, idx: number): void {
+    console.log(changeEvent, idx);
   }
 
-  ngAfterViewInit() {
-    this.initializeMap();
-    this.addMarkers();
-    this.centerMap();
+  ngOnInit(): void {
+    // Fetch logs from the LogService
+    this.storingLocations = this.logService.getStoringLocations();
+    this.spatialCorrelations = this.logService.getSpatialCorrelations();
   }
 
-  private initializeMap() {
-    const baseMapURl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-    this.map = L.map('map');
-    L.tileLayer(baseMapURl).addTo(this.map);
+  // Method to download logs as CSV
+  downloadLogsAsCSV(): void {
+    const csvData = this.generateCSV();
+    const blob = new Blob([csvData], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.setAttribute('hidden', '');
+    a.setAttribute('href', url);
+    a.setAttribute('download', 'logs.csv');
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
-  private addMarkers() {
-    // Add your markers to the map
-    this.markers.forEach(marker => marker.addTo(this.map));
-  }
+  // Method to generate CSV format data
+  generateCSV(): string {
+    const csvRows: string[] = [];
 
-  private centerMap() {
-    // Create a LatLngBounds object to encompass all the marker locations
-    const bounds = L.latLngBounds(this.markers.map(marker => marker.getLatLng()));
-    
-    // Fit the map view to the bounds
-    this.map.fitBounds(bounds);
-  }
+    // Add headers
+    csvRows.push('Location,Correlations');
 
+    // Add storing locations and spatial correlations to the CSV
+    this.spatialCorrelations.forEach((correlation) => {
+      const row = `${correlation.location},"${correlation.correlations.join(', ')}"`;
+      csvRows.push(row);
+    });
+
+    return csvRows.join('\n');
+  }
 }

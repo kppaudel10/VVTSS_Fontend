@@ -1,3 +1,28 @@
-<div class="map-container">
-  <app-log></app-log>
+<div *ngIf="storingLocations.length || spatialCorrelations.length">
+  <div class="log-container">
+      <!-- Storing Locations -->
+      <h3>Processing Logs</h3>
+      <div *ngFor="let location of storingLocations; let i = index">
+          <p>Processing... Storing Locations: {{ location }}</p>
+      </div>
+
+      <!-- Spatial Correlations -->
+      <div *ngFor="let correlation of spatialCorrelations; let i = index">
+          <p>Processing... Spatial Correlation (location): {{ correlation.location }}</p>
+          <p>Processing... Spatial Correlation (correlations): {{ correlation.correlations.join(' , ') }}</p>
+      </div>
+
+      <!-- Forecasting Section (Assuming you have forecasting data in future)
+      <div *ngFor="let forecast of forecastingData; let i = index">
+          <p>Processing... Forecasting: date: {{ forecast.date }} , day: {{ forecast.day }}, time: {{ forecast.time }}</p>
+          <p>Processing... Forecasting (predictions): location: {{ forecast.location }}, traffic: {{ forecast.traffic }}</p>
+      </div>-->
+  </div>
+</div>
+<!-- Button to Download Logs -->
+<div *ngIf="storingLocations.length || spatialCorrelations.length">
+<button class="download-button" (click)="downloadLogsAsCSV()">Download Logs</button>
+</div>
+<div *ngIf="!storingLocations.length && !spatialCorrelations.length">
+  <p>No logs to display yet.</p>
 </div>
