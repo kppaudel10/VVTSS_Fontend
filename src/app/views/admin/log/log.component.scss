@@ -1,0 +1,28 @@
+.log-container {
+    font-family: monospace;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-y: auto;
+    max-height: 500px; /* Set to limit height */
+    border: 1px solid #ccc;
+}
+
+.log-container p {
+    margin: 5px 0;
+}
+
+.download-button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.download-button:hover {
+    background-color: #45a049;
+}

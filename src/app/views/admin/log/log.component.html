@@ -1,19 +1,28 @@
 <div *ngIf="storingLocations.length || spatialCorrelations.length">
-    <h3>Storing Locations</h3>
-    <ul>
-      <li *ngFor="let location of storingLocations">{{ location }}</li>
-    </ul>
-  
-    <h3>Spatial Correlations</h3>
-    <ul>
-      <li *ngFor="let correlation of spatialCorrelations">
-        <strong>Location:</strong> {{ correlation.location }} <br>
-        <strong>Correlations:</strong> {{ correlation.correlations.join(', ') }}
-      </li>
-    </ul>
-    <button cLoadingButton variant="outline" (click)="downloadLogsAsCSV()" cButton color="primary">Download Logs</button>
+  <div class="log-container">
+      <!-- Storing Locations -->
+      <h3>Processing Logs</h3>
+      <div *ngFor="let location of storingLocations; let i = index">
+          <p>Processing... Storing Locations: {{ location }}</p>
+      </div>
+
+      <!-- Spatial Correlations -->
+      <div *ngFor="let correlation of spatialCorrelations; let i = index">
+          <p>Processing... Spatial Correlation (location): {{ correlation.location }}</p>
+          <p>Processing... Spatial Correlation (correlations): {{ correlation.correlations.join(' , ') }}</p>
+      </div>
+
+      <!-- Forecasting Section (Assuming you have forecasting data in future) 
+      <div *ngFor="let forecast of forecastingData; let i = index">
+          <p>Processing... Forecasting: date: {{ forecast.date }} , day: {{ forecast.day }}, time: {{ forecast.time }}</p>
+          <p>Processing... Forecasting (predictions): location: {{ forecast.location }}, traffic: {{ forecast.traffic }}</p>
+      </div>-->
   </div>
-  
-  <div *ngIf="!storingLocations.length && !spatialCorrelations.length">
-    <p>No logs to display yet.</p>
-  </div>
+</div>
+<!-- Button to Download Logs -->
+<div *ngIf="storingLocations.length || spatialCorrelations.length">
+<button class="download-button" (click)="downloadLogsAsCSV()">Download Logs</button>
+</div>
+<div *ngIf="!storingLocations.length && !spatialCorrelations.length">
+  <p>No logs to display yet.</p>
+</div>
