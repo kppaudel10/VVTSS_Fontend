@@ -10,31 +10,34 @@ export class ForecastComponent implements AfterViewInit {
   private map: any;
 
   @ViewChild('fullScreen') fullScreenModal: any;
+
   private initMap(): void {
+    if (this.map) {
+      this.map.remove(); // If map already initialized, remove it first.
+    }
+
     this.map = L.map('map', {
-      center: [ 39.8282, -98.5795 ],
-      zoom: 3
+      center: [27.7172, 85.3240],
+      zoom: 13
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 19,
       minZoom: 2,
-    }).addTo(this.map);
-
+      crossOrigin: true
+    });
     tiles.addTo(this.map);
+    
   }
 
-  constructor() { }
+  constructor() {}
 
   ngAfterViewInit(): void {
-    // Subscribe to the modal opening event if available
     if (this.fullScreenModal) {
-          this.initMap();
-          setTimeout(() => {
-            this.map.invalidateSize();
-          }, 500);
-          // Initialize the map after the modal is open
+        this.initMap();
+        setTimeout(() => {
+          this.map.invalidateSize(); // Ensure map correctly adjusts to modal size
+        }, 500);
     }
   }
 }
