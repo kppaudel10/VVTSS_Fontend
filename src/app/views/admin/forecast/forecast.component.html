@@ -1,29 +1,28 @@
 <div class="ml-4 side">
-    <form cForm>
+    <form cForm [formGroup]="forecastForm" >
         <c-row>
             <c-row class="mt-3">
-                <label cLabel="col" class="col-sm-1">Browse :</label>
+                <label cLabel="col" class="col-sm-1">Direction File :</label>
                 <c-col [sm]="4">
-                    <input type="file" cFormControl />
+                    <input type="file" cFormControl (change)="onFileChange($event)" />
                 </c-col>
             </c-row>
 
             <c-row class="mt-3">
-                <label cLabel="col" class="col-sm-1">Day :</label>
+                <label cLabel="col" class="col-sm-1">Forecast Date :</label>
                 <c-col [sm]="4">
-                    <input type="text" cFormControl placeholder="dd/mm/yyyy" />
+                    <input type="text" cFormControl placeholder="dd/mm/yyyy" formControlName="date" />
                 </c-col>
             </c-row>
             <c-row class="mt-3">
                 <label cLabel="col" class="col-sm-1">Time Interval :</label>
                 <c-col [sm]="4">
-                    <input type="text" cFormControl />
+                    <input type="text" cFormControl  formControlName="timeInterval"/>
                 </c-col>
             </c-row>
             <c-col class=" mt-4 btns">
-                <button cButton [cModalToggle]="modalLg.id" color="success">Forecast</button>
-                <button class="bigbot" cButton [cModalToggle]="fullScreen.id" color="success">Forecast In Big
-                    Mode</button>
+                <!-- <button cButton [cModalToggle]="modalLg.id" color="success" onclick="onForecast()">Forecast</button> -->
+                <button class="bigbot" cButton [cModalToggle]="fullScreen.id" color="success" (click)="onForecast()">Forecast Data </button>
             </c-col>
         </c-row>
     </form>

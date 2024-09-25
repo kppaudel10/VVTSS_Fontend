@@ -78,4 +78,9 @@ export class AdminService extends BaseService {
     return this.http.post(`${this.serviceUrl}/api/traffic-congestion/training/data`, data, this.getHeaders())
   }
 
+   // Api to forecast data 
+   public forecastData(data: FormData){
+    return this.http.post(`${this.serviceUrl}/api/traffic-congestion/training/forecast/data`, data, this.getHeaders())
+  }
+
 }
