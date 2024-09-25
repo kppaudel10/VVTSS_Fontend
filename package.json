@@ -33,6 +33,7 @@
     "@coreui/icons-angular": "~4.4.1",
     "@coreui/utils": "^2.0.1",
     "@ng-bootstrap/ng-bootstrap": "^14.1.1",
+    "@syncfusion/ej2-angular-maps": "^27.1.50",
     "buffer": "^6.0.3",
     "chart.js": "^3.9.1",
     "leaflet": "^1.7.1",

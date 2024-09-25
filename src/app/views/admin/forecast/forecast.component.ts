@@ -18,7 +18,7 @@ export class ForecastComponent implements AfterViewInit {
 
     this.map = L.map('map', {
       center: [27.7172, 85.3240],
-      zoom: 13
+      zoom: 12
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

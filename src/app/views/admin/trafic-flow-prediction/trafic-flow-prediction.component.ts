@@ -31,7 +31,7 @@ export class TraficFlowPredictionComponent implements OnInit {
         label: 'Performance',
         link: 'performance',  
         index: 3
-      },
+      }
     ];
   }
 

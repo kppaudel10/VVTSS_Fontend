@@ -42,7 +42,9 @@
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/leaflet/dist/leaflet.css"
             ],
-            "scripts": [],
+            "scripts": [
+               "node_modules/leaflet/dist/leaflet.js"
+            ],
             "allowedCommonJsDependencies": [
               "chart.js",
               "@coreui/chartjs/dist/js/coreui-chartjs.js"
