@@ -108,7 +108,8 @@ const APP_CONTAINERS = [
     MatDialogModule, 
     MatDatepickerModule,
     MatNativeDateModule,
-    ChartjsModule
+    ChartjsModule,
+    
     
     
   ],

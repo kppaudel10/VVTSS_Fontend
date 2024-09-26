@@ -31,7 +31,7 @@ export class PerformanceComponent implements OnInit {
   constructor(
     private adminDataService: AdminService,
     private notificationService: NotificationService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getTrafficPerformanceData();
@@ -41,44 +41,43 @@ export class PerformanceComponent implements OnInit {
     this.adminDataService.getTrafficPerformance().subscribe({
       next: (response: any) => {
         if (response.status) {
-          const performanceData = response.data;
+          // Set the data for the chart
+          this.lineChartData.labels = response.data.map((item: any) => `Index ${item.index}`);
 
-          // Extract labels and data for the chart
-          this.lineChartData.labels = performanceData.map((item: any) => `Index ${item.index}`);
-          
-          // Prepare datasets
           this.lineChartData.datasets = [
             {
-              data: performanceData.map((item: any) => item.predictedTraffic),
+              data: response.data.map((item: any) => item.predictedTraffic),
               label: 'Predicted Traffic',
               borderColor: 'blue',
               fill: false,
+              borderWidth: 2,
             },
             {
-              data: performanceData.map((item: any) => item.estimateTraffic),
-              label: 'Estimated Traffic',
-              borderColor: 'green',
-              fill: false,
-            },
-            {
-              data: performanceData.map((item: any) => item.actualTraffic),
+              data: response.data.map((item: any) => item.actualTraffic),
               label: 'Actual Traffic',
               borderColor: 'red',
               fill: false,
-            }
+              borderWidth: 2,
+            },
+            {
+              data: response.data.map((item: any) => item.estimateTraffic),
+              label: 'Estimated Traffic',
+              borderColor: 'green',
+              fill: false,
+              borderWidth: 2,
+            },
+            
           ];
-
-          this.notificationService.showSuccess('Data fetched successfully!', 'Success');
+          this.isLoading = false;
         } else {
-          this.errorMessage = 'Failed to fetch data.';
+          this.errorMessage = 'Failed to fetch data';
+          this.isLoading = false;
         }
-        this.isLoading = false;
       },
       error: () => {
         this.isLoading = false;
-        this.errorMessage = 'Error fetching data.';
-        this.notificationService.showError('Error fetching traffic data', 'Error');
+        this.errorMessage = 'Error fetching data';
       }
     });
   }
-}
+}  
