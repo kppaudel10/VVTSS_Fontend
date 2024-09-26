@@ -8,21 +8,21 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-forecast',
   templateUrl: './forecast.component.html',
-  styleUrls: ['./forecast.component.scss']
+  styleUrls: ['./forecast.component.scss'],
 })
 export class ForecastComponent implements AfterViewInit {
   forecastForm: FormGroup;
-  forecastData : any[] = [];
+  forecastData: any[] = [];
   constructor(
     private adminDataService: AdminService,
     private notificationService: NotificationService,
     private router: Router,
-    private fb: FormBuilder,
+    private fb: FormBuilder
   ) {
     this.forecastForm = this.fb.group({
       directionFile: [null],
       date: [''],
-      timeInterval: [null]
+      timeInterval: [null],
     });
   }
   private map: any;
@@ -35,25 +35,27 @@ export class ForecastComponent implements AfterViewInit {
     }
 
     this.map = L.map('map', {
-      center: [27.7172, 85.3240],
-      zoom: 12
+      center: [27.716312267400838, 85.32753434030839],
+      zoom: 11,
     });
 
-    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      minZoom: 2,
-      crossOrigin: true
-    });
+    const tiles = L.tileLayer(
+      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      {
+        maxZoom: 19,
+        minZoom: 2,
+        crossOrigin: true,
+      }
+    );
     tiles.addTo(this.map);
-    
   }
 
   ngAfterViewInit(): void {
     if (this.fullScreenModal) {
-        this.initMap();
-        setTimeout(() => {
-          this.map.invalidateSize(); // Ensure map correctly adjusts to modal size
-        }, 500);
+      this.initMap();
+      setTimeout(() => {
+        this.map.invalidateSize(); // Ensure map correctly adjusts to modal size
+      }, 500);
     }
   }
 
@@ -64,10 +66,15 @@ export class ForecastComponent implements AfterViewInit {
     }
 
     const formData = new FormData();
-    formData.append('directionFile', this.forecastForm.get('directionFile')?.value);
+    formData.append(
+      'directionFile',
+      this.forecastForm.get('directionFile')?.value
+    );
     formData.append('date', this.forecastForm.get('date')?.value);
-    formData.append('timeInterval', this.forecastForm.get('timeInterval')?.value);
-
+    formData.append(
+      'timeInterval',
+      this.forecastForm.get('timeInterval')?.value
+    );
 
     this.adminDataService.forecastData(formData).subscribe(
       (response: any) => {
@@ -93,44 +100,44 @@ export class ForecastComponent implements AfterViewInit {
     if (!this.map || !this.forecastData.length) {
       return;
     }
-  
+
     // Define custom icons for different traffic levels
     const redIcon = L.icon({
       iconUrl: '../assets/images/marker/red-marker.svg',
-      iconSize: [25, 41], 
+      iconSize: [25, 41],
       iconAnchor: [12, 41],
-      popupAnchor: [1, -34], 
+      popupAnchor: [1, -34],
     });
-  
+
     const yellowIcon = L.icon({
       iconUrl: '../assets/images/marker/yellow-marker.svg',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [1, -34],
     });
-  
+
     const greenIcon = L.icon({
       iconUrl: '../assets/images/marker/green-marker.svg',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [1, -34],
     });
-  
+
     const blueIcon = L.icon({
       iconUrl: '../assets/images/marker/blue-marker.svg',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [1, -34],
     });
-  
+
     // Loop through the forecast data and add location markers
     this.forecastData.forEach((location: any) => {
       const lat = parseFloat(location.latitude);
       const lon = parseFloat(location.longitude);
       const traffic = location.traffic;
-  
+
       let selectedIcon = greenIcon; // Default to blue icon
-  
+
       // Determine which icon to use based on traffic value
       if (traffic > 30) {
         selectedIcon = redIcon;
@@ -139,12 +146,11 @@ export class ForecastComponent implements AfterViewInit {
       } else if (traffic > 10) {
         selectedIcon = blueIcon;
       }
-  
+
       // Create a marker with the selected icon
       const marker = L.marker([lat, lon], { icon: selectedIcon });
-  
+
       marker.bindPopup(`Traffic: ${traffic}`).addTo(this.map);
     });
   }
-  
 }
