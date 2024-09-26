@@ -10,15 +10,22 @@
 
       <c-row class="mt-3">
         <label cLabel="col" class="col-sm-1">K Value :</label>
-        <c-col [sm]="2">
+        <c-col [sm]="4">
           <input type="number" cFormControl formControlName="kValue" />
+          <div *ngIf="trainingDataForm.get('kValue')?.invalid && trainingDataForm.get('kValue')?.touched"
+            class="text-danger">
+            <div *ngIf="trainingDataForm.get('kValue')?.errors?.['required'] && trainingDataForm.get('kValue')?.touched"
+              class="text-danger">
+              Value must be greater than or equal to 0.
+            </div>
+          </div>
         </c-col>
       </c-row>
 
       <div class="mt-4">
         <button type="button" [cModalToggle]="verticallyCenteredScrollableModal.id" cButton color="success"
           (click)="onTrain()">Train</button>
-          <button style="margin-left: 10px;" cButton color="primary" (click)="resetData()"> Reset Data</button>
+        <button style="margin-left: 10px;" cButton color="primary" (click)="resetData()"> Reset Data</button>
       </div>
     </c-row>
 

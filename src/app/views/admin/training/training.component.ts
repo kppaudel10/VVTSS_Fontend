@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, MinLengthValidator } from '@angular/forms';
 import { AdminService } from '../admin.service';
 import { NotificationService } from 'src/app/baseService/notification.service';
 import { Router } from '@angular/router';
 import { LogService } from 'src/app/views/admin/log/log.service'
+import { min } from 'rxjs';
 
 
 @Component({
@@ -29,11 +30,11 @@ export class TrainingComponent implements OnInit {
     private logservices: LogService
   ) {
     this.trainingDataForm = this.fb.group({
-      trainingDataFile: [null],
-      kValue: ['']
+      trainingDataFile: [null,[Validators.required]],
+      kValue: ['0', [Validators.required, Validators.min(0)]]
     });
   }
-
+ 
   ngOnInit(): void { }
 
   onFileChange(event: any) {

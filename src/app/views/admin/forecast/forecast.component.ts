@@ -22,7 +22,7 @@ export class ForecastComponent implements AfterViewInit {
     this.forecastForm = this.fb.group({
       directionFile: [null, Validators.required],
       date: ['',[Validators.required, this.dateValidator]],
-      timeInterval: [null,[Validators.required]]
+      timeInterval: [null,[Validators.required,Validators.max(24),Validators.min(1)]]
     });
   }
   // Custom date validator (optional)

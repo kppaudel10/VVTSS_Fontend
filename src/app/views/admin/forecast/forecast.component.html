@@ -24,6 +24,13 @@
                 <label cLabel="col" class="">Time Interval :</label>
                 <c-col [sm]="4">
                     <input type="text" cFormControl formControlName="timeInterval" />
+                    <div *ngIf="forecastForm.get('timeInterval')?.invalid && forecastForm.get('timeInterval')?.touched"
+            class="text-danger">
+            <div *ngIf="forecastForm.get('timeInterval')?.errors?.['required'] && forecastForm.get('timeInterval')?.touched"
+              class="text-danger">
+              Time Interval must be at least 1 hour and can not exceed 24 hours.
+            </div>
+          </div>
                 </c-col>
             </c-row>
             <c-col class=" mt-4 btns">
