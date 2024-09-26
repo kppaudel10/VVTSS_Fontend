@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartConfiguration, ChartType } from 'chart.js';
 import { AdminService } from '../admin.service';
 import { NotificationService } from 'src/app/baseService/notification.service';
-import { ChartConfiguration, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-performance',
@@ -10,7 +10,7 @@ import { ChartConfiguration, ChartType } from 'chart.js';
 })
 export class PerformanceComponent implements OnInit {
 
-  // Variables for chart
+  // Chart data and configuration
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [],
     labels: []
@@ -23,13 +23,15 @@ export class PerformanceComponent implements OnInit {
       }
     }
   };
-  public lineChartType: ChartType = 'line';
+  public lineChartType: ChartType = 'line';  // Define chart type as 'line'
 
-  isLoading: boolean = true;  // For loading state
-  errorMessage: string = '';  // For error handling
+  isLoading: boolean = true;  // Loading state
+  errorMessage: string = '';  // Error message
 
-  constructor(private adminDataService: AdminService,
-              private notificationService: NotificationService) {}
+  constructor(
+    private adminDataService: AdminService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.getTrafficPerformanceData();
@@ -66,7 +68,7 @@ export class PerformanceComponent implements OnInit {
             }
           ];
 
-          this.notificationService.showSuccess('Data fetched successfully!',"success");
+          this.notificationService.showSuccess('Data fetched successfully!', 'Success');
         } else {
           this.errorMessage = 'Failed to fetch data.';
         }
@@ -75,7 +77,7 @@ export class PerformanceComponent implements OnInit {
       error: () => {
         this.isLoading = false;
         this.errorMessage = 'Error fetching data.';
-        this.notificationService.showError('Error fetching traffic data',"error");
+        this.notificationService.showError('Error fetching traffic data', 'Error');
       }
     });
   }

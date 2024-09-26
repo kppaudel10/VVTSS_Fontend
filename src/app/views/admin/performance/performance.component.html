@@ -1,0 +1,15 @@
+<div *ngIf="!isLoading; else loadingTemplate">
+    <c-chart
+      type="line" ></c-chart>
+  </div>
+  
+  <!-- Loading spinner -->
+  <ng-template #loadingTemplate>
+    <div>Loading...</div>
+  </ng-template>
+  
+  <!-- Error message -->
+  <div *ngIf="errorMessage">
+    <p style="color: red;">{{ errorMessage }}</p>
+  </div>
+  
