@@ -19,7 +19,7 @@ export class PerformanceComponent implements OnInit {
     responsive: true,
     plugins: {
       legend: {
-        display: true
+        display: true,
       }
     }
   };
@@ -51,6 +51,9 @@ export class PerformanceComponent implements OnInit {
               borderColor: 'blue',
               fill: false,
               borderWidth: 2,
+              hoverBorderWidth: 10,
+              hoverBorderColor: "white",
+              hoverBackgroundColor: "black",
             },
             {
               data: response.data.map((item: any) => item.actualTraffic),
@@ -58,6 +61,9 @@ export class PerformanceComponent implements OnInit {
               borderColor: 'red',
               fill: false,
               borderWidth: 2,
+              hoverBorderWidth: 10,
+              hoverBorderColor: "white",
+              hoverBackgroundColor: "black",
             },
             {
               data: response.data.map((item: any) => item.estimateTraffic),
@@ -65,13 +71,16 @@ export class PerformanceComponent implements OnInit {
               borderColor: 'green',
               fill: false,
               borderWidth: 2,
+              hoverBorderWidth: 10,
+              hoverBorderColor: "white",
+              hoverBackgroundColor: "black",
             },
             
           ];
           this.isLoading = false;
         } else {
           this.errorMessage = 'Failed to fetch data';
-          this.isLoading = false;
+         
         }
       },
       error: () => {

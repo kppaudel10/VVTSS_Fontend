@@ -1,6 +1,6 @@
 <div *ngIf="!isLoading; else loadingTemplate">
   <c-chart
-    type="line"
+    type="line" style="cursor: pointer;"
     [data]="lineChartData"
     [options]="lineChartOptions"></c-chart>
 </div>
