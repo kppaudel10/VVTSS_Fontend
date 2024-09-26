@@ -113,4 +113,7 @@ export class TrainingComponent implements OnInit {
     // Start loading the first chunk
     loadNextChunk();
   }
+  resetData(){
+    this.trainingDataForm.reset();
+  }
 }

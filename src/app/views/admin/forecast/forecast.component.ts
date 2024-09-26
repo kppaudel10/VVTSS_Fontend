@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from '../admin.service';
 import { NotificationService } from 'src/app/baseService/notification.service';
 import { Router } from '@angular/router';
@@ -24,6 +24,11 @@ export class ForecastComponent implements AfterViewInit {
       date: [''],
       timeInterval: [null],
     });
+  }
+  // Custom date validator (optional)
+  dateValidator(control: any): { [key: string]: any } | null {
+    const valid = /^([0-2][0-9]|(3)[0-1])\/([0][1-9]|1[0-2])\/(\d{4})$/.test(control.value);
+    return valid ? null : { invalidDate: true };
   }
   private map: any;
 
@@ -60,7 +65,7 @@ export class ForecastComponent implements AfterViewInit {
   }
 
   onForecast() {
-    if (this.forecastForm.invalid) {
+    if (this.forecastForm?.invalid) {
       this.notificationService.showError('Please provide valid inputs!', '');
       return;
     }
@@ -153,4 +158,9 @@ export class ForecastComponent implements AfterViewInit {
       marker.bindPopup(`Traffic: ${traffic}`).addTo(this.map);
     });
   }
+  resetData() {
+    // Reset the form fields
+    this.forecastForm.reset();
+  }
+
 }

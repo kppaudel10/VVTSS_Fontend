@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 
 
+
 import {
   PERFECT_SCROLLBAR_CONFIG,
   PerfectScrollbarConfigInterface,
@@ -52,6 +53,9 @@ import {
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ChartjsModule } from '@coreui/angular-chartjs';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -67,6 +71,7 @@ const APP_CONTAINERS = [
 @NgModule({
   declarations: [AppComponent, ...APP_CONTAINERS],
   imports: [
+   
     TabsModule,
     BrowserModule,
     ToastrModule.forRoot(),
@@ -101,6 +106,11 @@ const APP_CONTAINERS = [
     ModalModule,
     DialogModule,
     MatDialogModule, 
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ChartjsModule
+    
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

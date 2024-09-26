@@ -68,6 +68,7 @@ import { PerformanceComponent } from './performance/performance.component';
     ToastModule,
     BrowserAnimationsModule,
     TabsModule,
+    ChartjsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

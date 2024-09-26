@@ -41,6 +41,7 @@
               "src/scss/styles.scss",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/leaflet/dist/leaflet.css"
+              
             ],
             "scripts": [
                "node_modules/leaflet/dist/leaflet.js"
